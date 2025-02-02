@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+html[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
 
 :root{
   --main-color:#2C2D3F;
@@ -6,3 +11,18 @@
   --bg-trans:rgba(#1A76D1,#1A76D1,#1A76D1,.8);
 }
 
+ul, ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a, a:hover, button {
+  text-decoration: none;
+}
+
+a, button {
+  transition: all .3s ease;
+  outline: none;
+  box-shadow: none;
+}
