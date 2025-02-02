@@ -1,0 +1,173 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&display=swap'); */
+body,*{
+  font-family: "Cairo", serif;
+}
+/* start main section */
+.sec1{
+  background: url(/home2.jpg);
+}
+.sec2{
+  background: url(/home1.jpg);
+}
+
+.main-sec{
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+.main-sec .caption h1{
+  animation: fadeInUp 1s .6s both;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 140%;
+  color: var(--main-color);
+}
+.main-sec .caption h1 span{
+  color: var(--sec-color);
+}
+.main-sec .caption p{
+    animation: fadeInUp 1s 1s both;
+    color: var(--main-color);
+    margin-top: 27px;
+    font-weight: 400;
+}
+.main-sec .caption .button{
+    margin-top: 30px;
+    animation: fadeInDown 1s 1.5s both;
+}
+.main-sec .caption .button .btn{
+  background: var(--sec-color);
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 0 0 10px;
+  padding: 10px 25px;
+  word-spacing: 2px;
+}
+.main-sec .caption .button .btn2{
+  background: var(--main-color);
+}
+.carousel-control-next, .carousel-control-prev{
+  opacity: 1 !important;
+}
+.carousel-control-next{
+  left:30px !important;
+  justify-content: flex-end !important;
+}
+.carousel-control-prev{
+  justify-content: flex-start !important;
+  right:30px !important;
+}
+.carousel-control-next-icon,.carousel-control-prev-icon{
+  background: var(--sec-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* end first section */
+
+
+/* start sec section */
+.schedule .single-schedule{
+  background: var(--sec-color);
+}
+.schedule .single-schedule h4{
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-top: 13px;
+}
+.schedule .single-schedule p{
+  margin-top: 22px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.schedule .single-schedule a{
+  margin-top: 25px;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+}
+.schedule .single-schedule .icon{
+  position: absolute;
+  left: -30px;
+  bottom: -50px;
+  transform: rotateY(180deg);
+  color:  #4891DA;
+}
+.schedule-inner{
+  position: relative;
+  transform: translateY(-50%);
+  z-index: 9;
+}
+/* end second section */
+
+@media  (max-width: 991px){
+  /* section 1 */
+  .sec1{
+    background: linear-gradient(
+      rgba(256,256,256, .6),
+      rgba( 256,256,256, .6)
+    ),url(/home2.jpg);
+    height: 380px;
+    background-size: cover;
+  }
+  .sec2{
+    background: linear-gradient(
+      rgba(256,256,256, .6),
+      rgba( 256,256,256, .6)
+    ),url(/home1.jpg);
+    height: 380px;
+    background-size: cover;
+  }
+  .main-sec .caption h1{
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 35px;
+  }
+  /* end section 1 */
+
+
+  /* start section 2 */
+  .schedule{
+    padding-block: 50px;
+  }
+  .schedule-inner{
+    position: relative;
+    transform: translateY(0);
+    z-index: 9;
+  }
+  /* end section 2 */
+}
+@media (max-width:767px){
+  .main-sec .caption h1{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 25px;
+  }
+  .main-sec .caption p{
+    font-size: 13px;
+    width: 80%;
+  }
+}
+
+@media (max-width:400px){
+  .main-sec{
+    padding-block: 40px;
+  }
+  .main-sec .caption .button .btn{
+    width: 100%;
+  }
+  .main-sec .caption .button .btn2{
+    margin-top: 10px;
+  }
+  .carousel-control-next, .carousel-control-prev{
+    display: none;
+  }
+}
+
+

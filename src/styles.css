@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
- 
+
 :root{
-  --text-color:#193378;
-  --main-color:#3575fe;
-  --sec-text-color:#2490EB;
-  --sec-bg-color:#D3E9FB;
-  --para-color:#E0E0E0;
+  --main-color:#2C2D3F;
+  --sec-color:#1A76D1;
+  --bg-trans:rgba(#1A76D1,#1A76D1,#1A76D1,.8);
 }
+
