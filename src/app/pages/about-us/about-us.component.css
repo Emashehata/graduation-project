@@ -1,3 +1,10 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&display=swap'); */
+body,*{
+  font-family: "Cairo", serif;
+}
+
 /* --------------------  Start Top Style ----------------------- */
 .Top
 {
@@ -182,6 +189,13 @@
     font-size: 25px;
     transition: .5s;
 }
+.single-vision-box h3 {
+    transition: .5s;
+    margin-bottom: 0;
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+}
 
 .single-vision-box:after, .single-vision-box:before {
     z-index: -1;
@@ -280,7 +294,7 @@
     max-width: 50%;
     color: #7d7d7d;
     font-size: 14.5px;
-    line-height: 1.7;
+    /* line-height: 1.7; */
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 25px;
