@@ -244,7 +244,7 @@ body,*{
 }
 
 .contact-us .single-info .fa-phone,.fa-location-dot ,.fa-clock{
-    font-size: 42px;
+    font-size: 30px;
     color: #fff;
     position: absolute;
     left: 40px;
@@ -263,6 +263,11 @@ body,*{
 }
 
 @media only screen and (max-width: 767px) {
+    .contact-us .single-info {
+        margin: 10px 0;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     .contact-us .single-info {
         margin: 10px 0;
     }
