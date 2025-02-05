@@ -26,3 +26,18 @@ a, button {
   outline: none;
   box-shadow: none;
 }
+.btn {
+  padding: 13px 25px;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 500;
+  background: var(--sec-color);
+  position: relative;
+  box-shadow: none;
+  display: inline-block;
+  transition: all .4s ease;
+  transform: perspective(1px) translateZ(0);
+  border: none;
+  border-radius: 0;
+  border-radius: 4px;
+}
