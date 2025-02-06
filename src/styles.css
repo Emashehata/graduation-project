@@ -1,8 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&display=swap'); */
+body{
+  font-family: "Cairo", serif;
+  font-variant-numeric: traditional;
+  unicode-bidi: embed;
+}
 
 :root{
   --main-color:#2C2D3F;
   --sec-color:#1A76D1;
+  --para-color:#888;
   --bg-trans:rgba(#1A76D1,#1A76D1,#1A76D1,.8);
 }
-
+.main-color{
+  color: var(--main-color);
+}
+.sec-color{
+  color: var(--sec-color);
+}
