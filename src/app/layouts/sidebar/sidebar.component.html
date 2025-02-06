@@ -1,0 +1,85 @@
+
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-white shadow">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+              <a  routerLink="homeAdmin" class="d-flex align-items-center pb-3 mb-md-2 me-md-auto text-black text-decoration-none">
+                <img src="/logo4.svg" alt="">
+                <span class="fs-5 ms-2 fw-semibold d-none d-sm-inline main-color">الإدارة <span class="sec-color">الطبية</span></span>
+              </a>
+              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                  <li class="nav-item">
+                      <a  routerLink="homeAdmin" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                        <i routerLinkActive="bg-light" class="icofont-ui-home bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                        <span class="ms-1 d-none d-sm-inline">الرئيسية</span>
+                      </a>
+                  </li>
+                  <li class="nav-item mt-2">
+                      <a  routerLink="dashboard" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                        <i routerLinkActive="bg-light" class=" icofont-dashboard-web bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                        <span class="ms-1 d-none d-sm-inline">الاحصائيات</span>
+                      </a>
+                  </li>
+                  <li class="nav-item mt-2">
+                      <a  routerLink="news-admin" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                        <i routerLinkActive="bg-light" class="icofont-news bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                        <span class="ms-1 d-none d-sm-inline">الأخبار</span>
+                      </a>
+                  </li>
+                  <li class="nav-item mt-2">
+                      <a  routerLink="students" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                        <i routerLinkActive="bg-light" class="icofont-group-students bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                        <span class="ms-1 d-none d-sm-inline">الطلاب</span>
+                      </a>
+                  </li>
+                  <li class="mt-2">
+                    <a routerLink="clinic-admin" routerLinkActive="bg-primary bg-opacity-25 text-primary"
+                       class="nav-link px-2 px-md-5 main-color align-middle main-color"
+                       data-bs-toggle="collapse" data-bs-target="#submenu1">
+                        <i routerLinkActive="bg-light" class="  icofont-hospital bg-primary p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                        <span class="ms-1 d-none d-sm-inline">العيادات <i class="fa-solid fa-angle-down"></i></span>
+                    </a>
+                    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                        <li class="w-100">
+                          <a  routerLink="students" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                            <i routerLinkActive="bg-light" class="icofont-group-students bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                            <span class="ms-1 d-none d-sm-inline">الطلاب</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a  routerLink="students" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                            <i routerLinkActive="bg-light" class="icofont-group-students bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                            <span class="ms-1 d-none d-sm-inline">الطلاب</span>
+                          </a>
+                        </li>
+                    </ul>
+                </li>
+
+              </ul>
+              <hr class="text-dark my-3 w-100" >
+              <div class="dropdown pb-4 text-black">
+                  <a href="#" class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                      <span class="d-none d-sm-inline mx-1">loser</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                      <li><a class="dropdown-item" >New project...</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li>
+                          <hr class="dropdown-divider">
+                      </li>
+                      <li><a class="dropdown-item" href="#">Sign out</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+
+      <div class="col main-content bg-light">
+        <router-outlet></router-outlet>
+      </div>
+
+  </div>
+</div>
+
+

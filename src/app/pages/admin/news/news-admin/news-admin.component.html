@@ -1,0 +1,112 @@
+
+<div class="app-body">
+
+  <!-- Row starts -->
+  <div class="row gx-3">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="card-title main-color fw-semibold">الأخبار</h5>
+          <a  class="btn btn-primary ms-auto" routerLink="/add news">إنشاء خبر</a>
+        </div>
+        <div class="card-body">
+
+          <!-- Table starts -->
+          <div class="table-responsive">
+            <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_length" id="basicExample_length">
+                    <label>عرض<select name="basicExample_length" aria-controls="basicExample" class="form-select form-select-sm">
+                      <option value="12">12</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                    </select> صفوف الصفحة</label>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div id="basicExample_filter" class="dataTables_filter">
+                    <label>بحث:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="basicExample">
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+              <table id="basicExample" class="table truncate m-0 mt-5 align-middle dataTable no-footer" aria-describedby="basicExample_info">
+              <thead>
+                <tr>
+                  <th class="sorting w-25 text-center sorting_asc" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ID: activate to sort column descending"  >ID</th>
+                  <th class="sorting w-25 text-center" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="news Name: activate to sort column ascending"  >عنوان الخبر</th>
+                  <th class="sorting w-25 text-center" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" >وصف الخبر</th>
+                  <th class="sorting w-25 text-center" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="date: activate to sort column ascending"  >تاريخ الخبر</th>
+                  <th class="sorting w-25 text-center" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="img: activate to sort column ascending"  >صورة الخبر</th>
+                  <th class="sorting w-25 text-center" tabindex="0" aria-controls="basicExample" rowspan="1" colspan="1" aria-label="img: activate to sort column ascending"  >الاجراءات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd">
+                  <td class="sorting_1 text-center">#0008</td>
+                  <td class="sorting_1 text-center">مؤتمر الادارة الطبية</td>
+                  <td class="sorting_1 text-center"> مؤتمر الادارة الطبية بجامعه طنطا</td>
+                  <td class="sorting_1 text-center">10/10/2020</td>
+                  <td>
+                    <img src="/fun-bg.b5af0dac.jpg" class="img-shadow w-100 h-100 rounded-1 me-1" alt="Medical Admin Template">
+                  </td>
+
+
+                  <td>
+                    <div class="d-inline-flex gap-1">
+                      <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                      <a href="" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                      </a>
+                      <a href="" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                        <i class="fa-regular fa-eye"></i>
+                      </a>
+                    </div>
+                  </td>
+                    </tr>
+                   </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+          <!-- Table ends -->
+
+          <!-- Modal Delete Row -->
+          <div class="modal fade" id="delRow" tabindex="-1" aria-labelledby="delRowLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="delRowLabel">
+                    Confirm
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete the doctor from list?
+                </div>
+                <div class="modal-footer">
+                  <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">No</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Row ends -->
+
+</div>
+<router-outlet></router-outlet>
