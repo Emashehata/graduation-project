@@ -1,0 +1,274 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&display=swap'); */
+body,*{
+  font-family: "Cairo", serif;
+}
+/* ---------------------------------------------- start Top ------------------------------------------------------ */
+.Top
+{
+    background-image: url(../../../assets/Images/Contact1.jpg);
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: relative;
+    padding: 120px 0; 
+}
+
+.overlay
+{
+    z-index: 2;
+}
+.overlay::before
+{
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--sec-color);
+    opacity: .8;
+    z-index: -1;
+}
+
+.Top h2 {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.Top .list {
+    display: inline-block;
+    margin-top: 20px;
+}
+.Top ul li {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.Top ul li a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+}
+.Top ul li a:hover {
+    color: #2c2d3f;
+}
+/* ---------------------------------------------- End Top ------------------------------------------------------ */
+
+@media only screen and (max-width: 767px) {
+    .section {
+        padding: 50px 0;
+    }
+}
+.section {
+    padding: 100px 0;
+}
+
+.contact-us .inner {
+    box-shadow: 0 0 10px #00000024;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.contact-us .contact-us-form {
+    padding: 50px 40px;
+}
+.contact-us .contact-us-form h2 {
+    position: relative;
+    font-size: 32px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 20px;
+    
+}
+
+.contact-us .contact-us-form h2:before {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 50px;
+    background: var(--sec-color);
+}
+
+.contact-us .contact-us-form p {
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+
+.contact-us .inner .form .form-group {
+    margin-bottom: 18px;
+}
+
+.contact-us .form .form-group input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #eee;
+    text-transform: capitalize;
+    padding: 0 18px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+}
+
+.contact-us .form .form-group input:focus, .contact-us .form .form-group textarea:focus {
+    border: 1px solid var(--sec-color);
+}
+.contact-us .form .form-group textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #eee;
+    text-transform: capitalize;
+    padding: 18px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+}
+
+
+.contact-us .form .form-group.login-btn {
+    margin: 0;
+}
+
+.contact-us .form .btn {
+    /* display: inline-block; */
+    color: #fff;
+    line-height: 20px;
+    width: 100%;
+    position: relative;
+    
+}
+.contact-us .form .btn:hover {
+    background: var(--sec-color);
+    color: #fff;
+    transition: all .4s ease;
+    
+}
+
+.contact-us .form button {
+    border: none;
+}
+.btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #2c2d3f;
+    transform: scaleX(0);
+    transform-origin: 50%;
+    transition: all .4s ease;
+    border-radius: 4px;
+}
+.btn:hover:before {
+    transform: scaleX(1);
+}
+/* ------------------------------------------ Map ----------------------------------------- */
+
+.contact-us .contact-us-left {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.contact-us #myMap, .contact-us #myMap iframe {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 767px) {
+    .contact-us #myMap, .our-mission-image {
+        height: 300px;
+    }
+}
+
+/* ------------------------------------ Contact Info ----------------------------------------- */
+.contact-us .contact-info {
+    margin-top: 50px;
+}
+
+.contact-us .single-info, .contact-us .single-info:before {
+    background: var(--sec-color);
+    transition: all .3s ease-out 0s;
+}
+
+.contact-us .single-info {
+    padding: 40px 60px;
+    height: 150px;
+    border-radius: 10px;
+    position: relative;
+}
+.contact-us .single-info:hover {
+    transform: translateY(-5px);
+}
+
+.contact-us .single-info:hover:before {
+    opacity: .8;
+}
+
+.contact-us .single-info:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 80%;
+    height: 90%;
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.contact-us .single-info .fa-phone,.fa-location-dot ,.fa-clock{
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    left: 40px;
+}
+.contact-us .single-info .content {
+    margin-left: 45px;
+}
+.contact-us .single-info .content h3 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+.contact-us .single-info .content p {
+    color: #fff;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+    .contact-us .single-info {
+        margin: 10px 0;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .contact-us .single-info {
+        margin: 10px 0;
+    }
+}
