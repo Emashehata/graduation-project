@@ -1,49 +1,58 @@
-<nav class="navbar navbar-expand-lg bg-white position-sticky z-3 top-0 mt-0">
+<nav class="navbar navbar-expand-lg bg-white position-sticky top-0 mt-0">
   <div class="container mt-0">
     <a class="navbar-brand fw-bold fs-3" routerLink="home">
       <img src="/logo4.svg" class="me-2" alt="">
       <span class="sec-color">الإدارة </span>
       <span>الطبية</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="line line1"></span>
+        <span class="line line2 my-2"></span>
+        <span class="line line3"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="sec-color text-decoration-underline">الرئيسية</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle main-color" routerLink="clinics-student" routerLinkActive="sec-color text-decoration-underline" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            العيادات
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link main-color" routerLink="news" routerLinkActive="sec-color text-decoration-underline">الأخبار</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="sec-color text-decoration-underline">المواعيد</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="sec-color text-decoration-underline">السجل الطبي</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link main-color" routerLink="about us" routerLinkActive="sec-color text-decoration-underline">من نحن</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link main-color" routerLink="contact us" routerLinkActive="sec-color text-decoration-underline">تواصل معنا</a>
-        </li>
-      </ul>
-      <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="book appointment" role="button">
-        <span >احجز ميعاد</span>
-      </a>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">القائمة</h5>
+        <button type="button" class="btn-close text-reset " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="sec-color text-decoration-underline">الرئيسية</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle main-color" routerLink="clinics-student" routerLinkActive="sec-color text-decoration-underline" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              العيادات
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="news" routerLinkActive="sec-color text-decoration-underline">الأخبار</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="sec-color text-decoration-underline">المواعيد</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="sec-color text-decoration-underline">السجل الطبي</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="about us" routerLinkActive="sec-color text-decoration-underline">من نحن</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="sec-color text-decoration-underline">تواصل معنا</a>
+          </li>
+        </ul>
+        <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="book appointment" role="button">
+          <span>احجز ميعاد</span>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
+
 <router-outlet></router-outlet>

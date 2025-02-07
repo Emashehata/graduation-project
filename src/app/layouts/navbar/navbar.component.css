@@ -1,3 +1,6 @@
+.navbar{
+  z-index: 1000 !important;
+}
 .btn-nav::before{
   content: "";
   position: absolute;
@@ -25,5 +28,27 @@
 .btn.bg-sec:hover {
   background-color: var(--sec-color) !important;
   color: white !important; /* Ensures text remains visible */
+}
+.navbar-toggler .line{
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--sec-color);
+  margin-left: auto;
+  margin-right: auto;
+  transition: all .3s;
+
+}
+.navbar-toggler {
+  border: none !important;
+  outline: none !important; /* لإزالة التحديد عند النقر */
+  box-shadow: none !important; /* لإزالة أي تأثير ظل */
+  background: transparent; /* لإزالة أي لون خلفية */
+}
+
+.offcanvas-start {
+  width: 50vw;  /* نصف عرض الشاشة */
+  height: 100vh;  /* ارتفاع كامل الشاشة */
 }
 

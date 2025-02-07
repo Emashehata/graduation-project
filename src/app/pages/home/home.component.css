@@ -146,7 +146,6 @@
 .schedule-inner{
   position: relative;
   transform: translateY(-50%);
-  z-index: 2;
 }
 /* end second section */
 
