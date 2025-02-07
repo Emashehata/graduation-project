@@ -54,8 +54,12 @@ export const routes: Routes = [
 //   component:StudentsComponent,
 //   title:'students'
 // },
-
 {
+  path:'',
+  redirectTo:'home',
+  pathMatch:'full'
+}
+,{
     path:'home',
     component:HomeComponent,
     title:'الرئيسية'
