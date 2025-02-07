@@ -1,25 +1,31 @@
- 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
 
 body{
   font-family: "Cairo", serif;
   font-variant-numeric: traditional;
   unicode-bidi: embed;
 }
- 
+
 
 :root{
   --main-color:#2C2D3F;
   --sec-color:#1A76D1;
   --para-color:#888;
   --bg-trans:rgba(#1A76D1,#1A76D1,#1A76D1,.8);
+
+
+}
+
 .main-color{
   color: var(--main-color);
 }
 .sec-color{
   color: var(--sec-color);
 }
- 
+.bg-sec{
+  background-color: var(--sec-color);
+}
+
 
 ul, ul li {
   list-style: none;
@@ -36,19 +42,5 @@ a, button {
   outline: none;
   box-shadow: none;
 }
-.btn {
-  padding: 13px 25px;
-  font-size: 14px;
-  text-transform: capitalize;
-  font-weight: 500;
-  background: var(--sec-color);
-  position: relative;
-  box-shadow: none;
-  display: inline-block;
-  transition: all .4s ease;
-  transform: perspective(1px) translateZ(0);
-  border: none;
-  border-radius: 0;
-  border-radius: 4px;
-}
- 
+
+

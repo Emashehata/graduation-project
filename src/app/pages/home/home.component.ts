@@ -1,8 +1,9 @@
 import {  AfterViewInit, Component, ElementRef, QueryList, ViewChildren, Renderer2 } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterOutlet,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -60,7 +61,7 @@ export class HomeComponent implements AfterViewInit{
       }, 20);
     });
   }
-  
+
   // Convert Western numbers to Arabic
   toArabicNumbers(num: number): string {
     return num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
