@@ -1,0 +1,19 @@
+ /* Move sidebar to the right */
+.bg-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh; /* Full height */
+  overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Adjust main content to make space for the sidebar */
+.main-content {
+    /* Adjust based on sidebar width (2/12 columns) */
+  overflow-y: auto;
+  height: 100vh; /* Ensure it fills the viewport */
+  padding: 20px;
+}
+
+
+

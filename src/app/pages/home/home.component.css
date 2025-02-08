@@ -1,8 +1,15 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200..1000&display=swap'); */
-body,*{
-  font-family: "Cairo", serif;
+.counter {
+  font-feature-settings: 'ss01' on; /* Enables Arabic numeral style */
+}
+.title-color{
+  color: var(--main-color);
+}
+.para-color{
+  color: var(--para-color);
+}
+.link-color{
+  color: var(--sec-color);
 }
 /* start main section */
 .sec1{
@@ -37,16 +44,45 @@ body,*{
     margin-top: 30px;
     animation: fadeInDown 1s 1.5s both;
 }
-.main-sec .caption .button .btn{
+.main-sec .caption .button .btn,.call-action .btn{
   background: var(--sec-color);
   font-weight: 500;
   display: inline-block;
   margin: 0 0 0 10px;
   padding: 10px 25px;
   word-spacing: 2px;
+  position: relative;
+}
+.main-sec .caption .button .btn span,.call-action .content .first span, .call-action .content .second span{
+  position: relative;
+  z-index: 1;
+  transition: all .4s;
 }
 .main-sec .caption .button .btn2{
   background: var(--main-color);
+}
+.main-sec .caption .button .btn2::before,.main-sec .caption .button .btn1::before,.call-action .first::before,.call-action .second::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s ease-in-out;
+  z-index: 0;
+  border-radius: 5px;
+}
+.main-sec .caption .button .btn1::before {
+  background: var(--main-color); /* Ensure background color is set */
+}
+
+.main-sec .caption .button .btn2::before{
+    background: var(--sec-color);
+}
+.main-sec .caption .button .btn2:hover::before , .main-sec .caption .button .btn1:hover::before ,.call-action .first:hover::before,.call-action .second:hover::before{
+  transform: scaleX(1);
 }
 .carousel-control-next, .carousel-control-prev{
   opacity: 1 !important;
@@ -58,6 +94,7 @@ body,*{
 .carousel-control-prev{
   justify-content: flex-start !important;
   right:30px !important;
+  width: 4% !important;
 }
 .carousel-control-next-icon,.carousel-control-prev-icon{
   background: var(--sec-color);
@@ -74,11 +111,15 @@ body,*{
 /* start sec section */
 .schedule .single-schedule{
   background: var(--sec-color);
+  transition: all .4s;
+}
+.schedule .single-schedule:hover{
+    transform: translateY(-5%);
+    box-shadow: 0px 10px 20px  rgba(54, 148, 241, 0.8);
 }
 .schedule .single-schedule h4{
   font-size: 20px;
   font-weight: 600;
-  text-transform: capitalize;
   margin-top: 13px;
 }
 .schedule .single-schedule p{
@@ -94,10 +135,13 @@ body,*{
 }
 .schedule .single-schedule .icon{
   position: absolute;
-  left: -30px;
-  bottom: -50px;
+  left: -25px;
+  bottom: -35px;
   transform: rotateY(180deg);
   color:  #4891DA;
+}
+.schedule .single-schedule .icon-middle{
+  transform: rotateY(360deg);
 }
 .schedule-inner{
   position: relative;
@@ -143,6 +187,200 @@ body,*{
   }
   /* end section 2 */
 }
+/* start section three */
+.section-title h2{
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    position: relative;
+    color: var(--main-color)
+}
+.section-title p{
+  font-size: 15px;
+  color: var(--para-color);
+  margin-top: 15px;
+}
+.Feautes .single-features {
+  text-align: center;
+  position: relative;
+  padding: 10px 20px;
+}
+.Feautes .single-features .signle-icon{
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    transition: all .4s;
+}
+.Feautes .single-features:hover .signle-icon{
+  background-color: var(--sec-color);
+}
+.Feautes .single-features:hover .signle-icon i{
+  color: white;
+}
+.Feautes .single-features .signle-icon i{
+  font-size: 50px;
+  color: var(--sec-color);
+  transition: all .4s;
+}
+.Feautes .single-features h3 {
+  color: var(--main-color);
+  font-weight: 630;
+  font-size: 21px;
+}
+.Feautes .single-features p{
+  color: var(--para-color);
+}
+/* end section three */
+.why-choose .choose-left h3 {
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+.why-choose .choose-left h3:before {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 50px;
+  background: var(--sec-color);
+}
+/* start section four */
+.sec-four{
+  background: linear-gradient(
+    rgba(26, 118, 209,.8),
+    rgba(26, 118, 209,.8)
+  ),url(/fun-bg.b5af0dac.jpg)
+  ;
+  padding: 120px 0;
+  text-align: center;
+  margin-block: 70px;
+  background-size: cover;
+}
+.sec-four .single-fun i{
+  transition: all .4s;
+}
+.sec-four .single-fun:hover i{
+  color: var(--sec-color) !important;
+  background-color: white !important;
+}
+/* end section four */
+
+
+
+/*start section five (who we are) */
+.thumbnail-image {
+  width: 100%;
+  height: 360.800px;
+}
+
+.play-icon {
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+
+/* Waves animation around the play icon */
+.wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  animation: waveAnimation 2s infinite;
+  z-index: 0;
+}
+
+/* Create different wave sizes and stagger their animations */
+.wave-1 {
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  animation-delay: 0.2s;
+}
+
+.wave-3 {
+  animation-delay: 0.4s;
+}
+
+.wave-4 {
+  animation-delay: 0.6s;
+}
+
+@keyframes waveAnimation {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+}
+/*end section five (who we are) */
+
+
+
+
+/* start  section six */
+.call-action{
+  background: linear-gradient(
+    rgba(26, 118, 209,.8),
+    rgba(26, 118, 209,.8)
+  ),url(/call-bg.d960f04e.jpg)
+  ;
+  padding: 120px 0;
+  text-align: center;
+  margin-block: 70px;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.call-action .content h2 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 46px;
+}
+
+.call-action .content p {
+  margin: 30px 0;
+  font-size: 15px;
+}
+
+.call-action .first::before{
+  background: var(--sec-color);
+}
+.call-action .first:hover span{
+  color: white !important;
+}
+.call-action .second:hover span{
+  color: var(--sec-color) !important;
+}
+.call-action .second::before{
+  background-color: white !important;
+}
+/* end section six */
+
+/*start secion seven */
+.services h4 a{
+    transition: color .4s;
+}
+.services h4 a:hover{
+  color: var(--sec-color) !important;
+}
+/* end secion seven */
+
+
 @media (max-width:767px){
   .main-sec .caption h1{
         font-size: 20px;
@@ -153,6 +391,52 @@ body,*{
     font-size: 13px;
     width: 80%;
   }
+  .section-title h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+  .section-title p,.Feautes .single-features p  {
+    font-size: 13px;
+}
+.Feautes .single-features h3 {
+  font-size: 16px;
+}
+.sec-four .content{
+  display: block !important;
+  margin-top: 25px;
+  margin-right: 0 !important;
+}
+.carousel-control-next, .carousel-control-prev{
+  display: none;
+}
+.carousel-indicators{
+  display: flex !important;
+  justify-content: center;
+}
+.carousel-indicators [data-bs-target] {
+  width: 10px !important;
+  height: 10px !important;
+  background-color: var(--sec-color) !important;
+  border-radius: 50%;
+}
+.why-choose .choose-left h3{
+  font-size: 16px;
+}
+.call-action .content h2 {
+  font-size: 18px;
+  line-height: 40px;
+}
+.call-action .content p {
+  font-size: 14px;
+}
+
+.services h4{
+  font-size: 16px;
+}
+.services p{
+    font-size: 14px;
+}
+
 }
 
 @media (max-width:400px){
@@ -165,9 +449,13 @@ body,*{
   .main-sec .caption .button .btn2{
     margin-top: 10px;
   }
-  .carousel-control-next, .carousel-control-prev{
-    display: none;
-  }
 }
+
+
+
+
+
+
+
 
 
