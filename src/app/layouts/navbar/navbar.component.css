@@ -1,5 +1,6 @@
 .navbar{
   z-index: 1000 !important;
+  transition: all .5s;
 }
 .btn-nav::before{
   content: "";

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { log } from 'node:console';
 
 @Component({
   selector: 'app-navbar',
@@ -9,4 +10,14 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class NavbarComponent {
 
+    scroll:boolean=false;
+    @HostListener('window:scroll') onScroll(){
+      if(window.scrollY > window.innerHeight){
+        this.scroll=true;
+
+      }
+      else{
+        this.scroll=false;
+      }
+    }
 }

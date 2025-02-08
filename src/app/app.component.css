@@ -3,3 +3,13 @@
   height: 50px;
 }
 
+
+
+@media (max-width:770px) {
+  ul.top-link{
+    justify-content: space-between !important;
+  }
+  ul.top-contact{
+    display: none !important;
+  }
+}
