@@ -19,7 +19,7 @@ body{
 .sec-color{
   color: var(--sec-color);
 }
- 
+}
 
 ul, ul li {
   list-style: none;
