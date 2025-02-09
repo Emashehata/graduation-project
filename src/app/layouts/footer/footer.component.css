@@ -1,0 +1,202 @@
+.footer
+{
+    position: relative;
+}
+ul, ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .footer-top {
+    margin-top: 20px;
+    padding: 100px 0;
+    position: relative;
+    background: var(--sec-color);
+    z-index: 2;
+}
+
+footer .footer-top:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: .1;
+    z-index: -1;
+}
+.footer .single-footer h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.footer .single-footer h2:before {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    width: 50px;
+    background: #fff;
+}
+
+.footer .single-footer p {
+    color: #fff;
+}
+.footer .single-footer .social {
+    margin-top: 25px;
+    
+}
+.footer .single-footer .social li {
+    /* display: inline-block; */
+    margin-right: 10px;
+    
+}
+.footer .single-footer .social li a {
+    height: 34px;
+    width: 34px;
+    line-height: 34px;
+    border: 1px solid #fff;
+    text-align: center;
+    padding: 0;
+    border-radius: 100%;
+    display: block;
+    color: #fff;
+    font-size: 16px;
+}
+
+.footer .single-footer .social li a:hover {
+    color: var(--sec-color);
+    background: #fff;
+    border-color: transparent;
+}
+
+.footer .single-footer.f-link li {
+    display: block;
+    margin-bottom: 12px;
+}
+
+
+.footer .single-footer.f-link li a {
+    display: block;
+    color: #fff;
+    transition: all .4s ease;
+    font-weight: 400;
+}
+
+.footer .single-footer.f-link li a:hover {
+    padding-right: 8px;
+}
+.footer .single-footer.f-link li a .fa-angle-left {
+    margin-left: 10px;
+}
+
+.footer .single-footer .time-sidual {
+    margin-top: 15px;
+    overflow: hidden;
+}
+.footer .single-footer .time-sidual li {
+    display: block;
+    color: #fff;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.footer .single-footer .time-sidual li span {
+    margin-right: 15px;
+}
+
+.footer .single-footer .newsletter-inner {
+    margin-top: 20px;
+    position: relative;
+}
+
+.footer .single-footer .newsletter-inner input {
+    background: transparent;
+    border: 1px solid #fff;
+    height: 50px;
+    /* line-height: 42px; */
+    width: 100%;
+    margin-left: 15px;
+    color: #fff;
+    text-align: left;
+    padding-left: 18px;
+    padding-right: 70px;
+    display: inline-block;
+    /* float: left; */
+    border-radius: 0;
+    transition: all .4s ease;
+    font-weight: 400;
+    border-radius: 5px;
+    box-shadow: none;
+    outline: none;
+}
+.footer .single-footer .newsletter-inner input::placeholder 
+{
+    color: #fff;
+   
+}
+
+.footer .single-footer .newsletter-inner input:hover {
+    padding-left: 22px;
+    
+}
+
+.footer .single-footer .newsletter-inner .button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 50px;
+    /* line-height: 50px; */
+    width: 50px;
+    background: #fff;
+    text-shadow: none;
+    box-shadow: none;
+    display: inline-block;
+    border-radius: 0;
+    border: none;
+    transition: all .4s ease;
+    border-radius: 0 5px 5px 0;
+    color: var(--sec-color);
+    font-size: 22px;
+}
+
+.footer .single-footer .newsletter-inner .button .fa-paper-plane {
+    transition: all .4s ease;
+    
+}
+.footer .single-footer .newsletter-inner .button:hover .fa-paper-plane {
+    color: #2c2d3f;
+}
+
+/* ---------------------------------- CopyRight ----------------------------------- */
+
+.footer .copyright {
+    background: var(--sec-color);
+    padding: 25px 0;
+    text-align: center;
+}
+
+.footer .copyright .copyright-content p {
+    color: #fff;
+}
+
+/* ------------------------------------------------------------------------------- */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .footer .single-footer {
+        margin: 20px 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .footer .single-footer {
+        margin: 15px 0;
+    }
+}
