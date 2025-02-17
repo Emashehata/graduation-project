@@ -16,5 +16,4 @@ import { FooterComponent } from "./layouts/footer/footer.component";
 })
 export class AppComponent {
   title = 'medical app';
-  medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
 }

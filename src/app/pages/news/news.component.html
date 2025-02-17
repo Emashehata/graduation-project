@@ -1,1 +1,87 @@
-<p>news works!</p>
+<div class="Top overlay">
+  <div class="container">
+
+      <div class="inner text-center">
+
+          <div class="row">
+              <div class="col-12">
+                  <h2>أخبار الإدارة الطبية</h2>
+                  <ul class="list ">
+                      <li><a routerLink="/home">الرئيسية</a></li>
+                      <li class="ms-2 me-2"> <i class="fa-solid fa-angle-left"></i> </li>
+                      <li class="active">الأخبار</li>
+                  </ul>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+  </div>
+
+
+  <div class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+
+
+        <div class="col-lg-4 col-12">
+          <div class="search-box p-5 shadow-sm rounded-2">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="ابحث هنا..." [(ngModel)]="searchTerm" (input)="searchNews()" />
+              <button class="btn btn-dark px-3 py-2" type="button" (click)="searchNews()">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+          <div class="recent-posts shadow-sm p-5 rounded-2 mt-5">
+            <h4 class="main-color position-relative ms-2 mb-5 fw-semibold">أحدث الأخبار</h4>
+            @for (item of reversedNews.slice(0,3); track item.id) {
+                <div class="row mb-4">
+                  <div class="col-4">
+                    <img [src]="'http://medicalcaree.runasp.net/' + item.image" class="img-shadow w-100 h-100 " [alt]="item.title">
+                  </div>
+                  <div class="col-8">
+                    <p class="mt-3">{{ item.title }}</p>
+                    <small class="text-body-secondary">
+                      <i class="icofont-calendar me-1 sec-color"></i> {{ formatDateArabic(item.createdAt) }}
+                    </small>
+                  </div>
+
+                </div>
+                <hr class="">
+            }
+          </div>
+        </div>
+
+        <!-- News List -->
+        <div class="col-lg-8 col-12">
+          <div class="row gy-4">
+            @for (newsItem of reversedNews; track newsItem.id) {
+              <div class="col-lg-6 col-md-6 col-12">
+                <div class="card  shadow-sm">
+                  <img [src]="'http://medicalcaree.runasp.net/'+ newsItem.image" class="img-shadow w-100  card-img-top" [alt]="newsItem.title">
+                  <div class="card-body">
+                    <h5 class="card-title mt-3">{{ newsItem.title }}</h5>
+                    <p class="text-muted">{{ newsItem.content.split(' ').slice(0, 15).join(' ') }}</p>
+                    <a  [routerLink]="['/news-details', newsItem.id]" class="text-decoration-none sec-color"> اقرأ المزيد<i class="ms-2 fa fa-long-arrow-left"></i></a>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-body-secondary">
+                      <i class="icofont-calendar me-1 sec-color"></i> {{ formatDateArabic(newsItem.createdAt) }}
+                    </small>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- grid section -->
