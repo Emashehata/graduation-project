@@ -4,18 +4,19 @@ import { provideRouter, withHashLocation, withInMemoryScrolling, withViewTransit
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes,withInMemoryScrolling({
-      scrollPositionRestoration:"top",
-    }),
+      scrollPositionRestoration:"top",}),
     withHashLocation(),
-    withViewTransitions()
-  ),
+    withViewTransitions() ),
     provideClientHydration(withEventReplay()),
-    provideAnimations()
+    provideAnimations(),
+    provideHttpClient(),
+
 
   ]
 };

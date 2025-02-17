@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { log } from 'node:console';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +10,14 @@ import { log } from 'node:console';
 export class NavbarComponent {
 
     scroll:boolean=false;
-    @HostListener('window:scroll') onScroll(){
-      if(window.scrollY > window.innerHeight){
-        this.scroll=true;
+    medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
+    // @HostListener('window:scroll') onScroll(){
+    //   if(window.scrollY > window.innerHeight){
+    //     this.scroll=true;
 
-      }
-      else{
-        this.scroll=false;
-      }
-    }
+    //   }
+    //   else{
+    //     this.scroll=false;
+    //   }
+    // }
 }
