@@ -9,9 +9,7 @@ import { IDoctor } from '../../interfaces/idoctor/idoctor';
 })
 export class DoctorService {
 
-  constructor(private httpClient:HttpClient) {
-    this.loadDoctorDataFromStorage();
-  }
+  constructor(private httpClient:HttpClient) {}
 
   doctorImg:BehaviorSubject<string> = new BehaviorSubject('');
   firstName:BehaviorSubject<string> = new BehaviorSubject('');
@@ -41,24 +39,5 @@ export class DoctorService {
     return this.httpClient.put(`${environment.baseUrl}api/Doctor/update`,data);
   }
 
-  saveDoctorData(doctor:any): void {
-    this.doctorImg.next(doctor.imageUrl);
-    this.firstName.next(doctor.firstName);
-    this.lastName.next(doctor.lastName);
 
-    // Save to localStorage
-    localStorage.setItem('doctorImg', doctor.imageUrl);
-    localStorage.setItem('firstName', doctor.firstName);
-    localStorage.setItem('lastName', doctor.lastName);
-  }
-  loadDoctorDataFromStorage(): void {
-    const img = localStorage.getItem('doctorImg');
-    const firstName = localStorage.getItem('firstName');
-    const lastName = localStorage.getItem('lastName');
-
-    if (img && firstName && lastName) {
-      this.doctorImg.next(img);
-      this.firstName.next(firstName);
-      this.lastName.next(lastName);
-    }}
 }

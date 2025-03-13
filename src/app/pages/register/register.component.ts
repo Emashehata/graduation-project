@@ -5,6 +5,7 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { PatientService } from '../../core/services/patient/patient.service';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   private readonly toastrService = inject(ToastrService);
+  private readonly patientService=inject(PatientService);
 
   isLoading: boolean = false;
   showPassword:boolean = false;
@@ -83,18 +85,21 @@ export class RegisterComponent {
       ).subscribe({
         next: (res) => {
           console.log(res);
-          if (res.succeeded
+          if (res.success
             === true) {
             this.toastrService.success('تم إنشاء الحساب بنجاح.');
+            this.patientService.patientImg.next(res.data.imageUrl);
+            this.patientService.patientFirstName.next(res.data.firstName);
+            this.patientService.patientLastName.next(res.data.lastName);
             setTimeout(() => {
               this.router.navigate(['./login']);
             }, 500);
           }
           else{
-            res.errors.forEach((error: { code: string; description: string }) => {
-              this.toastrService.error(error.description, error.code);
-            });
-          }
+
+              this.toastrService.error(res.message);
+            };
+
           this.isLoading = false;
         },
         error: (err) => {

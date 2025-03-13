@@ -18,8 +18,6 @@ export class NavbarComponent implements OnInit {
     private readonly patientService=inject(PatientService);
 
 
-    doctorData: WritableSignal<IDoctor | null> = signal(null);
-
     scroll:boolean=false;
 
     medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
@@ -34,57 +32,105 @@ export class NavbarComponent implements OnInit {
     // }
 
 
-    doctorImg = signal('');
-    firstName = signal('');
-    lastName = signal('');
-    patientImg= signal('');
-    patientFirstName = signal('');
-    patientLastName = signal('');
+    doctorImg:string='';
+    firstName:string='';
+    lastName:string='';
+    patientImg:string='';
+    patientFirstName :string='';
+    patientLastName :string='';
 
     ngOnInit(): void {
-      this.firstName.set(localStorage.getItem('firstName') || '');
-      this.lastName.set(localStorage.getItem('lastName') || '');
-      this.doctorImg.set(localStorage.getItem('doctorImg') || '');
-
-      this.patientImg.set(localStorage.getItem('patientImg') || '');
-      this.patientFirstName.set(localStorage.getItem('patientFirstName') || '');
-      this.patientLastName.set(localStorage.getItem('patientLastName') || '');
 
       this.subscribeToDoctorData();
       this.subscribeToPatientData();
+      this.getPatientAccount();
+      this.getDoctorsAccount();
+
     }
 
-    subscribeToDoctorData(): void {
-      this.doctorService.doctorImg.subscribe(img => {
-        console.log('Navbar received image:', img);
-        this.doctorImg.set(img);
-      });
 
-      this.doctorService.firstName.subscribe(name => {
-        console.log('Navbar received first name:', name);
-        this.firstName.set(name);
-      });
-
-      this.doctorService.lastName.subscribe(name => {
-        console.log('Navbar received last name:', name);
-        this.lastName.set(name);
-      });
-    }
     subscribeToPatientData(): void {
-      this.patientService.patientImg.subscribe(img => {
-        console.log('Navbar received image:', img);
-        this.patientImg.set(img);
-      });
+      this.patientService.patientImg.subscribe({
+        next:(img)=>{
+          this.patientImg=img;
+          console.log(this.patientImg);
 
-      this.patientService.patientFirstName.subscribe(name => {
-        console.log('Navbar received first name:', name);
-        this.patientFirstName.set(name);
-      });
+        }
+      })
 
-      this.patientService.patientLastName.subscribe(name => {
-        console.log('Navbar received last name:', name);
-        this.patientLastName.set(name);
-      });
+      this.patientService.patientFirstName.subscribe({
+        next:(name)=>{
+          this.patientFirstName=name;
+          console.log(this.patientFirstName);
+
+        }
+      })
+      this.patientService.patientLastName.subscribe({
+        next:(name)=>{
+          this.patientLastName=name;
+          console.log(this.patientLastName);
+
+        }
+      })
+
+    }
+    subscribeToDoctorData(): void {
+      this.doctorService.doctorImg.subscribe({
+        next:(img)=>{
+          this.doctorImg=img;
+          console.log(this.patientImg);
+
+        }
+      })
+
+      this.doctorService.firstName.subscribe({
+        next:(name)=>{
+          this.firstName=name;
+          console.log(this.patientFirstName);
+
+        }
+      })
+      this.doctorService.lastName.subscribe({
+        next:(name)=>{
+          this.lastName=name;
+          console.log(this.patientLastName);
+
+        }
+      })
+
+    }
+
+    getPatientAccount():void{
+      this.patientService.getPatientByToken().subscribe({
+          next:(res)=>{
+            if (res.success) {
+
+
+              console.log(res.data);
+              this.patientService.patientImg.next(res.data.imageUrl);
+              this.patientService.patientFirstName.next(res.data.firstName);
+              this.patientService.patientLastName.next(res.data.lastName);
+
+            }
+
+          }
+      })
+    }
+
+
+    getDoctorsAccount():void{
+      this.doctorService.getDoctorByID(this.authService.userId()!).subscribe({
+          next:(res)=>{
+            if (res.success) {
+              console.log(res.data);
+              this.doctorService.doctorImg.next(res.data.imageUrl);
+              this.doctorService.firstName.next(res.data.firstName);
+              this.doctorService.lastName.next(res.data.lastName);
+
+            }
+
+          }
+      })
     }
 
 

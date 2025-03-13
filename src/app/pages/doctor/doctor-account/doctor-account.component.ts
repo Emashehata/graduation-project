@@ -103,10 +103,7 @@ export class DoctorAccountComponent {
 
           this.toastrService.success('تم تعديل بياناتك بنجاح');
           this.getDoctorsAccount(); // Refresh doctor data immediately
-          // this.doctorService.doctorImg.next(res.imageUrl);
-          // this.doctorService.firstName.next(res.firstName);
-          // this.doctorService.lastName.next(res.lastName);
-          this.doctorService.saveDoctorData(res.data);
+
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
@@ -147,13 +144,9 @@ export class DoctorAccountComponent {
               this.doctorData.set(res.data);
               this.patchValue(res.data);
               console.log(res.data);
-              this.doctorService.saveDoctorData(res.data);
-
-              // console.log('Updated BehaviorSubjects:', {
-              //   image: res.data.imageUrl,
-              //   firstName: res.data.firstName,
-              //   lastName: res.data.lastName
-              // });
+              this.doctorService.doctorImg.next(res.data.imageUrl);
+              this.doctorService.firstName.next(res.data.firstName);
+              this.doctorService.lastName.next(res.data.lastName);
 
             }
 
