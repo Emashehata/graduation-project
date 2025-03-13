@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
     readonly authService=inject(AuthService);
     private readonly doctorService=inject(DoctorService);
     private readonly patientService=inject(PatientService);
-    private readonly cdr = inject(ChangeDetectorRef);
 
 
     scroll:boolean=false;
@@ -41,17 +40,20 @@ export class NavbarComponent implements OnInit {
     patientLastName :string='';
 
     ngOnInit(): void {
-       this.fetchUserData();
+      this.getPatientAccount();
+      this.getDoctorsAccount();
+      this.subscribeToDoctorData();
+      this.subscribeToPatientData();
+
+
     }
 
 
     subscribeToPatientData(): void {
-
       this.patientService.patientImg.subscribe({
         next:(img)=>{
           this.patientImg=img;
           console.log(this.patientImg);
-          this.cdr.detectChanges(); // Force UI update
 
         }
       })
@@ -60,7 +62,6 @@ export class NavbarComponent implements OnInit {
         next:(name)=>{
           this.patientFirstName=name;
           console.log(this.patientFirstName);
-          this.cdr.detectChanges(); // Force UI update
 
         }
       })
@@ -68,7 +69,6 @@ export class NavbarComponent implements OnInit {
         next:(name)=>{
           this.patientLastName=name;
           console.log(this.patientLastName);
-          this.cdr.detectChanges(); // Force UI update
 
         }
       })
@@ -101,10 +101,6 @@ export class NavbarComponent implements OnInit {
     }
 
     getPatientAccount():void{
-      this.patientImg = '';
-      this.patientFirstName = '';
-      this.patientLastName = '';
-      this.cdr.detectChanges(); // Force UI update
       this.patientService.getPatientByToken().subscribe({
           next:(res)=>{
             if (res.success) {
@@ -123,10 +119,6 @@ export class NavbarComponent implements OnInit {
 
 
     getDoctorsAccount():void{
-      this.doctorImg = '';
-      this.firstName = '';
-      this.lastName = '';
-      this.cdr.detectChanges();
       this.doctorService.getDoctorByID(this.authService.userId()!).subscribe({
           next:(res)=>{
             if (res.success) {
@@ -139,14 +131,6 @@ export class NavbarComponent implements OnInit {
 
           }
       })
-    }
-
-
-    fetchUserData(): void {
-      this.getPatientAccount();
-      this.getDoctorsAccount();
-      this.subscribeToDoctorData();
-      this.subscribeToPatientData();
     }
 
 

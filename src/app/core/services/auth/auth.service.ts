@@ -63,7 +63,6 @@ export class AuthService {
       if (isPlatformBrowser(this.id)) {
         localStorage.setItem('user token', response.token);
         this.saveUserData(); // Load user data immediately
-        this.userData.update((user) => ({ ...user }));
       }
     }
 
@@ -87,13 +86,13 @@ export class AuthService {
 
   logOut():void
   {
-    this.doctorService.doctorImg.next('');
-    this.doctorService.firstName.next('');
-    this.doctorService.lastName.next('');
+    // this.doctorService.doctorImg.next('');
+    // this.doctorService.firstName.next('');
+    // this.doctorService.lastName.next('');
 
-    this.patientService.patientImg.next('');
-    this.patientService.patientFirstName.next('');
-    this.patientService.patientLastName.next('');
+    // this.patientService.patientImg.next('');
+    // this.patientService.patientFirstName.next('');
+    // this.patientService.patientLastName.next('');
     this.userData.set(null);
     this.userId.set(null);
     localStorage.removeItem('user token')
