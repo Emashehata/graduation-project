@@ -6,6 +6,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
 import { IdecodedToken } from '../../interfaces/IdecodedToken/idecoded-token';
+import { DoctorService } from '../doctor/doctor.service';
+import { PatientService } from '../patient/patient.service';
 
 
 @Injectable({
@@ -18,7 +20,9 @@ export class AuthService {
   }
   userData: WritableSignal<any> = signal(null);
   userId: WritableSignal<string | null> = signal(null);
-  private readonly router=inject(Router)
+  private readonly router=inject(Router);
+  private readonly doctorService=inject(DoctorService);
+  private readonly patientService=inject(PatientService);
 
 
   registerPatient(data:object):Observable<any>{
@@ -59,6 +63,7 @@ export class AuthService {
       if (isPlatformBrowser(this.id)) {
         localStorage.setItem('user token', response.token);
         this.saveUserData(); // Load user data immediately
+        this.userData.update((user) => ({ ...user }));
       }
     }
 
@@ -82,16 +87,16 @@ export class AuthService {
 
   logOut():void
   {
-    localStorage.removeItem('user token');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('doctorImg');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('patientFirstName');
-    localStorage.removeItem('patientLastName');
-    localStorage.removeItem('patientImg');
-    localStorage.removeItem('userId');
+    this.doctorService.doctorImg.next('');
+    this.doctorService.firstName.next('');
+    this.doctorService.lastName.next('');
+
+    this.patientService.patientImg.next('');
+    this.patientService.patientFirstName.next('');
+    this.patientService.patientLastName.next('');
     this.userData.set(null);
     this.userId.set(null);
+    localStorage.removeItem('user token')
     this.router.navigate(['/login'])
   }
 
