@@ -1,10 +1,12 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withHashLocation, withInMemoryScrolling, withViewTransitions } from '@angular/router';
-
+import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { headersInterceptor } from './core/interceptors/headers/headers.interceptor';
+// import { provideExperimentalFeatures } from '@angular/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,8 +17,9 @@ export const appConfig: ApplicationConfig = {
     withViewTransitions() ),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
-    provideHttpClient(),
-
+    provideHttpClient(withFetch(),withInterceptors([headersInterceptor])),
+    provideToastr(),
+    // provideExperimentalFeatures()
 
   ]
 };

@@ -1,1 +1,119 @@
-<p>doctors works!</p>
+<div class="app-body">
+
+  <!-- Row starts -->
+  <div class="row gx-3">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <h5 class="card-title main-color fw-semibold">الأطباء</h5>
+          <a  class="bg-sec text-white border-0 px-3 py-2 rounded-2 ms-auto" routerLink="/add-doctor">إضافة  طبيب</a>
+        </div>
+        <div class="card-body">
+
+          <!-- Table starts -->
+          <div class="table-responsive">
+            <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+              <div class="row align-items-center">
+
+                <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_length" id="basicExample_length">
+                    <label class="fw-bold text-muted">
+                      عرض
+                      <select name="basicExample_length" aria-controls="basicExample" class="form-select form-select-sm rounded-2 shadow-sm">
+                        <option value="12">12</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                      </select>
+                      صفوف الصفحة
+                    </label>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <table id="basicExample" class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                    <thead class="table-primary text-white">
+                      <tr>
+                        <!-- <th class="w-10">#</th> -->
+                        <th>اسم الطبيب</th>
+                        <th>العيادة</th>
+                        <th>صورة الطبيب</th>
+                        <th>التخصص</th>
+                        <th>الوصف</th>
+                        <th>الإجراءات</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (doctor of doctorsData(); track doctor.id) {
+                        <tr>
+                          <!-- <td class="fw-bold">{{ doctor.id }}</td> -->
+                          <td>{{ doctor.firstName }} {{doctor.lastName}}</td>
+                          <td>
+                            @for (clinic of clinicData(); track clinic.id) {
+                              @if(doctor.clinicId === clinic.id){
+                                  {{clinic.name}}
+                              }
+                            }
+
+                          </td>
+                          <td>
+                            <img [src]="'https://myclinicapp.runasp.net'+doctor.imageUrl" class="clinic-img rounded shadow-sm" [alt]="doctor.firstName">
+                          </td>
+                          <td>{{ doctor.specialty }}</td>
+                          <td>{{ doctor.description.split(' ').slice(0, 4).join(' ')  }}...</td>
+                          <td>
+                            <div class="d-inline-flex gap-2">
+                              <button class="btn btn-outline-danger btn-sm shadow-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#delRow' + doctor.id">
+                                <i class="fa-solid fa-trash-can"></i>
+                              </button>
+
+                            </div>
+                          </td>
+                        </tr>
+                        <div  class="modal fade " [id]="'delRow' + doctor.id" tabindex="-1" aria-hidden="true">
+                          <div class="modal-dialog modal-sm rounded-2">
+                            <div class="modal-content border-0 text-center">
+
+                              <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
+
+
+                              <img src="/Inbox cleanup.gif" class="modal-img mt-3" alt="Warning">
+
+
+                              <h5 class="fw-bold my-3 text-dark">هل انت بالفعل تريد حذف هذا الطبيب؟</h5>
+
+
+                              <div class="modal-footer justify-content-center border-0">
+                                <button class="btn btn-outline-secondary" data-bs-dismiss="modal">لا</button>
+                                <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger" data-bs-dismiss="modal">نعم</button>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table ends -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Row ends -->
+
+</div>

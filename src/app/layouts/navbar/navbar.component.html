@@ -4,13 +4,51 @@
     <div class="row d-flex align-items-center flex-wrap">
       <div class="col-lg-6 col-md-5 col-12">
         <ul class="top-link d-flex align-items-center flex-wrap">
-          <li class="me-3">
-            <img src="/profileImg.jpg" class="profile-img rounded-circle" alt="">
-            <span class="ms-2">إيمان شحاتة</span>
-          </li>
-            <li>
-              <a  >تسجيل الخروج</a>
+          @if (!authService.isLogin()) {
+
+            <li  class="my-2">
+              <a class="text-black" type="button" routerLink="/register">إنشاء حساب</a>
+              <a class="text-black ms-4" type="button" routerLink="/login">تسجيل الدخول</a>
             </li>
+          }
+          @else {
+
+            @if(authService.isDoctor()){
+
+              <li class="nav-item dropdown">
+                <a class="nav-link  main-color" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img [src]="'https://myclinicapp.runasp.net'+ doctorImg()" class="profile-img rounded-circle" alt="">
+                  <span class="me-3 ms-2">{{ firstName() }} {{ lastName() }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="/doctorAccount"><i class="icofont-doctor fs-5 me-2"></i> حسابي</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+
+            }
+            @if(authService.isUser()){
+
+              <li class="nav-item dropdown">
+                <a class="nav-link  main-color" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img [src]="'https://myclinicapp.runasp.net' + patientImg()" class="profile-img rounded-circle" alt="">
+                  <span class="me-3 ms-2">{{ patientFirstName() }} {{ patientLastName() }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" routerLink="/patientAccount"><i class="icofont-doctor fs-5 me-2"></i> حسابي</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+
+            }
+            <li>
+              <a (click)="authService.logOut()" type="button">تسجيل الخروج</a>
+            </li>
+
+          }
+
           </ul>
           </div>
           <div class="col-lg-6 col-md-7 col-12">
@@ -28,8 +66,8 @@
     </div>
 
 <nav
- class="navbar navbar-expand-lg bg-white mt-0 sticky-top
- shadow">
+ class="navbar navbar-expand-lg bg-white mt-1 sticky-top
+ ">
   <div class="container mt-0">
     <a class="navbar-brand fw-bold fs-3" routerLink="home">
       <img src="/logo4.svg" class="me-2" alt="">
@@ -47,35 +85,30 @@
         <button type="button" class="btn-close text-reset " data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0 nav-underline">
           <li class="nav-item">
-            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="sec-color text-decoration-underline">الرئيسية</a>
+            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="sec-color">الرئيسية</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle main-color" routerLink="clinics-student" routerLinkActive="sec-color text-decoration-underline" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              العيادات
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="news" routerLinkActive="sec-color">الأخبار</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="news" routerLinkActive="sec-color text-decoration-underline">الأخبار</a>
+            <a class="nav-link main-color" routerLink="clinics-student" routerLinkActive="sec-color">العيادات</a>
+          </li>
+          @if (authService.isUser()) {
+            <li class="nav-item">
+              <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="sec-color">المواعيد</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="sec-color">السجل الطبي</a>
+            </li>
+          }
+          <li class="nav-item">
+            <a class="nav-link main-color" routerLink="about us" routerLinkActive="sec-color">من نحن</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="sec-color text-decoration-underline">المواعيد</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="sec-color text-decoration-underline">السجل الطبي</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link main-color" routerLink="about us" routerLinkActive="sec-color text-decoration-underline">من نحن</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="sec-color text-decoration-underline">تواصل معنا</a>
+            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="sec-color">تواصل معنا</a>
           </li>
         </ul>
         <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="book appointment" role="button">

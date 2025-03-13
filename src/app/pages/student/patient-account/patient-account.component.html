@@ -1,0 +1,352 @@
+<section class="bg-light">
+  <div class="container">
+    <div class="row py-5  d-flex justify-content-around">
+      <div class="col-md-2 bg-white shadow-card rounded-3">
+          <div class="account-img text-center mt-5 position-relative">
+            <img [src]="'https://myclinicapp.runasp.net'+patientData()?.imageUrl" class="rounded-circle" alt="">
+            <span data-bs-toggle="modal" data-bs-target="#myModal" type="button"
+             class="position-absolute bottom-0 bg-sec rounded-circle d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-pen text-white"></i>
+            </span>
+          </div>
+          <div class="account-content text-center mt-2">
+              <span class="fw-semibold">{{patientData()?.firstName}} {{patientData()?.lastName}}
+              </span>
+              <p class="para-color mt-1">{{patientData()?.email}}</p>
+          </div>
+          <ul class="nav nav-tabs flex-md-column gap-3 mt-5">
+              <li class="nav-item">
+                  <a class="text-muted active nav-link rounded-bottom-2"
+
+
+                  data-bs-toggle="tab" href="#personal-info"><i class=" fs-5 icofont-doctor"></i> المعلومات الشخصية</a>
+              </li>
+              <li class="nav-item">
+                  <a class="text-muted nav-link rounded-bottom-2" data-bs-toggle="tab" href="#password"><i class="fs-5 icofont-ui-lock"></i> كلمة المرور</a>
+              </li>
+          </ul>
+      </div>
+      <div class="col-md-9 bg-white  rounded-3 py-3 shadow-card">
+          <div class="tab-content profile-card">
+              <div class="tab-pane fade show active" id="personal-info">
+                  <h4 class="my-3 fw-bold">المعلومات الشخصية</h4>
+                  <form
+            class=""
+            [formGroup]="updatePatientForm"
+            (ngSubmit)="sumbitUpdatePatientForm()"
+          >
+            <div class="row">
+              <!--**********************firstName*******************  -->
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let firstNameControl = updatePatientForm.get('FirstName');
+                  <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="
+                      firstNameControl?.invalid && firstNameControl?.touched
+                    "
+                    [class.is-valid]="
+                      firstNameControl?.valid && firstNameControl?.touched
+                    "
+                    formControlName="FirstName"
+                    id="firstName"
+                    placeholder="ايمان شحاتة"
+                  />
+                  @if (firstNameControl?.invalid && firstNameControl?.touched) {
+                  <div class="invalid-feedback">
+                    يجب أن يكون اسم الطالب بين 2 إلى 8 أحرف.
+                  </div>
+                  }
+                  <label for="firstName" class="px-0 text-muted"
+                    >اسم الطالب</label
+                  >
+                </div>
+              </div>
+
+              <!-- *******************lastName**************** -->
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let lastNameControl = updatePatientForm.get('LastName');
+                  <input
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="
+                      lastNameControl?.invalid && lastNameControl?.touched
+                    "
+                    [class.is-valid]="
+                      lastNameControl?.valid && lastNameControl?.touched
+                    "
+                    formControlName="LastName"
+                    id="lastName"
+                    placeholder="ايمان شحاتة"
+                  />
+                  @if (lastNameControl?.invalid && lastNameControl?.touched) {
+                  <div class="invalid-feedback">
+                    يجب أن يكون لقب العائلة بين 2 إلى 8 أحرف.
+                  </div>
+                  }
+                  <label for="lastName" class="px-0 text-muted"
+                    >لقب العائلة</label
+                  >
+                </div>
+              </div>
+              <!-- **************email************** -->
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let emailControl = updatePatientForm.get('Email');
+                  <input
+                    required
+                    type="email"
+                    class="form-control"
+                    [class.is-invalid]="
+                      emailControl?.invalid && emailControl?.touched
+                    "
+                    [class.is-valid]="
+                      emailControl?.valid && emailControl?.touched
+                    "
+                    formControlName="Email"
+                    id="userEmail"
+                    placeholder="name@example.com"
+                  />
+                  @if (emailControl?.invalid && emailControl?.touched) {
+                  <div class="invalid-feedback">
+                    يرجى إدخال بريد إلكتروني صالح مثل
+                    (emanshehata&#64;gmail.com).
+                  </div>
+                  }
+                  <label for="userEmail" class="px-0 text-muted"
+                    >البريد الألكتروني</label
+                  >
+                </div>
+              </div>
+              <!-- ***********************phone******************************* -->
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let phoneControl = updatePatientForm.get('PhoneNumber');
+                  <input
+                    required
+                    type="tel"
+                    class="form-control"
+                    [class.is-invalid]="
+                      phoneControl?.invalid && phoneControl?.touched
+                    "
+                    [class.is-valid]="
+                      phoneControl?.valid && phoneControl?.touched
+                    "
+                    formControlName="PhoneNumber"
+                    id="phone"
+                    placeholder="+01 02020768625"
+                  />
+                  @if (phoneControl?.invalid && phoneControl?.touched) {
+                  <div class="invalid-feedback">
+                    يرجى إدخال رقم هاتف مصري صالح مثل: (+20) 01020768634.
+                  </div>
+                  }
+                  <label for="phone" class="px-0 text-muted"
+                    >رقم التلفون</label
+                  >
+                </div>
+              </div>
+              <!-- *****************nationalID*************** -->
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let nationalIDControl = updatePatientForm.get('NationalID');
+                  <input
+                    required
+                    type="text"
+                    class="form-control"
+                    [class.is-invalid]="
+                      nationalIDControl?.invalid && nationalIDControl?.touched
+                    "
+                    [class.is-valid]="
+                      nationalIDControl?.valid && nationalIDControl?.touched
+                    "
+                    formControlName="NationalID"
+                    id="nationalID"
+                    placeholder="30307191201233"
+                  />
+                  @if (nationalIDControl?.invalid && nationalIDControl?.touched)
+                  {
+                  <div class="invalid-feedback">
+                    يرجى إدخال رقم قومي مصري صالح مثل: (30307191201233).
+                  </div>
+                  }
+                  <label for="nationalID" class="px-0 text-muted"
+                    >الرقم القومي</label
+                  >
+                </div>
+              </div>
+              <!-- ****************college**************** -->
+
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let collegeControl = updatePatientForm.get('College');
+
+                  <select
+                    required
+                    class="form-select"
+                    [class.is-invalid]="
+                      collegeControl?.invalid && collegeControl?.touched
+                    "
+                    [class.is-valid]="
+                      collegeControl?.valid && collegeControl?.touched
+                    "
+                    formControlName="College"
+                    id="college"
+                  >
+                    <option value="" disabled selected>اختر الكلية</option>
+
+                    @for (college of colleges; track college) {
+                    <option [value]="college">{{ college }}</option>
+                    }
+                  </select>
+
+                  @if (collegeControl?.invalid && collegeControl?.touched) {
+                  <div class="invalid-feedback">يرجى اختيار الكلية</div>
+                  }
+
+                  <label for="college" class="px-0 text-muted"
+                    >اسم الكلية</label
+                  >
+                </div>
+              </div>
+              <!-- ***************************************imagefile******************************** -->
+              <!-- <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  @let imageControl = updatePatientForm.get('ImageFile');
+                  <input
+                    required
+                    type="file"
+                    class="form-control"
+                    [class.is-invalid]="
+                      imageControl?.invalid && imageControl?.touched
+                    "
+                    [class.is-valid]="
+                      imageControl?.valid && imageControl?.touched
+                    "
+                    (change)="onFileSelected($event)"
+                    id="imageFile"
+                  />
+                  @if (imageControl?.invalid && imageControl?.touched) {
+                  <div class="invalid-feedback">يرجى إدخال صورة</div>
+                  }
+                  <label for="imageFile" class="px-0 text-muted"
+                    >صورة الطالب<span class="text-danger">*</span></label
+                  >
+                </div>
+              </div>
+        -->
+
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <button
+                type="sumbit"
+                class="my-3 bg-sec text-white border-0  py-2 rounded-2 w-100"
+              >
+                حفظ التغيرات@if (isLoading) {
+                <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+              </button>
+              </div>
+              <div class="col-6">
+                <button
+                routerLink="/home"
+                type="button"
+                class="discard border border-1 my-3 bg-transparent sec-color  py-2 rounded-2 w-100"
+              >
+                إهمال التغيرات
+              </button>
+              </div>
+            </div>
+
+          </form>
+
+              </div>
+              <div class="tab-pane fade" id="password">
+                  <h4 class="mb-3">تغيير كلمة المرور</h4>
+                  <form>
+                      <div class="mb-3">
+                          <label class="form-label">كلمة المرور الحالية</label>
+                          <input type="password" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">كلمة المرور الجديدة</label>
+                          <input type="password" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">تأكيد كلمة المرور</label>
+                          <input type="password" class="form-control">
+                      </div>
+                      <button type="submit" class="btn btn-primary">تحديث كلمة المرور</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</section>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          <form
+          class="p-5"
+          [formGroup]="updatePatientForm"
+          (ngSubmit)="sumbitUpdatePatientForm()"
+        >
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-floating mb-3">
+                @let imageControl =updatePatientForm.get('ImageFile');
+                <input
+                  required
+                  type="file"
+                  class="form-control"
+                  [class.is-invalid]="
+                    imageControl?.invalid && imageControl?.touched
+                  "
+                  [class.is-valid]="imageControl?.valid && imageControl?.touched"
+                  (change)="onFileSelected($event)"
+                  id="imageFile"
+                />
+                <label for="imageFile" class="px-0 text-muted"
+                  >صورة الطبيب</label
+                >
+              </div>
+            </div>
+
+
+            <div class="col-6">
+              <button
+              type="sumbit"
+              class="my-3 bg-sec text-white border-0  py-2 rounded-2 w-100"
+            >
+              حفظ التغيرات@if (isLoading) {
+              <span><i class="fas fa-spin fa-spinner"></i></span>
+              }
+            </button>
+            </div>
+            <div class="col-6">
+              <button
+              type="button"
+              data-bs-dismiss="modal"
+              class="discard border border-1 my-3 bg-transparent sec-color  py-2 rounded-2 w-100"
+            >
+              إهمال التغيرات
+            </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+  </div>
+</div>
