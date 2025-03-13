@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class PatientService {
 
   constructor(private httpClient:HttpClient) {
-    this.loadPatientDataFromStorage();
+    // this.loadPatientDataFromStorage();
    }
     patientImg:BehaviorSubject<string> = new BehaviorSubject('');
     patientFirstName:BehaviorSubject<string> = new BehaviorSubject('');
@@ -38,24 +38,24 @@ export class PatientService {
     }
 
 
-    savePatientData(patient:any): void {
-      this.patientImg.next(patient.imageUrl);
-      this.patientFirstName.next(patient.firstName);
-      this.patientLastName.next(patient.lastName);
+    // savePatientData(patient:any): void {
+    //   this.patientImg.next(patient.imageUrl);
+    //   this.patientFirstName.next(patient.firstName);
+    //   this.patientLastName.next(patient.lastName);
 
-      // Save to localStorage
-      localStorage.setItem('patientImg', patient.imageUrl);
-      localStorage.setItem('patientFirstName', patient.firstName);
-      localStorage.setItem('patientLastName', patient.lastName);
-    }
-    loadPatientDataFromStorage(): void {
-      const img = localStorage.getItem('patientImg');
-      const firstName = localStorage.getItem('patientFirstName');
-      const lastName = localStorage.getItem('patientLastName');
+    //   // Save to localStorage
+    //   localStorage.setItem('patientImg', patient.imageUrl);
+    //   localStorage.setItem('patientFirstName', patient.firstName);
+    //   localStorage.setItem('patientLastName', patient.lastName);
+    // }
+    // loadPatientDataFromStorage(): void {
+    //   const img = localStorage.getItem('patientImg');
+    //   const firstName = localStorage.getItem('patientFirstName');
+    //   const lastName = localStorage.getItem('patientLastName');
 
-      if (img && firstName && lastName) {
-        this.patientImg.next(img);
-        this.patientFirstName.next(firstName);
-        this.patientLastName.next(lastName);
-      }}
+    //   if (img && firstName && lastName) {
+    //     this.patientImg.next(img);
+    //     this.patientFirstName.next(firstName);
+    //     this.patientLastName.next(lastName);
+    //   }}
 }

@@ -7,6 +7,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { ClinicsService } from '../../../core/services/clinics/clinics.service';
 import { IClinic } from '../../../core/interfaces/Iclinic/iclinic';
+import { DoctorService } from '../../../core/services/doctor/doctor.service';
 
 @Component({
   selector: 'app-add-doctor',
@@ -20,6 +21,7 @@ export class AddDoctorComponent {
       private readonly router = inject(Router);
       private readonly toastrService = inject(ToastrService);
       private readonly clinicsService = inject(ClinicsService);
+      private readonly doctorService=inject(DoctorService);
 
 
        clinicData: WritableSignal<IClinic[]> = signal([]);
@@ -94,17 +96,18 @@ export class AddDoctorComponent {
           ).subscribe({
             next: (res) => {
               console.log(res);
-              if (res.succeeded
+              if (res.success
                 === true) {
                 this.toastrService.success('تم إضافة الطبيب بنجاح.');
+                this.doctorService.doctorImg.next(res.data.imageUrl);
+                this.doctorService.firstName.next(res.data.firstName);
+                this.doctorService.lastName.next(res.data.lastName);
                 setTimeout(() => {
                   this.router.navigate(['./doctors']);
                 }, 500);
               }
               else{
-                res.errors.forEach((error: { code: string; description: string }) => {
-                  this.toastrService.error(error.description, error.code);
-                });
+                this.toastrService.error(res.message);
               }
               this.isLoading = false;
             },

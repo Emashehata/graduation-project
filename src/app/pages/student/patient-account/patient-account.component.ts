@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './patient-account.component.css'
 })
 export class PatientAccountComponent {
-      private readonly PatientService=inject(PatientService);
+      private readonly patientService=inject(PatientService);
       private readonly formBuilder= inject(FormBuilder);
       private readonly toastrService = inject(ToastrService);
       patientData: WritableSignal<IPatient | null> = signal(null);
@@ -83,7 +83,7 @@ export class PatientAccountComponent {
           formData.append('ImageFile', this.selectedFile);
         }
 
-        this.PatientService.updatePatientUsingToken(formData).pipe(
+        this.patientService.updatePatientUsingToken(formData).pipe(
           finalize(() => (this.isLoading = false))
         ).subscribe({
           next: (res) => {
@@ -91,7 +91,7 @@ export class PatientAccountComponent {
 
             this.toastrService.success('تم تعديل بياناتك بنجاح');
             this.getPatientAccount();
-            this.PatientService.savePatientData(res.data);
+            // this.PatientService.savePatientData(res.data);
           },
           error: (err: HttpErrorResponse) => {
             console.log(err);
@@ -104,13 +104,15 @@ export class PatientAccountComponent {
 
 
       getPatientAccount():void{
-        this.PatientService.getPatientByToken().subscribe({
+        this.patientService.getPatientByToken().subscribe({
             next:(res)=>{
               if (res.success) {
                 this.patientData.set(res.data);
                 this.patchValue(res.data);
                 console.log(res.data);
-                this.PatientService.savePatientData(res.data);
+                this.patientService.patientImg.next(res.data.imageUrl);
+                this.patientService.patientFirstName.next(res.data.firstName);
+                this.patientService.patientLastName.next(res.data.lastName);
 
               }
 
