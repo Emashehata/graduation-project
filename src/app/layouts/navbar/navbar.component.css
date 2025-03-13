@@ -50,6 +50,7 @@
 
 .offcanvas-start {  /* نصف عرض الشاشة */
   height: 100vh;  /* ارتفاع كامل الشاشة */
+  width: 50vh;
 }
 
 .profile-img{
@@ -68,12 +69,12 @@
   }
 }
 
-:host{
+/* :host{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-}
+} */
 
 .dropdown-menu{
   z-index: 1001;

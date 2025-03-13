@@ -1,7 +1,7 @@
 <section class="bg-light">
   <div class="container">
-    <div class="row py-5  d-flex justify-content-around">
-      <div class="col-md-2 bg-white shadow-card rounded-3">
+    <div class="row d-flex justify-content-around">
+      <div class="col-lg-2 col-md-8 bg-white shadow-card rounded-3">
           <div class="account-img text-center mt-5 position-relative">
             <img [src]="'https://myclinicapp.runasp.net'+doctorData()?.imageUrl" class="rounded-circle" alt="">
             <span data-bs-toggle="modal" data-bs-target="#myModal" type="button"
@@ -14,7 +14,7 @@
               </span>
               <p class="para-color mt-1">{{doctorData()?.specialty}}</p>
           </div>
-          <ul class="nav nav-tabs flex-md-column gap-3 mt-5">
+          <ul class="nav nav-tabs flex-lg-column gap-3 mt-5">
               <li class="nav-item">
                   <a class="text-muted active nav-link rounded-bottom-2"
 
@@ -26,7 +26,7 @@
               </li>
           </ul>
       </div>
-      <div class="col-md-9 bg-white  rounded-3 py-3 shadow-card">
+      <div class="col-lg-9 col-md-8 bg-white  rounded-3 py-3 shadow-card">
           <div class="tab-content profile-card">
               <div class="tab-pane fade show active" id="personal-info">
                   <h4 class="my-3 fw-bold">المعلومات الشخصية</h4>
