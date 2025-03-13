@@ -22,8 +22,14 @@ body{
 .sec-color{
   color: var(--sec-color);
 }
+.para-color{
+  color: var(--para-color);
+}
 .bg-sec{
   background-color: var(--sec-color);
+}
+.border-color{
+  border-color: var(--sec-color);
 }
 
 
@@ -42,5 +48,91 @@ a, button {
   outline: none;
   box-shadow: none;
 }
+
+.form-control ,.form-select{
+  border: none !important;
+  border-bottom: 1px solid #ccc !important; /* Add bottom border */
+  border-radius: 0 !important; /* Remove border radius */
+  box-shadow: none !important; /* Remove focus shadow */
+}
+
+
+button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+}
+
+/* table design */
+/* General Table Styling */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.table thead {
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+/* Row Hover Effect */
+.table-hover tbody tr:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transition: background 0.3s ease-in-out;
+}
+
+/* Image Styling */
+.clinic-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transition: transform 0.3s ease-in-out;
+}
+
+.clinic-img:hover {
+  transform: scale(1.1);
+}
+
+
+
+/***********************user account******************/
+
+.nav-tabs .nav-link.active {
+  background-color: rgba(26, 118, 209,.3) !important; /* #3485D6 with 60% opacity */
+  color: var(--sec-color) !important; /* Keeps text visible */
+}
+
+
+.nav-tabs .nav-item .nav-link.active i {
+  color: var(--sec-color) !important; /* Icon color when active */
+}
+.nav-tabs {
+  border-bottom: none !important; /* Removes the underline */
+}
+
+.discard{
+  border-color: var(--sec-color) !important;
+}
+.account-img span{
+  left: 30%;
+  width: 35px;
+  height: 35px;
+}
+
+.shadow-card{
+  box-shadow: 0px 10px 20px  rgba(54, 148, 241, 0.1);
+}
+
+
+
+
+
+
 
 

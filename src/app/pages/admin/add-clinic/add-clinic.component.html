@@ -1,1 +1,73 @@
-<p>add-clinic works!</p>
+<div class="container my-5">
+  <section class="shadow px-4 py-5 rounded-2">
+    <div class="row">
+      <div class="col-md-6 d-flex align-items-center">
+        <div class="w-100">
+          <h3 class="fw-medium header-form">إضافة عيادة طبية :</h3>
+          <span>يرجى إدخال بيانات العيادة المراد إضافتها.</span>
+          <form class="mt-4" [formGroup]="clinicForm" (ngSubmit)="sumbitForm()">
+            <div class="row">
+              <!-- Clinic Name -->
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  @let nameControl = clinicForm.get('name');
+                  <select
+                    class="form-select bg-transparent"
+                    [class.is-invalid]="nameControl?.invalid && nameControl?.touched"
+                    [class.is-valid]="nameControl?.valid && nameControl?.touched"
+                    formControlName="name"
+                    id="clinicName"
+                  >
+                    <option value="" disabled selected>اختر اسم العيادة</option>
+                    @for (clinic of clinicOptions; track clinic) {
+                      <option [value]="clinic">{{ clinic }}</option>
+                    }
+                  </select>
+                  @if (nameControl?.invalid && nameControl?.touched) {
+                    <div class="invalid-feedback">يجب إدخال اسم العيادة</div>
+                  }
+                  <label for="clinicName" class="px-0 text-muted">اسم العيادة<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <!-- Clinic Image Upload -->
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  @let imageControl = clinicForm.get('imageFile');
+                  <input
+                    type="file"
+                    class="form-control bg-transparent"
+                    (change)="onFileSelected($event)"
+                    formControlName="imageFile"
+                    id="clinicImage"
+                  />
+                  @if (imageControl?.invalid && imageControl?.touched) {
+                    <div class="invalid-feedback">يجب إدخال صورة العيادة</div>
+                  }
+                  <label for="clinicImage" class="px-0 text-muted">صورة العيادة<span class="text-danger">*</span></label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="col-12">
+                <button [disabled]="clinicForm.invalid"
+                type="sumbit"
+                class="my-3 bg-sec text-white border-0 w-100 py-2 rounded-2">
+                إضافة عيادة
+                @if (isLoading) {
+                  <span><i class="fas fa-spin fa-spinner"></i></span>
+                }
+              </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Image Section -->
+      <div class="col-md-6">
+        <img src="\Doctors-pana.svg" alt="إضافة عيادة" class="img-fluid" />
+      </div>
+    </div>
+  </section>
+</div>

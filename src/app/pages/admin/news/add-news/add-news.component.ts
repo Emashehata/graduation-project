@@ -19,8 +19,6 @@ export class AddNewsComponent {
 
 
     isLoading:boolean=false;
-    messageError:string='لم يتم إانشاء الخبر حاول مره اخري';
-    succesMsg:string='';
 
     selectedFile: File | null = null;
 
@@ -55,7 +53,7 @@ onFileSelected(event: Event): void {
             setTimeout(() => {
               this.router.navigate(['./news-admin'])
             }, 800);
-            this.succesMsg ='تم إنشاء الخبر بنجاح'
+
             this.isLoading = false;
           },
           error: (err: HttpErrorResponse) => {

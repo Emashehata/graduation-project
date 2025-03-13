@@ -1,9 +1,10 @@
-import {  AfterViewInit, Component, ElementRef, QueryList, ViewChildren, Renderer2 } from '@angular/core';
+import {  AfterViewInit, Component, ElementRef, QueryList, ViewChildren, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterOutlet,RouterLink],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -20,28 +21,30 @@ export class HomeComponent implements AfterViewInit{
     { value: 15, label: 'سنوات الخبرة', icon: 'icofont icofont-table' }
   ];
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: object) {}
 
   ngAfterViewInit() {
-    const section = document.querySelector('.sec-four');
+    if (isPlatformBrowser(this.platformId)) { // Ensure it's running in the browser
+      const section = document.querySelector('.sec-four');
 
-    if (section) {
-      this.counters.forEach((counter, index) => {
-        this.originalValues[index] = parseInt(counter.nativeElement.innerText, 10); // Store original numbers
-      });
+      if (section) {
+        this.counters.forEach((counter, index) => {
+          this.originalValues[index] = parseInt(counter.nativeElement.innerText, 10); // Store original numbers
+        });
 
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.startCounting();
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
+        this.observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                this.startCounting();
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
 
-      this.observer.observe(section);
+        this.observer.observe(section);
+      }
     }
   }
 
@@ -66,7 +69,4 @@ export class HomeComponent implements AfterViewInit{
   toArabicNumbers(num: number): string {
     return num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
   }
-
-
-
 }

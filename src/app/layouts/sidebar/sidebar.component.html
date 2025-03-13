@@ -37,23 +37,21 @@
                        class="nav-link px-2 px-md-5 main-color align-middle main-color"
                        data-bs-toggle="collapse" data-bs-target="#submenu1">
                         <i routerLinkActive="bg-light" class="  icofont-hospital bg-primary p-2 rounded-1 bg-opacity-10 text-primary"></i>
-                        <span class="ms-1 d-none d-sm-inline">العيادات <i class="fa-solid fa-angle-down"></i></span>
+                        <span class="ms-1 d-none d-sm-inline">العيادات</span>
                     </a>
-                    <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                        <li class="w-100">
-                          <a  routerLink="/doctors" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
-                            <i routerLinkActive="bg-light" class="icofont-group-students bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
-                            <span class="ms-1 d-none d-sm-inline">الأطباء</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a  routerLink="/clinic-appointments" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
-                            <i routerLinkActive="bg-light" class="icofont-group-students bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
-                            <span class="ms-1 d-none d-sm-inline">الحجوزات</span>
-                          </a>
-                        </li>
-                    </ul>
                 </li>
+                <li class="nav-item mt-2">
+                  <a   routerLink="/doctors" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                    <i routerLinkActive="bg-light" class="icofont-doctor bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                    <span class="ms-1 d-none d-sm-inline">الأطباء</span>
+                  </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a   routerLink="/clinic-appointments" routerLinkActive="bg-primary bg-opacity-25 text-primary" class="nav-link align-middle px-2 px-md-5 main-color">
+                  <i routerLinkActive="bg-light" class=" icofont-calendar bg-primary  p-2 rounded-1 bg-opacity-10 text-primary"></i>
+                  <span class="ms-1 d-none d-sm-inline">الحجوزات</span>
+                </a>
+              </li>
 
               </ul>
               <hr class="text-dark my-3 w-100" >
@@ -69,7 +67,7 @@
                       <li>
                           <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Sign out</a></li>
+                      <li><a class="dropdown-item" type="button" (click)="authService.logOut()">تسجيل الخروج <i class="fa-solid fa-right-from-bracket"></i> </a></li>
                   </ul>
               </div>
           </div>
