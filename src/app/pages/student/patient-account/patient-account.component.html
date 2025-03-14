@@ -12,17 +12,17 @@
           <div class="account-content text-center mt-2">
               <span class="fw-semibold">{{patientData()?.firstName}} {{patientData()?.lastName}}
               </span>
-              <p class="para-color mt-1">{{patientData()?.email}}</p>
+              <!-- <p class="para-color mt-1">{{patientData()?.email}}</p> -->
           </div>
           <ul class="nav nav-tabs flex-lg-column  gap-3 mt-5">
               <li class="nav-item">
-                  <a class="text-muted active nav-link rounded-bottom-2"
+                  <a class="active nav-link rounded-bottom-2"
 
 
-                  data-bs-toggle="tab" href="#personal-info"><i class=" fs-5 icofont-doctor"></i> المعلومات الشخصية</a>
+                  data-bs-toggle="tab" href="#personal-info"><i class=" fs-5 icofont-doctor"></i><span class="account">المعلومات الشخصية</span></a>
               </li>
               <li class="nav-item">
-                  <a class="text-muted nav-link rounded-bottom-2" data-bs-toggle="tab" href="#password"><i class="fs-5 icofont-ui-lock"></i> كلمة المرور</a>
+                  <a class="nav-link rounded-bottom-2" data-bs-toggle="tab" href="#password"><i class="fs-5 icofont-ui-lock"></i><span class="account">كلمه المرور</span></a>
               </li>
           </ul>
       </div>
