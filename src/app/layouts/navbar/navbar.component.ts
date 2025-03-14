@@ -1,4 +1,4 @@
- import { ChangeDetectorRef, Component, computed, HostListener, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, HostListener, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { DoctorService } from '../../core/services/doctor/doctor.service';
