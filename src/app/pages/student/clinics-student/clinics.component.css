@@ -7,4 +7,10 @@
   opacity: 1;
 }
 
+.search:focus {
+  outline: none !important;
+  /* box-shadow: none !important; */
+  border-color: var(--sec-color) !important;
+}
+
 
