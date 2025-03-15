@@ -26,7 +26,7 @@ export class DoctorService {
 
 
   getDoctorByClinicID(clinicID:string):Observable<any>{
-    return this.httpClient.get(`${environment.baseUrl}api/Doctor/${clinicID}`);
+    return this.httpClient.get(`${environment.baseUrl}api/Doctor/by-clinic/${clinicID}`);
   }
 
 

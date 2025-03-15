@@ -11,7 +11,7 @@ body{
   --main-color:#2C2D3F;
   --sec-color:#1A76D1;
   --para-color:#888;
-  --bg-trans:rgba(#1A76D1,#1A76D1,#1A76D1,.8);
+  --bg-trans: rgba(26, 118, 209, 0.6);
 }
 
 .main-color{

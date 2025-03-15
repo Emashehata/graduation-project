@@ -27,6 +27,8 @@ import { userGuard } from './core/guards/user/user.guard';
 import { doctorGuard } from './core/guards/doctor/doctor.guard';
 import { PatientAccountComponent } from './pages/student/patient-account/patient-account.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
+import { ClnicsDotorsComponent } from './pages/student/clnics-dotors/clnics-dotors.component';
+import { DoctorDetailsComponent } from './pages/student/doctor-details/doctor-details.component';
 
 export const routes: Routes = [
 
@@ -49,6 +51,16 @@ export const routes: Routes = [
     path:'clinics-student',
     component:ClinicsComponent,
     title:'العيادات'
+},
+{
+    path:'clinics-doctors/:id',
+    component:ClnicsDotorsComponent,
+    title:'أطباء العيادة'
+},
+{
+    path:'doctor-details/:id',
+    component:DoctorDetailsComponent,
+    title:'تفاصيل الطبيب'
 },
 {
     path:'news',

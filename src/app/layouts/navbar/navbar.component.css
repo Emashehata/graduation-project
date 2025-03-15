@@ -16,6 +16,33 @@
   z-index: 0;
   border-radius: 2px;
 }
+.nav-link {
+  position: relative;
+  font-weight: 500;
+
+  display: inline-block; /* Ensure underline is only under text */
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%; /* Matches text width */
+  height: 1.6px;
+  background-color: var(--sec-color);
+  transform: scaleX(0); /* Start hidden */
+  transform-origin: right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link.active{
+  color: var(--sec-color) !important;
+}
+/* When active, animate the underline */
+.nav-link.active::after {
+  transform: scaleX(1); /* Fully visible */
+}
 .btn-nav:hover::before{
   transform: scaleX(1) !important;
 }
@@ -69,13 +96,17 @@
   }
 }
 
-/* :host{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
-} */
 
 .dropdown-menu{
   z-index: 1001;
+}
+
+
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 0 !important;
+     padding-right: 0 !important;
+     margin-inline: 8px;
+  }
 }
