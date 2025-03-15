@@ -41,7 +41,12 @@ export class NavbarComponent implements OnInit {
     patientLastName :string='';
 
     ngOnInit(): void {
-       this.fetchUserData();
+      if(this.authService.isLogin()){
+        this.fetchUserData();
+      }
+      this.subscribeToDoctorData();
+      this.subscribeToPatientData();
+
     }
 
 
@@ -145,8 +150,6 @@ export class NavbarComponent implements OnInit {
     fetchUserData(): void {
       this.getPatientAccount();
       this.getDoctorsAccount();
-      this.subscribeToDoctorData();
-      this.subscribeToPatientData();
     }
 
 
