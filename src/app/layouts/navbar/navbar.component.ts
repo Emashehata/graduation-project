@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
         next:(img)=>{
           this.patientImg=img;
           console.log(this.patientImg);
-          this.cdr.detectChanges(); // Force UI update
+
 
         }
       })
@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
         next:(name)=>{
           this.patientFirstName=name;
           console.log(this.patientFirstName);
-          this.cdr.detectChanges(); // Force UI update
+
 
         }
       })
@@ -73,8 +73,6 @@ export class NavbarComponent implements OnInit {
         next:(name)=>{
           this.patientLastName=name;
           console.log(this.patientLastName);
-          this.cdr.detectChanges(); // Force UI update
-
         }
       })
 
