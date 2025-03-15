@@ -85,30 +85,30 @@
         <button type="button" class="btn-close text-reset " data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav m-auto mb-2 mb-lg-0 nav-underline">
+        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="sec-color">الرئيسية</a>
+            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="active">الرئيسية</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="news" routerLinkActive="sec-color">الأخبار</a>
+            <a class="nav-link main-color" routerLink="news" routerLinkActive="active">الأخبار</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="clinics-student" routerLinkActive="sec-color">العيادات</a>
+            <a class="nav-link main-color" routerLink="clinics-student" routerLinkActive="active">العيادات</a>
           </li>
           @if (authService.isUser()) {
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="sec-color">المواعيد</a>
+              <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="active">المواعيد</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="sec-color">السجل الطبي</a>
+              <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="active">السجل الطبي</a>
             </li>
           }
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="about us" routerLinkActive="sec-color">من نحن</a>
+            <a class="nav-link main-color" routerLink="about us" routerLinkActive="active">من نحن</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="sec-color">تواصل معنا</a>
+            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="active">تواصل معنا</a>
           </li>
         </ul>
         <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="book appointment" role="button">
