@@ -26,6 +26,7 @@ import { DoctorAccountComponent } from './pages/doctor/doctor-account/doctor-acc
 import { userGuard } from './core/guards/user/user.guard';
 import { doctorGuard } from './core/guards/doctor/doctor.guard';
 import { PatientAccountComponent } from './pages/student/patient-account/patient-account.component';
+import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 
 export const routes: Routes = [
 
@@ -79,6 +80,12 @@ export const routes: Routes = [
   path:'login',
   component:LoginComponent,
   title:'تسجيل الدخول',
+  canActivate: [authGuard]
+},
+{
+  path:'forgetPassword',
+  component:ForgetPasswordComponent,
+  title:'تعديل كلمة السر',
   canActivate: [authGuard]
 },
 
