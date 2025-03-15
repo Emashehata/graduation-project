@@ -9,7 +9,7 @@ export const userGuard: CanActivateFn = (route, state) => {
     let toastrService:ToastrService=inject(ToastrService);
 
     if (authService.isUser()) {
-      return true; // Allow access if the user is an admin
+      return true; // Allow access if the user is an user
     } else {
       toastrService.error('ليس لديك الصلاحية للوصول إلى هذه الصفحة');
       router.navigate(['/login']); // Redirect to login if not User

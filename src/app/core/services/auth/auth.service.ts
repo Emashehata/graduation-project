@@ -142,7 +142,10 @@ export class AuthService {
     this.userData.set(null);
     this.userId.set(null);
     localStorage.removeItem('user token');
-    this.router.navigate(['/login']);
-    window.location.reload();
+    // this.router.navigate(['/login']);
+    // window.location.reload();
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 0);
   }
 }

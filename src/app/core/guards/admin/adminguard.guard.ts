@@ -13,7 +13,7 @@ export const adminguardGuard: CanActivateFn = (route, state) => {
     return true; // Allow access if the user is an admin
   } else {
     toastrService.error('ليس لديك الصلاحية للوصول إلى هذه الصفحة');
-    router.navigate(['/home']); // Redirect to home if not admin
+    router.navigate(['/login']); // Redirect to home if not admin
     return false;
   }
 };
