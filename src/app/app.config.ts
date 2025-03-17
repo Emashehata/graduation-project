@@ -6,7 +6,9 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { headersInterceptor } from './core/interceptors/headers/headers.interceptor';
-// import { provideExperimentalFeatures } from '@angular/core';
+import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor';
+import { loadingInterceptor } from './core/interceptors/loadingScreen/loading.interceptor';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,8 +19,9 @@ export const appConfig: ApplicationConfig = {
     withViewTransitions() ),
     provideClientHydration(withEventReplay()),
     provideAnimations(),
-    provideHttpClient(withFetch(),withInterceptors([headersInterceptor])),
+    provideHttpClient(withFetch(),withInterceptors([headersInterceptor,errorsInterceptor,loadingInterceptor])),
     provideToastr(),
+    importProvidersFrom(NgxSpinnerModule)
     // provideExperimentalFeatures()
 
   ]

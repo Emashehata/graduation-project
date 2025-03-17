@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IClinic } from '../../../core/interfaces/Iclinic/iclinic';
 import { ClinicsService } from '../../../core/services/clinics/clinics.service';
 
 @Component({
@@ -21,9 +20,8 @@ export class DoctorAccountComponent {
     private readonly doctorService=inject(DoctorService);
     private readonly formBuilder= inject(FormBuilder);
     private readonly toastrService = inject(ToastrService);
-    private readonly clinicsService = inject(ClinicsService);
+    readonly clinicsService = inject(ClinicsService);
     doctorData: WritableSignal<IDoctor | null> = signal(null);
-    clinicData: WritableSignal<IClinic[]> = signal([]);
     selectedFile: File | null = null;
     isLoading: boolean = false;
 
@@ -31,7 +29,7 @@ export class DoctorAccountComponent {
 
     ngOnInit(): void {
       this.getDoctorsAccount();
-      this.getClinicsData();
+      this.clinicsService.getClinicsData();
       this.updateDoctorForm =this.formBuilder.group({
         FirstName:[''],
         LastName:[''],
@@ -113,29 +111,6 @@ export class DoctorAccountComponent {
     }
 
 
-
-
-      getClinicsData(): void {
-        this.isLoading = true;
-        this.clinicsService.getAllClinics().subscribe({
-          next: (res) => {
-            if (res.success) {
-              this.clinicData.set(res.data);
-              console.log(this.clinicData());
-
-            } else {
-              this.toastrService.error('فشل في تحميل بيانات العيادات');
-            }
-          },
-          error: (err) => {
-            console.error(err);
-            this.toastrService.error('حدث خطأ أثناء جلب البيانات');
-          },
-          complete: () => {
-            this.isLoading = false;
-          }
-        });
-      }
 
     getDoctorsAccount():void{
       this.doctorService.getDoctorByID(this.authService.userId()!).subscribe({

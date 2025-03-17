@@ -7,16 +7,17 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { NavbarComponent } from "./layouts/navbar/navbar.component";
 import { FooterComponent } from "./layouts/footer/footer.component";
 import { AuthService } from './core/services/auth/auth.service';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HomeComponent, SidebarComponent, AboutUsComponent, ContactUsComponent, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet,SidebarComponent, NavbarComponent, FooterComponent,NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'medical app';
+  title = 'الإدارة الطبية';
   readonly authService=inject(AuthService);
 
 }

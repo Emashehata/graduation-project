@@ -30,6 +30,7 @@
     "jquery": "^3.7.1",
     "jwt-decode": "^4.0.0",
     "ngx-owl-carousel-o": "^19.0.0",
+    "ngx-spinner": "^19.0.0",
     "ngx-toastr": "^19.0.0",
     "owl.carousel": "^2.3.4",
     "rxjs": "~7.8.0",

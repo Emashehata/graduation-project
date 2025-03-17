@@ -1,25 +1,36 @@
 <div class="app-body">
-
   <!-- Row starts -->
   <div class="row gx-3">
     <div class="col-sm-12">
       <div class="card">
-        <div class="card-header d-flex align-items-center justify-content-between">
+        <div
+          class="card-header d-flex align-items-center justify-content-between"
+        >
           <h5 class="card-title main-color fw-semibold">العيادات</h5>
-          <a  class="bg-sec text-white border-0 px-3 py-2 rounded-2 ms-auto" routerLink="/add-clinic">إضافة عيادة</a>
+          <a
+            class="bg-sec text-white border-0 px-3 py-2 rounded-2 ms-auto"
+            routerLink="/add-clinic"
+            >إضافة عيادة</a
+          >
         </div>
         <div class="card-body">
-
           <!-- Table starts -->
           <div class="table-responsive">
-            <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
+            <div
+              id="basicExample_wrapper"
+              class="dataTables_wrapper dt-bootstrap5 no-footer"
+            >
               <div class="row align-items-center">
                 <!-- Rows per page dropdown -->
                 <div class="col-sm-12 col-md-6">
                   <div class="dataTables_length" id="basicExample_length">
                     <label class="fw-bold text-muted">
                       عرض
-                      <select name="basicExample_length" aria-controls="basicExample" class="form-select form-select-sm rounded-2 shadow-sm">
+                      <select
+                        name="basicExample_length"
+                        aria-controls="basicExample"
+                        class="form-select form-select-sm rounded-2 shadow-sm"
+                      >
                         <option value="12">12</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
@@ -31,10 +42,19 @@
 
                 <!-- Search Box -->
                 <div class="col-sm-12 col-md-6">
-                  <div id="basicExample_filter" class="dataTables_filter text-end">
+                  <div
+                    id="basicExample_filter"
+                    class="dataTables_filter text-end"
+                  >
                     <label class="fw-bold text-muted">
                       بحث:
-                      <input   (input)="onSearchInput($event)"  type="search" class="form-control form-control-sm rounded-2 shadow-sm" placeholder="بحث عن العيادة" aria-controls="basicExample">
+                      <input
+                        (input)="clinicsService.onSearchInput($event)"
+                        type="search"
+                        class="form-control form-control-sm rounded-2 shadow-sm"
+                        placeholder="بحث عن العيادة"
+                        aria-controls="basicExample"
+                      />
                     </label>
                   </div>
                 </div>
@@ -42,7 +62,10 @@
 
               <div class="row">
                 <div class="col-sm-12">
-                  <table id="basicExample" class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden">
+                  <table
+                    id="basicExample"
+                    class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden"
+                  >
                     <thead class="table-primary text-white">
                       <tr>
                         <th class="w-10">#</th>
@@ -52,119 +75,210 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @for (clinic of clinicData(); track clinic.id) {
-                        <tr>
-                          <td class="fw-bold">{{ clinic.id }}</td>
-                          <td>{{ clinic.name }}</td>
-                          <td>
-                            <img [src]="'https://myclinicapp.runasp.net'+clinic.imageUrl" class="clinic-img rounded shadow-sm" [alt]="clinic.name">
-                          </td>
-                          <td>
-                            <div class="d-inline-flex gap-2">
-                              <button class="btn btn-outline-danger btn-sm shadow-sm" data-bs-toggle="modal" [attr.data-bs-target]="'#delRow' + clinic.id">
-                                <i class="fa-solid fa-trash-can"></i>
+                      @for (clinic of clinicsService.clinicData(); track
+                      clinic.id) {
+                      <tr>
+                        <td class="fw-bold">{{ clinic.id }}</td>
+                        <td>{{ clinic.name }}</td>
+                        <td>
+                          <img
+                            [src]="
+                              'https://myclinicapp.runasp.net' + clinic.imageUrl
+                            "
+                            class="clinic-img rounded shadow-sm"
+                            [alt]="clinic.name"
+                          />
+                        </td>
+                        <td>
+                          <div class="d-inline-flex gap-2">
+                            <button
+                              class="btn btn-outline-danger btn-sm shadow-sm"
+                              data-bs-toggle="modal"
+                              [attr.data-bs-target]="'#delRow' + clinic.id"
+                            >
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                            <a
+                              class="btn btn-outline-success btn-sm shadow-sm"
+                              (click)="patchValue(clinic)"
+                              data-bs-toggle="modal"
+                              [attr.data-bs-target]="'#updateRow' + clinic.id"
+                              data-bs-title="تعديل بيانات العيادة"
+                            >
+                              <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      <div
+                        class="modal fade"
+                        [id]="'delRow' + clinic.id"
+                        tabindex="-1"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-sm rounded-2">
+                          <div class="modal-content border-0 text-center">
+                            <!-- Close Button (Top Right) -->
+                            <button
+                              type="button"
+                              class="btn-close position-absolute top-0 end-0 m-2"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+
+                            <!-- Image -->
+                            <img
+                              src="/Inbox cleanup.gif"
+                              class="modal-img mt-3"
+                              alt="Warning"
+                            />
+
+                            <!-- Title -->
+                            <h5 class="fw-bold my-3 text-dark">
+                              هل انت بالفعل تريد حذف هذه العيادة؟
+                            </h5>
+
+                            <!-- Buttons -->
+                            <div
+                              class="modal-footer justify-content-center border-0"
+                            >
+                              <button
+                                class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                لا
                               </button>
-                              <a class="btn btn-outline-success btn-sm shadow-sm" (click)="patchValue(clinic)" data-bs-toggle="modal"  [attr.data-bs-target]="'#updateRow' + clinic.id"  data-bs-title="تعديل بيانات العيادة">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                              </a>
-                            </div>
-                          </td>
-                        </tr>
-                        <div  class="modal fade " [id]="'delRow' + clinic.id" tabindex="-1" aria-hidden="true">
-                          <div class="modal-dialog modal-sm rounded-2">
-                            <div class="modal-content border-0 text-center">
-
-                              <!-- Close Button (Top Right) -->
-                              <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                              <!-- Image -->
-                              <img src="/Inbox cleanup.gif" class="modal-img mt-3" alt="Warning">
-
-                              <!-- Title -->
-                              <h5 class="fw-bold my-3 text-dark">هل انت بالفعل تريد حذف هذه العيادة؟</h5>
-
-                              <!-- Buttons -->
-                              <div class="modal-footer justify-content-center border-0">
-                                <button class="btn btn-outline-secondary" data-bs-dismiss="modal">لا</button>
-                                <button (click)="deleteClinic(clinic.id)" class="btn btn-danger" data-bs-dismiss="modal">نعم</button>
-                              </div>
-
+                              <button
+                                (click)="deleteClinic(clinic.id)"
+                                class="btn btn-danger"
+                                data-bs-dismiss="modal"
+                              >
+                                نعم
+                              </button>
                             </div>
                           </div>
                         </div>
-                        <!-- Update Clinic Modal -->
+                      </div>
+                      <!-- Update Clinic Modal -->
 
-                        <div  class="modal fade"  [id]="'updateRow' + clinic.id" tabindex="-1" aria-hidden="true">
-                          <div class="modal-dialog  rounded-2">
-                            <div class="modal-content border-0 text-center">
+                      <div
+                        class="modal fade"
+                        [id]="'updateRow' + clinic.id"
+                        tabindex="-1"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog rounded-2">
+                          <div class="modal-content border-0 text-center">
+                            <!-- Close Button (Top Right) -->
+                            <button
+                              type="button"
+                              class="btn-close position-absolute top-0 end-0 m-2"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
 
-                              <!-- Close Button (Top Right) -->
-                              <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                              <!-- Title -->
-                              <h5 class="fw-bold my-5 text-dark">تعديل البيانات الخاصة بالعيادة!</h5>
-                              <form class="mt-4" [formGroup]="updateClnicForm" (ngSubmit)="sumbitUpdateClnicForm(clinic.id)">
-                                <div class="row">
-                                  <!-- Clinic Name -->
-                                  <div class="col-12">
-                                    <div class="form-floating mb-3">
-                                      @let nameControl = updateClnicForm.get('name');
-                                      <select
-                                        class="form-select bg-transparent"
-                                        [class.is-invalid]="nameControl?.invalid && nameControl?.touched"
-                                        [class.is-valid]="nameControl?.valid && nameControl?.touched"
-                                        formControlName="name"
-                                        id="clinicName"
-                                      >
-                                        <option value="" disabled selected>اختر اسم العيادة</option>
-                                        @for (clinic of clinicOptions; track clinic) {
-                                          <option [value]="clinic">{{ clinic }}</option>
-                                        }
-                                      </select>
-                                      @if (nameControl?.invalid && nameControl?.touched) {
-                                        <div class="invalid-feedback">يجب إدخال اسم العيادة</div>
+                            <!-- Title -->
+                            <h5 class="fw-bold my-5 text-dark">
+                              تعديل البيانات الخاصة بالعيادة!
+                            </h5>
+                            <form
+                              class="mt-4"
+                              [formGroup]="updateClnicForm"
+                              (ngSubmit)="sumbitUpdateClnicForm(clinic.id)"
+                            >
+                              <div class="row">
+                                <!-- Clinic Name -->
+                                <div class="col-12">
+                                  <div class="form-floating mb-3">
+                                    @let nameControl =
+                                    updateClnicForm.get('name');
+                                    <select
+                                      class="form-select bg-transparent"
+                                      [class.is-invalid]="
+                                        nameControl?.invalid &&
+                                        nameControl?.touched
+                                      "
+                                      [class.is-valid]="
+                                        nameControl?.valid &&
+                                        nameControl?.touched
+                                      "
+                                      formControlName="name"
+                                      id="clinicName"
+                                    >
+                                      <option value="" disabled selected>
+                                        اختر اسم العيادة
+                                      </option>
+                                      @for (clinic of clinicOptions; track
+                                      clinic) {
+                                      <option [value]="clinic">
+                                        {{ clinic }}
+                                      </option>
                                       }
-                                      <label for="clinicName" class="px-0 text-muted">اسم العيادة<span class="text-danger">*</span></label>
+                                    </select>
+                                    @if (nameControl?.invalid &&
+                                    nameControl?.touched) {
+                                    <div class="invalid-feedback">
+                                      يجب إدخال اسم العيادة
                                     </div>
-                                  </div>
-
-                                  <!-- Clinic Image Upload -->
-                                  <div class="col-12">
-                                    <div class="form-floating mb-3">
-                                      @let imageControl = updateClnicForm.get('imageFile');
-                                      <input
-                                        type="file"
-                                        class="form-control bg-transparent"
-                                        (change)="onFileSelected($event)"
-                                        formControlName="imageFile"
-                                        id="clinicImage"
-                                      />
-                                      @if (imageControl?.invalid && imageControl?.touched) {
-                                        <div class="invalid-feedback">يجب إدخال صورة العيادة</div>
-                                      }
-                                      <label for="clinicImage" class="px-0 text-muted">صورة العيادة<span class="text-danger">*</span></label>
-                                    </div>
-                                  </div>
-
-                                  <!-- Submit Button -->
-                                  <div class="col-12">
-                                    <button [disabled]="updateClnicForm.invalid"
-                                    type="sumbit"
-                                    data-bs-dismiss="modal"
-                                    class="my-3 bg-sec text-white border-0 w-100 py-2 rounded-2">
-                                    تعديل بيانات العيادة
-                                    @if (isLoading) {
-                                      <span><i class="fas fa-spin fa-spinner"></i></span>
                                     }
-                                  </button>
+                                    <label
+                                      for="clinicName"
+                                      class="px-0 text-muted"
+                                      >اسم العيادة<span class="text-danger"
+                                        >*</span
+                                      ></label
+                                    >
                                   </div>
                                 </div>
-                              </form>
 
-                            </div>
+                                <!-- Clinic Image Upload -->
+                                <div class="col-12">
+                                  <div class="form-floating mb-3">
+                                    @let imageControl =
+                                    updateClnicForm.get('imageFile');
+                                    <input
+                                      type="file"
+                                      class="form-control bg-transparent"
+                                      (change)="onFileSelected($event)"
+                                      formControlName="imageFile"
+                                      id="clinicImage"
+                                    />
+                                    @if (imageControl?.invalid &&
+                                    imageControl?.touched) {
+                                    <div class="invalid-feedback">
+                                      يجب إدخال صورة العيادة
+                                    </div>
+                                    }
+                                    <label
+                                      for="clinicImage"
+                                      class="px-0 text-muted"
+                                      >صورة العيادة<span class="text-danger"
+                                        >*</span
+                                      ></label
+                                    >
+                                  </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12">
+                                  <button
+                                    [disabled]="updateClnicForm.invalid"
+                                    type="sumbit"
+                                    data-bs-dismiss="modal"
+                                    class="my-3 bg-sec text-white border-0 w-100 py-2 rounded-2"
+                                  >
+                                    تعديل بيانات العيادة @if (isLoading) {
+                                    <span
+                                      ><i class="fas fa-spin fa-spinner"></i
+                                    ></span>
+                                    }
+                                  </button>
+                                </div>
+                              </div>
+                            </form>
                           </div>
                         </div>
-
+                      </div>
 
                       }
                     </tbody>
@@ -175,35 +289,9 @@
           </div>
 
           <!-- Table ends -->
-
-          <!-- Modal Delete Row -->
-          <!-- <div class="modal fade" id="delRow" tabindex="-1" aria-labelledby="delRowLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="delRowLabel">
-                    Confirm
-                  </h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  Are you sure you want to delete the doctor from list?
-                </div>
-                <div class="modal-footer">
-                  <div class="d-flex justify-content-end gap-2">
-                    <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">No</button>
-                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Yes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
         </div>
-
       </div>
     </div>
   </div>
   <!-- Row ends -->
-
 </div>
