@@ -16,15 +16,13 @@ import { DoctorService } from '../../../core/services/doctor/doctor.service';
   styleUrl: './add-doctor.component.css'
 })
 export class AddDoctorComponent {
-     private readonly formBuilder = inject(FormBuilder);
+      private readonly formBuilder = inject(FormBuilder);
       private readonly authService = inject(AuthService);
       private readonly router = inject(Router);
       private readonly toastrService = inject(ToastrService);
-      private readonly clinicsService = inject(ClinicsService);
+      readonly clinicsService = inject(ClinicsService);
       private readonly doctorService=inject(DoctorService);
 
-
-       clinicData: WritableSignal<IClinic[]> = signal([]);
 
       isLoading: boolean = false;
       showPassword:boolean = false;
@@ -53,7 +51,7 @@ export class AddDoctorComponent {
         });
 
 
-        this.getClinicsData();
+        this.clinicsService.getClinicsData();
       }
 
       passwordMatchValidator(formGroup: AbstractControl) {
@@ -172,21 +170,4 @@ export class AddDoctorComponent {
 
 
 
-      getClinicsData(): void {
-        this.isLoading = true;
-        this.clinicsService.getAllClinics().subscribe({
-          next: (res) => {
-            if (res.success) {
-              this.clinicData.set(res.data);
-            }
-          },
-          error: (err) => {
-            console.error(err);
-            this.toastrService.error('حدث خطأ أثناء جلب البيانات');
-          },
-          complete: () => {
-            this.isLoading = false;
-          }
-        });
-      }
 }

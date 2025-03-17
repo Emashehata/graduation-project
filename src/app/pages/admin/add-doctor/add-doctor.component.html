@@ -289,7 +289,7 @@
                   >
                     <option value="" disabled selected>اختر العيادة</option>
 
-                    @for (clinic of clinicData(); track clinic.id) {
+                    @for (clinic of clinicsService.clinicData(); track clinic.id) {
                     <option [value]="clinic.id">{{ clinic.name }}</option>
                     }
                   </select>
@@ -409,7 +409,7 @@
               <span><i class="fas fa-spin fa-spinner"></i></span>
               }
             </button>
-            
+
           </form>
         </div>
       </div>

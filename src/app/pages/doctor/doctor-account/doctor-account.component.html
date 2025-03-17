@@ -1,4 +1,4 @@
-<section class="bg-light">
+<section class="bg-light my-5">
   <div class="container">
     <div class="row d-flex justify-content-around">
       <div class="col-lg-2 col-md-8 bg-white shadow-card rounded-3">
@@ -93,7 +93,7 @@
                       </div>
                     </div>
                       <!-- **************email************** -->
-              <div class="col-md-6">
+                    <div class="col-md-6">
                 <div class="form-floating mb-3">
                   @let emailControl = updateDoctorForm.get('Email');
                   <input
@@ -120,7 +120,7 @@
                     >البريد الألكتروني</label
                   >
                 </div>
-              </div>
+                    </div>
 
                     <!-- ***********************phone******************************* -->
 
@@ -169,7 +169,7 @@
                         >
                           <option value="" disabled selected>اختر العيادة</option>
 
-                          @for (clinic of clinicData(); track clinic.id) {
+                          @for (clinic of clinicsService.clinicData(); track clinic.id) {
                           <option [value]="clinic.id">{{ clinic.name }}</option>
                           }
                         </select>
@@ -182,7 +182,7 @@
 
                      <!-- ****************college**************** -->
 
-                     <div class="col-md-6">
+                    <div class="col-md-6">
                       <div class="form-floating mb-3">
                         @let collegeControl = updateDoctorForm.get('College');
 
@@ -214,27 +214,6 @@
                         >
                       </div>
                     </div>
-
-                    <!-- ***************************************imagefile******************************** -->
-                    <!-- <div class="col-md-6">
-                      <div class="form-floating mb-3">
-                        @let imageControl = updateDoctorForm.get('ImageFile');
-                        <input
-                          required
-                          type="file"
-                          class="form-control"
-                          [class.is-invalid]="
-                            imageControl?.invalid && imageControl?.touched
-                          "
-                          [class.is-valid]="imageControl?.valid && imageControl?.touched"
-                          (change)="onFileSelected($event)"
-                          id="imageFile"
-                        />
-                        <label for="imageFile" class="px-0 text-muted"
-                          >صورة الطبيب<span class="text-danger">*</span></label
-                        >
-                      </div>
-                    </div> -->
 
                     <!-- **************speciatly************* -->
                     <div class="col-md-6">

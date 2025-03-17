@@ -9,7 +9,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { ClinicsComponent } from './pages/student/clinics-student/clinics.component';
 import { NewsComponent } from './pages/news/news.component';
 import { AppointmentsStudentComponent } from './pages/student/appointments-student/appointments-student.component';
-import { MdeicalRecordsComponent } from './pages/student/mdeical-records-student/mdeical-records.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { BookAppointmentComponent } from './pages/student/book-appointment/book-appointment.component';
@@ -113,12 +112,6 @@ export const routes: Routes = [
     path:'appointment-student',
     component:AppointmentsStudentComponent,
     title:'المواعيد',
-    canActivate: [userGuard]
-},
-{
-    path:'medical-record',
-    component:MdeicalRecordsComponent,
-    title:'السجل الطبي',
     canActivate: [userGuard]
 },
 {

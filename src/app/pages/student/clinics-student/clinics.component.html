@@ -3,15 +3,15 @@
     <div class="serach-field">
       <div class="row">
         <div class="col-md-3 position-relative">
-          <input (input)="onSearchInput($event)" type="search" class="search border p-2  rounded-2 shadow-card bg-transparent w-100" placeholder="بحث عن العيادة" >
+          <input (input)="clinicsService.onSearchInput($event)" type="search" class="search border p-2  rounded-2 shadow-card bg-transparent w-100" placeholder="بحث عن العيادة" >
           <span class="position-absolute end-0 top-50 translate-middle-y me-4"><i class="fa-solid fa-magnifying-glass sec-color"></i></span>
         </div>
       </div>
     </div>
 
     <div class="clinics-field mt-5">
-      <div class="row gy-5">
-        @for (clinic of clinicData(); track clinic.id) {
+      <div class="row gy-3">
+        @for (clinic of clinicsService.clinicData(); track clinic.id) {
           <div class="col-md-3 col-6">
             <div class="card shadow-card"  >
               <div class="card-img p-3">

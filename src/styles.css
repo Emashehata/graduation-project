@@ -2,8 +2,6 @@
 
 body{
   font-family: "Cairo", serif;
-  font-variant-numeric: traditional;
-  unicode-bidi: embed;
 }
 
 
@@ -12,6 +10,17 @@ body{
   --sec-color:#1A76D1;
   --para-color:#888;
   --bg-trans: rgba(26, 118, 209, 0.6);
+}
+
+
+ul, ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a, a:hover, button {
+  text-decoration: none;
 }
 
 .main-color{
@@ -30,22 +39,6 @@ body{
   border-color: var(--sec-color);
 }
 
-
-ul, ul li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-a, a:hover, button {
-  text-decoration: none;
-}
-
-a, button {
-  transition: all .3s ease;
-  outline: none;
-  box-shadow: none;
-}
 
 .form-control ,.form-select{
   border: none !important;
@@ -130,6 +123,71 @@ button:disabled {
 span.account{
   color: var(--sec-color);
   font-size: 14px;
+}
+
+
+
+
+
+.Top
+{
+    background-image: url(/Contact1.jpg);
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    padding: 120px 0;
+}
+
+.overlay
+{
+    z-index: 2;
+    position: relative;
+}
+
+.overlay::before
+{
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--sec-color);
+    opacity: .8;
+    z-index: -10;
+}
+
+.Top h2 {
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.Top .list {
+    display: inline-block;
+    margin-top: 20px;
+}
+.Top ul li {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.Top ul li a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0;
+    padding: 0;
+}
+.Top ul li a:hover {
+    color: #2c2d3f;
 }
 
 

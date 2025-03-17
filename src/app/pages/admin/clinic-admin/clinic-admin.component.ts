@@ -17,11 +17,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ClinicAdminComponent {
 
-  private readonly clinicsService = inject(ClinicsService);
+  readonly clinicsService = inject(ClinicsService);
   private readonly formBuilder= inject(FormBuilder);
   private readonly toastrService = inject(ToastrService);
 
-  clinicData: WritableSignal<IClinic[]> = signal([]);
   selectedFile: File | null = null;
   isLoading: boolean = false;
   sucessMsg:boolean=false;
@@ -29,40 +28,20 @@ export class ClinicAdminComponent {
   updateClnicForm!:FormGroup;
 
   ngOnInit(): void {
-    this.getClinicsData();
-      this.updateClnicForm =this.formBuilder.group({
+    this.clinicsService.getClinicsData();
+      this.updateClnicForm = this.formBuilder.group({
                           name:[null],
                           imageFile:[null],
                 })
   }
 
 
-  /** Fetch all clinics */
-  getClinicsData(): void {
-    this.isLoading = true;
-    this.clinicsService.getAllClinics().subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.clinicData.set(res.data);
-        } else {
-          this.toastrService.error('فشل في تحميل بيانات العيادات');
-        }
-      },
-      error: (err) => {
-        console.error(err);
-        this.toastrService.error('حدث خطأ أثناء جلب البيانات');
-      },
-      complete: () => {
-        this.isLoading = false;
-      }
-    });
-  }
   deleteClinic(id:string):void{
     this.clinicsService.deleteSpecficClinic(id).subscribe({
       next:(res)=>{
         console.log(res);
         if(res.success==true){
-          this.getClinicsData();
+          this.clinicsService.getClinicsData();
           this.toastrService.success('تم حذف العيادة بنجاح')
 
         }
@@ -84,7 +63,7 @@ export class ClinicAdminComponent {
 
 
 
-  
+
 
   sumbitUpdateClnicForm(id: string): void {
     if (this.updateClnicForm.invalid) {
@@ -110,7 +89,7 @@ export class ClinicAdminComponent {
       next: (res) => {
         if (res.success) {
           this.toastrService.success('تم تعديل بيانات العيادة بنجاح');
-          this.getClinicsData();
+          this.clinicsService.getClinicsData();
         }
       },
       error: (err: HttpErrorResponse) => {
@@ -119,42 +98,6 @@ export class ClinicAdminComponent {
       },
     });
   }
-
-
-
-
-            searchClinic(query: string): void {
-              console.log('Search query:', query); // ✅ Check if function is called
-
-              if (!query.trim()) {
-                console.log('Query is empty, fetching all clinics...');
-                this.getClinicsData();
-                return;
-              }
-
-              this.clinicsService.searchInClinics(query).subscribe({
-                next: (res) => {
-                  console.log('API Response:', res); // ✅ Check API response
-
-                  if (res.success) {
-                    this.clinicData.set(res.data);
-                  } else {
-                    this.clinicData.set([]);
-                    this.toastrService.warning('لم يتم العثور على نتائج');
-                  }
-                },
-                error: (err) => {
-                  console.error('API Error:', err);
-                  this.toastrService.error('حدث خطأ أثناء البحث');
-                }
-              });
-            }
-            onSearchInput(event: Event): void {
-              const inputElement = event.target as HTMLInputElement;
-              this.searchClinic(inputElement.value);
-            }
-
-
 
   clinicOptions: string[] = [
     'الجراحة العامة',
