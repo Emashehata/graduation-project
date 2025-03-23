@@ -28,6 +28,9 @@ import { PatientAccountComponent } from './pages/student/patient-account/patient
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ClnicsDotorsComponent } from './pages/student/clnics-dotors/clnics-dotors.component';
 import { DoctorDetailsComponent } from './pages/student/doctor-details/doctor-details.component';
+import { AppointmentComponent } from './pages/doctor/appointment/appointment.component';
+import { CreateAppointmentComponent } from './pages/doctor/create-appointment/create-appointment.component';
+import { UpdateappointmentComponent } from './pages/doctor/updateappointment/updateappointment.component';
 
 export const routes: Routes = [
 
@@ -127,6 +130,27 @@ export const routes: Routes = [
   component:DoctorAccountComponent,
   title:'حسابي',
   canActivate: [doctorGuard]
+},
+{
+path:'appointment',
+component:AppointmentComponent,
+title:'المواعيد المسجلة',
+canActivate: [doctorGuard]
+
+},
+{
+  path:'createAppointment',
+  component:CreateAppointmentComponent,
+  title:'إنشاء ميعاد جديد',
+  canActivate: [doctorGuard]
+
+},
+{
+  path:'updateAppointment/:id',
+  component:UpdateappointmentComponent,
+  title:'تعديل الميعاد',
+  canActivate: [doctorGuard]
+
 },
 
 // ******************************admin pages***************************/

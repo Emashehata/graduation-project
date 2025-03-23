@@ -10,6 +10,8 @@ import { errorsInterceptor } from './core/interceptors/errors/errors.interceptor
 import { loadingInterceptor } from './core/interceptors/loadingScreen/loading.interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

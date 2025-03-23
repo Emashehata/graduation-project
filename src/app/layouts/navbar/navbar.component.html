@@ -96,6 +96,12 @@
           <li class="nav-item">
             <a class="nav-link main-color" routerLink="clinics-student" routerLinkActive="active">العيادات</a>
           </li>
+          @if(authService.isDoctor())
+          {
+            <li class="nav-item">
+              <a class="nav-link main-color" routerLink="appointment" routerLinkActive="active">مواعيد العمل</a>
+            </li>
+          }
           @if (authService.isUser()) {
             <li class="nav-item">
               <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="active">المواعيد</a>

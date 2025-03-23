@@ -1,0 +1,103 @@
+<!-- <div class="container">
+    <div class="form-container">
+      <h3 class="text-center">تعديل الموعد</h3>
+  
+      <form [formGroup]="appointmentForm" (ngSubmit)="updateAppointment()">
+        
+        <label for="day" class="form-label main-color">اختر أيام العمل</label>
+        <div class="day-checkboxes">
+          @for (day of daysList; track $index) {
+            <input 
+            type="checkbox" 
+            [value]="day.id" 
+            (change)="onDayChange($event, day.id)"
+            [checked]="appointmentForm.get('days')?.value.includes(day.id)"
+          >
+          {{ day.name }}
+          }
+            
+          
+          
+        </div>
+  
+        <label>اختر ساعة البداية</label>
+        <input type="time" class="form-control" formControlName="startTime">
+  
+        <label>اختر ساعة النهاية</label>
+        <input type="time" class="form-control" formControlName="endTime">
+  
+        <label>اختر مدة الكشف</label>
+        <input type="number" class="form-control" formControlName="duration" placeholder="مدة الكشف بالدقائق">
+  
+        <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="appointmentForm.invalid">حفظ</button>
+      </form>
+    </div>
+  </div>
+   -->
+
+   <div class="container my-5">
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-lg-6 col-md-8 col-sm-10 col-10 p-3 border border-2 rounded-2">
+
+            <div class="mt-2 mb-4 text-center main-color">
+                <h3>
+                     تعديل الميعاد
+                    
+                </h3>
+            </div>
+            
+
+            <div class="mt-2 mb-4 ">
+
+             <form [formGroup]="appointmentForm" (ngSubmit)="updateAppointment()">
+
+                <div class="py-2 ">
+                    
+                <label for="day" class="form-label main-color">اختر أيام العمل</label>
+                <br/>
+                    @for (day of daysList; track $index) 
+                    {
+                        
+                          
+                        <input class="main-color"   [checked]="appointmentForm.get('days')?.value?.includes(day.id) || false"
+                        type="checkbox" id="day"  [value]="day.id" (change)="onDayChange($event, day.id)">
+                        {{ day.name }}
+                    
+                        
+                        
+                    }
+
+                </div>
+
+              <div class="py-2 ">
+                <label for="startTime" class="form-label main-color">اختر ساعة البداية</label>
+                <input type="time" id="startTime" class="form-control" formControlName="startTime">
+              </div>
+               
+              <div class="py-2">
+                <label for="endTime" class="form-label main-color">اختر ساعة النهاية</label>
+                <input type="time" id="endTime" class="form-control" formControlName="endTime">
+                </div>
+
+                <div class="py-2">
+                <label for="duration" class="form-label main-color">اختر مدة الكشف</label>
+                <input type="number" id="duration" class="form-control" formControlName="duration" placeholder="بالدقائق">
+                </div>
+                
+              <div class="text-center mt-3 ">
+                <button type="submit" class="btn btn-primary w-100 mt-3" >حفظ</button>
+
+              </div>
+              </form> 
+
+            </div>  
+              
+
+        </div>
+
+    </div>
+
+    
+
+</div>
