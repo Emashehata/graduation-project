@@ -32,10 +32,8 @@ appointmentForm!: FormGroup;
 appointmentId!: string;
 
 
-ngOnInit(): void {
 
-  this.appointmentId = this.route.snapshot.paramMap.get('id') || '';
-  console.log('Appointment ID:', this.appointmentId); 
+ngOnInit(): void {
   this.appointmentForm = this.fb.group({
     days: this.fb.array([]), 
     startTime: [''],
@@ -43,30 +41,45 @@ ngOnInit(): void {
     duration: ['']
   });
 
-  // this.loadAppointmentData();
+  this.route.paramMap.subscribe(params => {
+    this.appointmentId = params.get('id') || '';
 
+
+    if (this.appointmentId) {
+      this.loadAppointmentData();
+    }
+  });
 }
 
-// loadAppointmentData(): void {
-//   this._AppointmentsService.AppointmentById(this.appointmentId).subscribe((response: any) => {
-//     if (response.success) {
-//       const appointment = response.data;
 
-//       this.appointmentForm.patchValue({
-//         startTime: appointment.startTime,
-//         endTime: appointment.endTime,
-//         duration: appointment.duration
-//       });
 
-//       const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
-//       daysArray.clear();
-//       daysArray.push(this.fb.control(appointment.day)); 
-//     } else {
-//       this.toastrService.error('حدث خطأ أثناء تحميل البيانات');
-//     }
-//   });
-// }
+loadAppointmentData(): void {
+  this._AppointmentsService.AppointmentById(this.appointmentId).subscribe((response: any) => {
 
+    if (response) { 
+      const appointment = response; 
+
+      this.appointmentForm.patchValue({
+        startTime: appointment.startTime,
+        endTime: appointment.endTime,
+        duration: appointment.duration
+      });
+
+
+      const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
+      daysArray.clear();
+      daysArray.push(this.fb.control(appointment.day)); 
+
+      this.toastrService.success('تم تحميل البيانات بنجاح');
+
+    } else {
+      this.toastrService.error('حدث خطأ أثناء تحميل البيانات');
+    }
+  }, error => {
+    console.error('Error fetching appointment:', error);
+    this.toastrService.error('فشل في جلب بيانات الموعد');
+  });
+}
 
 
 onDayChange(event: any, dayId: number) {
