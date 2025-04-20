@@ -1,0 +1,22 @@
+.main-color
+{
+    color: #1976D2;
+}
+
+.main-body
+{
+    background-color: #DBEDF7;;
+}
+
+.custom-select {
+  
+    border: 1px solid #1976D2 !important; 
+    border-radius: 10px!important; 
+  }
+  
+  .custom-select:focus {
+    border-color: #0056b3 !important; 
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5) !important; 
+  }
+  
+  

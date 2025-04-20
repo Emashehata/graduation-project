@@ -1,0 +1,36 @@
+.main-color
+{
+    color: #1976D2;
+}
+
+.bg-main
+{
+    background-color: #DBEDF7;
+}
+
+
+
+
+.main-back{
+    background-color: #DBEDF7 !important;
+  }
+
+
+  thead.custom-thead-blue th {
+    background-color: #1976D2 !important;
+    color: white !important;
+  }
+  
+
+  .btn-custom-primary {
+    background-color: #1976D2 !important;
+    color: #fff !important;
+    border: none;
+  }
+  
+  .btn-custom-primary:hover {
+    background-color: #1565C0 !important; /* أغمق شوية عند الـ hover */
+    color: #fff !important;
+  }
+  
+  

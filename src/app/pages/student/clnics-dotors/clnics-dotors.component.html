@@ -45,6 +45,11 @@
                 <p><i class="fa-solid fa-envelope sec-color me-2"></i> {{ doctor.email }}</p>
                 <p><i class="fa-solid fa-phone sec-color me-2"></i> {{ doctor.phoneNumber }}</p>
               </div>
+
+              <div class="ms-auto ">
+                <button class="btn btn-primary" [routerLink]="['/booking',doctor.id]" >احجز ميعاد</button>
+              </div>
+
             </div>
           </div>
 

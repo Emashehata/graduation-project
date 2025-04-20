@@ -1,0 +1,173 @@
+.main-color
+{
+    color: #1976D2;
+}
+
+.main-back{
+  background-color: #DBEDF7;
+}
+
+   .doctor-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .doctor-info {
+    flex: 1;
+    max-width: 350px;
+    text-align: center;
+  }
+  
+  .doctor-img {
+    width: 80%;
+    border-radius: 10px;
+  }
+  
+  .schedule {
+    flex: 2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .days-container, .times-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .day-btn, .time-btn {
+    padding: 10px;
+    border: 1px solid #007bff;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .day-btn.selected, .time-btn.selected {
+    background: #007bff;
+    color: white;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  /* زر الوقت */
+.time-btn {
+  background-color: #fff;
+  border: 1px solid #007bff;
+  padding: 8px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.time-btn.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.time-btn.disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
+
+
+.modal-content {
+  border-radius: 15px;
+}
+.left-section {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+}
+.doctor-imgg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.right-section {
+  padding: 20px;
+}
+
+
+
+.confirmation-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  text-align: right;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  width: 500px; /* حجم الكارد */
+}
+
+.confirmation-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.confirmation-image img {
+  width: 150px;
+  height: auto;
+  margin-left: 20px; /* تباعد الصورة عن النص */
+}
+
+.booking-details {
+  font-size: 16px;
+}
+
+.booking-details h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.booking-details p {
+  margin: 5px 0;
+}
+
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1000;
+}
+
+
+
+
+
+/* تنسيق عام للأزرار المعطلة */
+button:disabled, 
+.day-btn.disabled {
+  background-color: #fff !important;
+  border-color: #afafaf !important;
+  color: #afafaf !important;
+  cursor: not-allowed;
+}
+
+
+.day-btn.selected {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #0056b3;
+}
+

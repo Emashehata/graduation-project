@@ -1,0 +1,89 @@
+<div class="container my-5 exa">
+    <div class="rounded-4 shadow-sm  px-3 py-4">
+      <div class="text-end">
+        <button class="btn btn-sm btn-light rounded-circle border"  (click)="router.navigate(['/examination', patientId,bookingId])">
+          <i class="fa-solid fa-arrow-left fa-lg main-color"></i>
+        </button>
+      </div>
+  
+      <h5 class="text-center fw-bold main-color mb-4">إضافة السجل الطبي</h5>
+  
+      @if (patientData) {
+        <!-- اسم المريض (ثابت) -->
+        <div class="form-group mb-3">
+          <label class="main-color fw-bold mb-1">
+            <i class="fa-solid fa-user"></i> اسم المريض
+          </label>
+          <div class="d-flex ">
+            <input type="text" class="form-control text-start px-2  w-50" [value]="patientData.firstName" disabled>
+            <input type="text" class="form-control text-start ms-3 px-2 w-50 " [value]="patientData.lastName" disabled>
+          </div>
+
+        </div>
+      }
+  
+      <form [formGroup]="examForm" (ngSubmit)="onSubmit()">
+  
+        <!-- التشخيص -->
+        <div class="form-group mb-3">
+          <label class="main-color fw-bold mb-1">
+            <i class="fa-solid fa-notes-medical"></i> التشخيص
+          </label>
+          <input type="text" formControlName="diagnosis" class="form-control text-start" placeholder="ادخل التشخيص">
+          
+          <!-- رسالة الخطأ عند الفشل -->
+          @if (examForm.get('diagnosis')?.touched && examForm.get('diagnosis')?.invalid) {
+            <div class="text-danger">
+              @if (examForm.get('diagnosis')?.hasError('required')) {
+                <p>يرجى إدخال التشخيص</p>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- العلاج -->
+        <div class="form-group mb-3">
+          <label class="main-color fw-bold mb-1">
+            <i class="fa-solid fa-syringe"></i> العلاج
+          </label>
+          <input type="text" formControlName="treatment" class="form-control text-start" placeholder="ادخل العلاج">
+          
+          <!-- رسالة الخطأ عند الفشل -->
+          @if (examForm.get('treatment')?.touched && examForm.get('treatment')?.invalid) {
+            <div class="text-danger">
+              @if (examForm.get('treatment')?.hasError('required')) {
+                <p>يرجى إدخال العلاج</p>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- الملاحظات -->
+        <div class="form-group mb-3">
+          <label class="main-color fw-bold mb-1">
+            <i class="fa-solid fa-clipboard-list"></i> الملاحظات
+          </label>
+          <input type="text" formControlName="notes" class="form-control text-start" placeholder="ادخل ملاحظات إضافية هنا...">
+          
+          <!-- رسالة الخطأ عند الفشل -->
+          @if (examForm.get('notes')?.touched && examForm.get('notes')?.invalid) {
+            <div class="text-danger">
+              @if (examForm.get('notes')?.hasError('maxlength')) {
+                <p>الملاحظات لا يمكن أن تتجاوز 500 حرف</p>
+              }
+            </div>
+          }
+        </div>
+      
+        <!-- أزرار -->
+        <div class="d-flex justify-content-center mt-4">
+          <button type="button" class="btn btn-outline-danger px-5 rounded rounded-5" (click)="router.navigate(['/examination', patientId, bookingId])">إلغاء</button>
+          <button type="submit" class="btn main-bg px-5 mx-5 rounded rounded-5">حفظ</button>
+        </div>
+      </form>
+      
+
+      
+    </div>
+  </div>
+  

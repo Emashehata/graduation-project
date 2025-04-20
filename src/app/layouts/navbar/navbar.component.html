@@ -101,6 +101,9 @@
             <li class="nav-item">
               <a class="nav-link main-color" routerLink="appointment" routerLinkActive="active">مواعيد العمل</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link main-color" routerLink="doctorBooking" routerLinkActive="active">قائمة المواعيد </a>
+            </li>
           }
           @if (authService.isUser()) {
             <li class="nav-item">
@@ -117,7 +120,7 @@
             <a class="nav-link main-color" routerLink="contact us" routerLinkActive="active">تواصل معنا</a>
           </li>
         </ul>
-        <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="book appointment" role="button">
+        <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="clinics-student" role="button">
           <span>احجز ميعاد</span>
         </a>
       </div>

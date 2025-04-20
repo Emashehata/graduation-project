@@ -1,1 +1,98 @@
-<p>appointments-student works!</p>
+<div class="container my-4">
+
+<div class="main-color d-flex align-content-center py-3">
+  <i class="fa-regular fa-calendar-check fa-xl "></i>
+  <h3 class="mx-2">المواعيد</h3>
+  
+</div>
+
+@if (bookings.length > 0) {
+    <div class="row g-4">
+      @for (item of bookings; track item.id) {
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-primary shadow-sm p-3 rounded-4">
+            <div class="d-flex align-items-center">
+              @if (item.doctor?.imageUrl) {
+                <img
+                  [src]="'https://myclinicapp.runasp.net' + item.doctor.imageUrl"
+                  alt="doctor"
+                  class="rounded-circle me-3"
+                  style="width: 100px; height: 100px; object-fit: cover"
+                />
+              }
+              <div class="ps-2">
+                <h6 class="main-color m-0">
+                  دكتور {{ item.doctor?.firstName }} {{ item.doctor?.lastName }}
+                </h6>
+                <p class="text-muted small m-0">{{ item.doctor?.specialty }}</p>
+              </div>
+            </div>
+  
+            <div class="d-flex justify-content-between align-items-center mt-3 ps-2 ">
+              <div class="">
+                <p class="mb-1 main-color ">
+                  
+                  {{ formatDateWithYear(item.date) }}
+                </p>
+                <p class="mb-0 main-color ">
+                  
+                  {{ formatTime(item.time) }}
+                </p>
+              </div >
+              <button class="btn main-color border-primary btn-sm rounded rounded-5 px-3 " >
+                تم الحجز
+              </button>
+            </div>
+  
+            <div class="text-center mt-3">
+              <!-- <button class="btn btn-outline-primary rounded rounded-5 btn-sm w-100">إلغاء الميعاد</button> -->
+              <button
+  class="btn btn-outline-primary rounded rounded-5 btn-sm w-100"
+  data-bs-toggle="modal"
+  data-bs-target="#deleteModal"
+  (click)="selectedBookingId = item.id"
+>
+  إلغاء الميعاد
+</button>
+
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }@else {
+    <div class="text-center my-5 text-muted">
+      <i class="fa-regular m-auto fa-calendar-xmark fa-2xl d-block mb-3"></i>
+      <p class="fs-5">لا يوجد مواعيد حالية</p>
+    </div>
+  }
+</div>
+  
+
+  <!-- Delete Confirmation Modal -->
+<div
+class="modal fade "
+id="deleteModal"
+tabindex="-1"
+aria-labelledby="deleteModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content text-center">
+    <div class="modal-body p-4">
+      <div class="text-danger fs-1">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <p class="fw-bold mt-3 mb-4">هل أنت متأكد أنك تريد إلغاء الميعاد؟</p>
+      <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-danger px-4" (click)="deleteConfirmed()" data-bs-dismiss="modal">
+          إلغاء الميعاد
+        </button>
+        <button class="btn btn-outline-secondary px-4" data-bs-dismiss="modal">
+          لا أريد ذلك
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

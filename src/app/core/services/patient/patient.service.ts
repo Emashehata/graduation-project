@@ -25,7 +25,10 @@ export class PatientService {
     }
 
 
-
+    getPatientById(id:string):Observable<any>
+    {
+      return this.httpClient.get(`${environment.baseUrl}api/Patient/${id}`)
+    }
 
 
     deleteUserByID(id:string):Observable<any>{

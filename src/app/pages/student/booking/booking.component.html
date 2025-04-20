@@ -1,0 +1,161 @@
+
+<div class="container main-back rounded rounded-5">
+    <div class="doctor-container my-5 ">
+        <!-- بيانات الطبيب -->
+        <div class="doctor-info py-5">
+          <img [src]="doctorImage" alt="Doctor Image" class="doctor-img">
+          <h2 class="main-color py-2"> دكتور  {{ doctor?.firstName }} {{ doctor?.lastName }}</h2>
+          
+          <div class="sec-info d-flex align-items-center gap-1 flex-wrap">
+
+          <i class="fa-regular fa-file-lines fa-lg main-color"></i>
+            <h6>عن الطبيب</h6> 
+          </div>
+          <p class="specialty text-secondary">{{ doctor?.specialty }}</p>
+
+            
+            <p class="college mb-0">{{ doctor?.college }}</p>
+            <p class="description mb-0">{{ doctor?.description }}</p>
+        
+         
+          
+        </div>
+      
+        <!-- جدول المواعيد -->
+        <div class="schedule">
+            <h3 class="main-color pb-5">اختيار ميعاد الحجز</h3>
+        
+            <!-- اختيار اليوم -->
+            <h4>اليوم</h4>
+            <div class="days-container pb-5">
+              @for (slot of doctorSchedule; track $index) {
+                <button 
+  class="day-btn main-color rounded rounded-5 px-4 py-2"
+  [class.selected]="slot === selectedDay"
+  [class.disabled]="slot.availableSlots.length === 0 || !isMoreThan24HoursAway(slot.date)"
+  [disabled]="slot.availableSlots.length === 0 || !isMoreThan24HoursAway(slot.date)"
+  (click)="selectDay(slot)">
+  {{ formatDateToDayName(slot.date) }} <br> {{ formatDateToArabic(slot.date) }}
+</button>
+
+              
+              
+              }
+            </div>
+        
+            <!-- اختيار الوقت -->
+            @if (selectedDay) {
+              <h4>الوقت</h4>
+              <div class="times-container pb-5">
+                @for (time of selectedDay.availableSlots; track $index) {
+                    <button 
+                      class="time-btn main-color rounded rounded-5 px-4 py-2"
+                      [class.selected]="time === selectedSlot"
+                      [class.disabled]="bookedSlots.has(selectedDay.date + '-' + time)"
+                      [disabled]="bookedSlots.has(selectedDay.date + '-' + time)"
+                      (click)="selectTime(time)">
+                      <!-- {{ time }} -->
+                      {{ formatTimeToArabic(time) }}
+
+                    </button>
+                  }
+              </div>
+            } @else {
+              <p class="text-muted">لا توجد مواعيد متاحة</p>
+            }
+        
+            <!-- زر الحجز -->
+            <button class="btn btn-primary "  (click)="selectSlot()"   [disabled]="!selectedSlot ">
+              حجز موعد
+            </button>
+          </div>
+
+
+      </div>
+    
+</div>
+
+<!-- Popup تأكيد الحجز -->
+<!-- <div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-hidden="true">
+
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary">تأكيد الحجز</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p><strong>إسم العيادة:</strong> عيادة الأسنان</p>
+        <p><strong>اليوم:</strong> {{ selectedBooking.date }}</p>
+        <p><strong>الوقت:</strong> {{ selectedBooking.time }}</p>
+        <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
+
+        <div class="doctor-card d-flex align-items-center">
+          <img [src]="doctorImage" alt="Doctor Image" class="doctor-img me-2">
+          <p>{{ doctor?.firstName }} {{ doctor?.lastName }}</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-primary" (click)="confirmBooking()">تأكيد</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content p-4">
+        <div class="modal-body d-flex">
+       
+          
+          <!-- القسم الأيمن للمعلومات -->
+          <div class="right-section w-50">
+            <h5 class="text-primary text-center">تأكيد الحجز</h5>
+            <div class="booking-details">
+              <p><strong>إسم العيادة:</strong> {{doctor?.clinicName}}</p>
+              <p><strong>اليوم:</strong> {{ formatDateToDayName(selectedBooking.date) }}</p>
+              <p><strong>الوقت:</strong> {{  selectedBooking.time }}</p>
+              <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
+            </div>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+              <button type="button" class="btn btn-primary" (click)="confirmBooking()">تأكيد الحجز</button>
+            </div>
+          </div>
+
+   <!-- القسم الأيسر للصورة -->
+   <div class="left-section w-50 d-flex align-items-center justify-content-center">
+    <img src="/Confirm.png" alt="Doctor Image" class="doctor-img">
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  @if (bookingConfirmed) {
+
+    <div class="confirmation-card  popup ">
+      <div class="confirmation-content">
+        <h4>تم تأكيد الحجز</h4>
+        <div class="booking-details">
+          <p><strong>إسم العيادة:</strong> {{ doctor?.clinicName }}</p>
+          <p><strong>اليوم:</strong> {{ formatDateToDayName(selectedBooking.date) }}</p>
+          <p><strong>الوقت:</strong> {{ selectedBooking.time }}</p>
+          <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
+        </div>
+
+        <div class="confirmation-image">
+            <img src="/Done.png" alt="تم التأكيد" class="success-icon">
+        </div>
+      </div>
+    </div>
+  }
+   
+
