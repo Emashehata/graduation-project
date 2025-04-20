@@ -31,6 +31,12 @@ import { DoctorDetailsComponent } from './pages/student/doctor-details/doctor-de
 import { AppointmentComponent } from './pages/doctor/appointment/appointment.component';
 import { CreateAppointmentComponent } from './pages/doctor/create-appointment/create-appointment.component';
 import { UpdateappointmentComponent } from './pages/doctor/updateappointment/updateappointment.component';
+import { BookingComponent } from './pages/student/booking/booking.component';
+import { DoctorBookingComponent } from './pages/doctor/doctor-booking/doctor-booking.component';
+import { ExaminationComponent } from './pages/doctor/examination/examination.component';
+import { AddExamintaionComponent } from './pages/doctor/add-examintaion/add-examintaion.component';
+import { UpdateExaminationComponent } from './pages/doctor/update-examination/update-examination.component';
+import { MedicalRecordComponent } from './pages/student/medical-record/medical-record.component';
 
 export const routes: Routes = [
 
@@ -123,6 +129,19 @@ export const routes: Routes = [
     title:'إنشاء ميعاد',
     canActivate: [userGuard]
 },
+{
+  path:'booking/:id',
+  component:BookingComponent,
+  title:'حجز ميعاد',
+  canActivate: [userGuard]
+},
+{
+path:'medical-record',
+component:MedicalRecordComponent,
+title:'السجل الطبي',
+canActivate: [userGuard]
+
+},
 
 /***********************if doctor logged in****************** */
 {
@@ -146,13 +165,36 @@ canActivate: [doctorGuard]
 
 },
 {
+ path:'doctorBooking',
+ component:DoctorBookingComponent,
+ title:'قائمة المواعيد',
+ canActivate: [doctorGuard]
+},
+{
   path:'updateAppointment/:id',
   component:UpdateappointmentComponent,
   title:'تعديل الميعاد',
   canActivate: [doctorGuard]
 
 },
-
+{
+  path:'examination/:patientId/:bookingId',
+  component:ExaminationComponent,
+  title:'السجل الطبي',
+  canActivate: [doctorGuard]
+},
+{
+  path:'add-examination/:patientId/:bookingId',
+  component:AddExamintaionComponent,
+  title:'اضافة السجل الطبي',
+  canActivate: [doctorGuard]
+},
+{
+  path:'edit-examination/:patientId/:bookingId/:examinationId',
+  component:UpdateExaminationComponent,
+  title:'تعديل السجل الطبي',
+  canActivate: [doctorGuard]
+},
 // ******************************admin pages***************************/
 
 

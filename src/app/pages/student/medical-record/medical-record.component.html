@@ -1,0 +1,70 @@
+<div class="container border border-light-subtle rounded rounded-5 my-5 ">
+    <!-- قائمة اختيار الشهر -->
+<div class=" mb-3 my-3 ms-2">
+  @if (availableMonths.length > 0) {
+    <select class="form-select w-50 d-inline-block custom-select py-2" [(ngModel)]="selectedMonth">
+      @for ( month of availableMonths ; track $index) {
+        <option [value]="month">
+            شهر
+          {{ formatMonthLabel(month) }}
+        </option>
+      }
+    </select>
+  }
+  </div>
+
+
+  @if (selectedMonth) {
+    <div class="border rounded-4 mb-3 p-2" style="background-color: #e1f0fb; border-color: #b5d9f7;">
+      <h6 class="fw-bold text-center mb-0 main-color py-1">
+        <i class="fa-solid fa-file-medical"></i> السجل الطبي لشهر {{ formatMonthLabel(selectedMonth) }}
+      </h6>
+    </div>
+  }
+  
+  @if (selectedMonth && filteredExaminations.length === 0) {
+    <p class="text-center text-muted">لا توجد سجلات لهذا الشهر.</p>
+  }
+  <!-- السجلات الطبية حسب الشهر -->
+  <div class="row px-3 my-3">
+    @if (filteredExaminations.length > 0) {
+      @for ( examination of filteredExaminations ; track $index) {
+        
+        <div class="col-md-4 mb-4">
+          <div class="border rounded-4 p-3 shadow-sm main-body">
+            <div class="d-flex justify-content-center mb-4">
+              <span class="badge border text-black">
+                 <span class="main-color px-1"> تاريخ الكشف : </span> {{ examination.dateOfVisit | date : 'd MMMM yyyy' : undefined : 'ar' }}
+                
+                    <div class="my-2">
+                       <span class="main-color px-1"> الوقت :</span> {{ getBookingTime(examination.dateOfVisit) }}
+
+                    </div>                    
+
+                        
+                
+              </span>
+            </div>
+  
+            <p><i class="fa-solid fa-user-doctor main-color"></i> <b class="main-color">اسم الطبيب :</b> د. {{ examination.doctorName }}</p>
+            <hr>
+            <p><i class="fa-solid fa-stethoscope main-color"></i> <b class="main-color">التشخيص : </b> {{ examination.diagnosis }}</p>
+            <hr>
+            <p><i class="fa-solid fa-pills main-color"></i> <b class="main-color">العلاج :</b> {{ examination.treatment }}</p>
+            <hr>
+            <p><i class="fa-solid fa-notes-medical main-color"></i> <b class="main-color">الملاحظات :</b> {{ examination.notes }}</p>
+            
+
+          
+          </div>
+        </div>
+      }
+      
+    }@else {
+      <p class="text-center text-muted">لا توجد سجلات لهذا الشهر.</p>
+    }
+    
+  </div>
+
+  
+</div>

@@ -39,5 +39,8 @@ export class DoctorService {
     return this.httpClient.put(`${environment.baseUrl}api/Doctor/update`,data);
   }
 
+  getDoctorByToken(): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}api/Doctor/byToken`);
+  }
 
 }

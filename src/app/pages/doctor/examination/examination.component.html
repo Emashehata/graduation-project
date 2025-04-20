@@ -1,0 +1,99 @@
+ <div class="container mt-4">
+    <!-- بيانات المريض -->
+
+
+      @if (patientData) {
+        <div class=" border border-primary rounded-4 p-3 mb-4  position-relative ">
+            <!-- <h5 class="fw-bold   text-center main-color mb-3">بيانات المريض</h5> -->
+            <div class="position-absolute  mt-4 top-0 start-50 translate-middle badge-container">
+                <h5 class="px-4 py-1 main-color main-body  rounded rounded-4 shadow-sm">بيانات المريض</h5>
+              </div>
+
+              <div class="pt-4 mt-3">
+          <div class="mb-2 mx-4 "><strong class="main-color">الاسم:</strong> {{ patientData.firstName }} {{ patientData.lastName }}</div>
+          <div class="mb-2 mx-4"><strong class="main-color">الكلية:</strong> {{ patientData.college }}</div>
+          <div class="mb-2 mx-4"><strong class="main-color">الرقم القومي:</strong> {{ patientData.nationalID }}</div>
+          <div class="mb-2 mx-4"><strong class="main-color">رقم الهاتف:</strong> {{ patientData.phoneNumber }}</div>
+          <div class="mb-2 mx-4"><strong class="main-color">البريد الإلكتروني:</strong> {{ patientData.email }}</div>
+              </div>
+          
+        </div>
+      }
+    
+
+ <div class="border border-light-subtle rounded rounded-4">
+       <!-- السجلات الطبية -->
+       <div class="border rounded-4 mb-3 p-2" style="background-color: #e1f0fb; border-color: #b5d9f7;">
+        <h6 class="fw-bold text-center mb-0 main-color py-1">
+          <i class="fa-solid fa-file-medical"></i> السجلات الطبية للمريض
+        </h6>
+      </div>
+    
+      <div class="row px-3">
+        @if (examinationList.length > 0) {
+        @for (examination of examinationList; track examination.id) {
+          <div class="col-md-4 mb-4  ">
+            <div class="border rounded-4 p-3 shadow-sm main-body">
+              <div class="d-flex justify-content-center  mb-4 main-body  ">
+                <span class="badge border main-color">
+                  تم التسجيل بتاريخ {{ examination.dateOfVisit }}
+                </span>
+                <!-- <span class="text-muted small">تم التعديل: {{ examination.dateOfVisit }}</span> -->
+              </div>
+    
+              <p class="mb-2 ">
+                <i class="fa-solid fa-user-doctor main-color"></i>
+                <span class="fw-bold main-color px-1">اسم الطبيب :</span> د. {{ examination.doctorName }}
+              </p>
+              <p class="mb-2">
+                <i class="fa-solid fa-stethoscope main-color"></i>
+                <span class="fw-bold main-color px-1">التشخيص :</span> {{ examination.diagnosis }}
+              </p>
+              <p class="mb-2">
+                <i class="fa-solid fa-pills main-color"></i>
+                <span class="fw-bold main-color px-1">العلاج :</span> {{ examination.treatment }}
+              </p>
+              <p class="mb-2">
+                <i class="fa-solid fa-notes-medical  main-color"></i>
+                <span class="fw-bold main-color px-1">الملاحظات :</span> {{ examination.notes }}
+              </p>
+              <div class="d-flex justify-content-center  mt-3">
+                <button class="btn btn-outline-danger rounded rounded-5 px-4 mx-3" (click)="confirmDelete(examination.id)">حذف</button>
+                <button class="btn btn-primary px-4 rounded rounded-5 mx-3" [routerLink]="['/edit-examination', patientId, bookingId, examination.id]">تعديل</button>
+                
+              </div>
+            </div>
+          </div>
+        }
+        }@else{
+          <div class="col-12 text-center text-muted py-4">
+            لا توجد سجلات طبية حتى الآن.
+          </div>
+        }
+      </div>
+    
+
+      <!-- زر الإضافة -->
+    <div class="text-end m-3">
+        <button class="btn btn-outline-primary rounded-circle add-ex" [routerLink]="['/add-examination', patientId,bookingId]">
+        
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+</div>
+    
+  
+
+<!-- بوب أب لتأكيد الحذف -->
+<div class="custom-popup" [class.show]="isDeletePopupVisible">
+  <div class="popup-content">
+    <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+    <h5>هل أنت متأكد من حذف السجل؟</h5>
+    <div class="popup-buttons">
+      <button class="btn btn-outline-secondary rounded rounded-5 px-4" (click)="closeDeletePopup()">لا أريد ذلك</button>
+      <button class="btn btn-danger rounded rounded-5 px-4" (click)="deleteExamination()">نعم</button>
+    </div>
+  </div>
+</div>
