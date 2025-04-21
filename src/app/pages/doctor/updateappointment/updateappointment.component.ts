@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AppointmentsService } from '../../../core/services/appointments/appointments.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -34,12 +34,18 @@ appointmentId!: string;
 
 
 ngOnInit(): void {
-  this.appointmentForm = this.fb.group({
-    days: this.fb.array([]), 
-    startTime: [''],
-    endTime: [''],
-    duration: ['']
-  });
+ this.appointmentForm = this.fb.group(
+      {
+        days: this.fb.array([], Validators.required), 
+        startTime: ['', Validators.required],
+        endTime: ['', Validators.required],
+        duration: ['', Validators.required]
+
+      },
+      {
+        validators: this.timeValidator
+      }
+    );
 
   this.route.paramMap.subscribe(params => {
     this.appointmentId = params.get('id') || '';
@@ -51,6 +57,15 @@ ngOnInit(): void {
   });
 }
 
+timeValidator(formGroup: FormGroup) {
+  const start = formGroup.get('startTime')?.value;
+  const end = formGroup.get('endTime')?.value;
+
+  if (start && end && start >= end) {
+    return { invalidTime: true };
+  }
+  return null;
+}
 
 
 loadAppointmentData(): void {
@@ -89,10 +104,43 @@ onDayChange(event: any, dayId: number) {
   if (event.target.checked) {
     daysArray.push(this.fb.control(dayId)); 
   }
+  
+  daysArray.updateValueAndValidity(); 
 }
 
 
+// updateAppointment() {
+//   const formData = this.appointmentForm.value;
+
+//   const requestData = {
+//     day: formData.days[0], 
+//     startTime: formData.startTime,
+//     endTime: formData.endTime,
+//     duration: Number(formData.duration)
+//   };
+
+  
+
+//   console.log('Request Data:', requestData);
+
+//   this._AppointmentsService.UpdateAppointment(this.appointmentId, requestData).subscribe(
+//     res => {
+//       console.log('Appointment Updated:', res);
+//       this.toastrService.success(res.message);
+//       this.router.navigate(['/appointment']);
+//     },
+//     error => {
+//       console.error('Error:', error);
+//     }
+//   );
+// }
+
 updateAppointment() {
+  if (this.appointmentForm.invalid) {
+    this.appointmentForm.markAllAsTouched(); // ✅ ده بيظهر كل الرسائل لو الفورم فيه أخطاء
+    return;
+  }
+
   const formData = this.appointmentForm.value;
 
   const requestData = {
@@ -102,11 +150,8 @@ updateAppointment() {
     duration: Number(formData.duration)
   };
 
-  console.log('Request Data:', requestData);
-
   this._AppointmentsService.UpdateAppointment(this.appointmentId, requestData).subscribe(
     res => {
-      console.log('Appointment Updated:', res);
       this.toastrService.success(res.message);
       this.router.navigate(['/appointment']);
     },
@@ -115,7 +160,6 @@ updateAppointment() {
     }
   );
 }
-
 
 
 

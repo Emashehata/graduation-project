@@ -4,10 +4,7 @@ table  .theadBackGround th
     color:  white;
 }
 
-.Actions .fa-circle-xmark
-{
-    color: #D21F19;
-}
+
 
 /* تغطية الشاشة بخلفية شفافة */
 .modal-overlay {
