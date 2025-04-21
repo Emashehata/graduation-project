@@ -3,7 +3,7 @@
   opacity: 0;
   transition: opacity .3s;
 }
-.card :hover.layer{
+.card:hover .layer{
   opacity: 1;
 }
 
@@ -11,3 +11,4 @@
   border-color: #87c0f8 !important;
   box-shadow: 0px 10px 20px  rgba(141, 193, 245, 0.2);
 }
+

@@ -13,7 +13,7 @@
                           <th scope="col">اليوم</th>
                           <th scope="col">البداية</th>
                           <th scope="col">النهاية</th>
-                          <th scope="col">الحالة</th>
+                          <!-- <th scope="col">الحالة</th> -->
                           <th scope="col">الإجراءات</th>
                       </tr>
                   </thead>
@@ -24,23 +24,24 @@
                                   <th scope="row">{{ appointment.dayName }}</th>
                                   <td>{{ formatTime(appointment.startTime) }}</td>
                                   <td>{{ formatTime(appointment.endTime) }}</td>
-                                  <td>
+                                  <!-- <td>
                                       <button class="btn btn-sm" 
                                           [class.btn-outline-primary]="appointment.isAvailable"
                                           [class.btn-outline-danger]="!appointment.isAvailable">
                                           {{ appointment.isAvailable ? 'نشط' : 'غير نشط' }}
                                       </button>
-                                  </td>
+                                  </td> -->
                                   <td>
-                                      <div class="Actions d-flex gap-2 flex-wrap justify-content-center">
-                                          <button class="btn btn-sm btn-outline-primary" 
+                                      <div class=" d-flex gap-2 flex-wrap justify-content-center">
+                                          <button class="btn btn-outline-success btn-sm shadow-sm" 
                                               [routerLink]="['/updateAppointment', appointment.id]">
-                                              تعديل
+                                              <i class="fa-regular fa-pen-to-square"></i>
+
                                           </button>
                                           
-                                          <button class="btn btn-sm " 
+                                          <button class="btn btn-outline-danger btn-sm shadow-sm" 
                                               (click)="openDeleteModal(appointment.id)">
-                                              <i class="fa-regular fa-circle-xmark fa-lg"></i>
+                                              <i class="fa-solid fa-trash-can fa-lg"></i>
                                           </button>
                                       </div>
                                   </td>

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AppointmentsService } from '../../../core/services/appointments/appointments.service';
-import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -29,14 +29,14 @@ export class CreateAppointmentComponent implements OnInit {
 
   appointmentForm!:FormGroup;
 
-  ngOnInit(): void {
-    this.appointmentForm = this.fb.group({
-      days: this.fb.array([]), // مصفوفة للأيام
-      startTime: [''],
-      endTime: [''],
-      duration: ['']
-    });
-  }
+  // ngOnInit(): void {
+  //   this.appointmentForm = this.fb.group({
+  //     days: this.fb.array([]), // مصفوفة للأيام
+  //     startTime: [''],
+  //     endTime: [''],
+  //     duration: ['']
+  //   });
+  // }
 
   
   // onDayChange(event: any, dayId: number) {
@@ -49,19 +49,113 @@ export class CreateAppointmentComponent implements OnInit {
   //     daysArray.removeAt(index); // إزالة اليوم عند إلغاء التحديد
   //   }
   // }
+
+  ngOnInit(): void {
+    this.appointmentForm = this.fb.group(
+      {
+        days: this.fb.array([], Validators.required), 
+        startTime: ['', Validators.required],
+        endTime: ['', Validators.required],
+        duration: ['', Validators.required]
+
+      },
+      {
+        validators: this.timeValidator
+      }
+    );
+  }
+  timeValidator(formGroup: FormGroup) {
+    const start = formGroup.get('startTime')?.value;
+    const end = formGroup.get('endTime')?.value;
+  
+    if (start && end && start >= end) {
+      return { invalidTime: true };
+    }
+    return null;
+  }
+  
+
   onDayChange(event: any, dayId: number) {
     const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
-  
-    // إزالة كل الأيام السابقة أولاً قبل إضافة اليوم الجديد
-    daysArray.clear(); 
-  
+
     if (event.target.checked) {
-      daysArray.push(this.fb.control(dayId)); // إضافة اليوم المحدد فقط
+      daysArray.push(this.fb.control(dayId)); // إضافة اليوم عند التحديد
+    } else {
+      const index = daysArray.controls.findIndex(x => x.value === dayId);
+      daysArray.removeAt(index); // إزالة اليوم عند إلغاء التحديد
     }
   }
   
 
+  // submitForm() {
+  //   const formData = this.appointmentForm.value;
+
+  //   // التأكد من تحويل الوقت إلى الصيغة المطلوبة
+  //   const requestData = {
+  //     day: formData.days[0], // لو تم اختيار أكثر من يوم، أرسل اليوم الأول فقط (حسب متطلبات الـ API)
+  //     startTime: formData.startTime,
+  //     endTime: formData.endTime,
+  //     duration: Number(formData.duration)
+  //   };
+
+
+  //   console.log('Request Data:', requestData);
+
+  //   this._AppointmentsService.CreateAppointment(requestData).subscribe(
+  //     res=>{
+  //       console.log('Appointment Created:', res);
+  //       this.toastrService.success(res.message);
+  //       this.router.navigate(['/appointment']);
+
+  //     },
+  //     error=>{
+  //       console.error('Error:', error);
+  //       this.toastrService.error('يرجي ادخال البيانات كاملة صحيحة');
+  //     }
+
+  //   );
+
+  // }
+
+
+  // submitForm() {
+  //   if (this.appointmentForm.invalid) {
+  //     this.appointmentForm.markAllAsTouched(); // عشان تظهر رسائل الخطأ على كل الحقول
+  //     return; // يمنع إرسال البيانات
+  //   }
+  
+  //   const formData = this.appointmentForm.value;
+  
+  //   // التأكد من تحويل الوقت إلى الصيغة المطلوبة
+  //   const requestData = {
+  //     day: formData.days[0], // لو تم اختيار أكثر من يوم، أرسل اليوم الأول فقط (حسب متطلبات الـ API)
+  //     startTime: formData.startTime,
+  //     endTime: formData.endTime,
+  //     duration: Number(formData.duration)
+  //   };
+  
+  //   console.log('Request Data:', requestData);
+  
+  //   this._AppointmentsService.CreateAppointment(requestData).subscribe(
+  //     res => {
+  //       console.log('Appointment Created:', res);
+  //       this.toastrService.success(res.message);
+  //       this.router.navigate(['/appointment']);
+  //     },
+  //     error => {
+  //       console.error('Error:', error);
+  //       this.toastrService.error('يرجي ادخال البيانات كاملة صحيحة');
+  //     }
+  //   );
+  // }
+  
+
   submitForm() {
+    if (this.appointmentForm.invalid) {
+      this.appointmentForm.markAllAsTouched(); // عشان تظهر رسائل الخطأ على كل الحقول
+      return; // يمنع إرسال البيانات
+    }
+
     const formData = this.appointmentForm.value;
 
     // التأكد من تحويل الوقت إلى الصيغة المطلوبة
@@ -72,25 +166,20 @@ export class CreateAppointmentComponent implements OnInit {
       duration: Number(formData.duration)
     };
 
-
     console.log('Request Data:', requestData);
 
     this._AppointmentsService.CreateAppointment(requestData).subscribe(
-      res=>{
+      res => {
         console.log('Appointment Created:', res);
         this.toastrService.success(res.message);
         this.router.navigate(['/appointment']);
-
       },
-      error=>{
+      error => {
         console.error('Error:', error);
-        this.toastrService.error('يرجي ادخال البيانات كاملة صحيحة');
+        this.toastrService.error('يرجى إدخال البيانات بشكل صحيح');
       }
-
     );
-
   }
-
 
 
 }
