@@ -5,12 +5,12 @@ import { error } from 'console';
 import { DoctorService } from '../../../core/services/doctor/doctor.service';
 import { BookingService } from '../../../core/services/Booking/booking.service';
 import { ToastrService } from 'ngx-toastr';
-import { DatePipe } from '@angular/common';
+import { DatePipe, SlicePipe } from '@angular/common';
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-booking',
-  imports: [],
+  imports: [SlicePipe],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })
@@ -20,6 +20,7 @@ private readonly router = inject(Router);
 
       bookingConfirmed = false; // متغير للتحكم في عرض الكارد
 
+      showMore: boolean = false; // متغير للتحكم في عرض المزيد أو أقل
 
 
   
@@ -284,5 +285,11 @@ isMoreThan24HoursAway(dateString: string): boolean {
     return timeString.replace('AM', 'صباحًا').replace('PM', 'مساءً');
   }
   
+
+
+  toggleShowMore() {
+    this.showMore = !this.showMore;
+  }
+
 
 }

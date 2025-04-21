@@ -15,8 +15,17 @@
 
             
             <p class="college mb-0">{{ doctor?.college }}</p>
-            <p class="description mb-0">{{ doctor?.description }}</p>
-        
+            <!-- <p class="description mb-0">{{ doctor?.description }}</p> -->
+            <p class="description mb-0" [innerHTML]="doctor?.description | slice: 0:showMore ? doctor?.description.length : 100">
+            </p>
+            
+            <!-- زر عرض المزيد -->
+             @if(doctor?.description?.length > 80)
+             {
+            <button (click)="toggleShowMore()" class="btn btn-link text-decoration-none" >
+              {{ showMore ? 'عرض أقل' : 'عرض المزيد' }}
+            </button>
+          }
          
           
         </div>
@@ -75,6 +84,10 @@
     
 </div>
 
+
+
+
+
 <!-- Popup تأكيد الحجز -->
 <!-- <div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-hidden="true">
 
@@ -106,56 +119,72 @@
 </div> -->
 
 
-
 <div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content p-4">
-        <div class="modal-body d-flex">
-       
-          
-          <!-- القسم الأيمن للمعلومات -->
-          <div class="right-section w-50">
-            <h5 class="text-primary text-center">تأكيد الحجز</h5>
-            <div class="booking-details">
-              <p><strong>إسم العيادة:</strong> {{doctor?.clinicName}}</p>
-              <p><strong>اليوم:</strong> {{ formatDateToDayName(selectedBooking.date) }}</p>
-              <p><strong>الوقت:</strong> {{  selectedBooking.time }}</p>
-              <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
-            </div>
-            <div class="d-flex justify-content-center gap-3 mt-3">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-              <button type="button" class="btn btn-primary" (click)="confirmBooking()">تأكيد الحجز</button>
-            </div>
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content p-4">
+      <div class="modal-body d-flex flex-column flex-lg-row">
+
+        <!-- القسم الأيمن للمعلومات -->
+        <div class="right-section w-100 w-lg-50 mb-3 mb-lg-0">
+          <h5 class="text-primary text-center">تأكيد الحجز</h5>
+          <div class="booking-details">
+            <p><strong>إسم العيادة:</strong> {{doctor?.clinicName}}</p>
+            <p><strong>اليوم:</strong> {{ formatDateToDayName(selectedBooking.date) }}</p>
+            <p><strong>الوقت:</strong> {{   selectedBooking.time }}</p>
+            <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
           </div>
+          <div class="d-flex flex-column flex-lg-row justify-content-center gap-2 mt-3">
+            
+            <button type="button"
+                    class="btn btn-secondary w-100 py-2 mt-2"
+                    data-bs-dismiss="modal"
+                    style="min-height: 45px">
+              إلغاء
+            </button>
+          
+           
 
-   <!-- القسم الأيسر للصورة -->
-   <div class="left-section w-50 d-flex align-items-center justify-content-center">
-    <img src="/Confirm.png" alt="Doctor Image" class="doctor-img">
-  </div>
-
+            <button type="button"
+                    class="btn btn-primary w-100 py-2"
+                    (click)="confirmBooking()"
+                    style="min-height: 45px">
+              تأكيد الحجز
+            </button>
+         
+          </div>
+          
         </div>
+
+        <!-- القسم الأيسر للصورة -->
+        <div class="left-section w-100 w-lg-50 d-flex align-items-center justify-content-center">
+          <img src="/Confirm.png" alt="Doctor Image" class="doctor-img img-fluid">
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-
-  @if (bookingConfirmed) {
-
-    <div class="confirmation-card  popup ">
-      <div class="confirmation-content">
-        <h4>تم تأكيد الحجز</h4>
-        <div class="booking-details">
+@if (bookingConfirmed) {
+  <div class="confirmation-card popup container px-3 px-lg-0 p-3 p-lg-4 rounded rounded-5  shadow mx-auto" style="max-width: 600px;">
+    <div class="confirmation-content row align-items-center text-center text-lg-start">
+      
+      <!-- المعلومات -->
+      <div class="col-12 col-lg-7 px-lg-4 mb-3 mb-lg-0">
+        <h4 class="mb-3">تم تأكيد الحجز</h4>
+        <div class="booking-details text-center text-lg-start">
           <p><strong>إسم العيادة:</strong> {{ doctor?.clinicName }}</p>
           <p><strong>اليوم:</strong> {{ formatDateToDayName(selectedBooking.date) }}</p>
           <p><strong>الوقت:</strong> {{ selectedBooking.time }}</p>
           <p><strong>إسم الطبيب:</strong> {{ doctor?.firstName }} {{ doctor?.lastName }}</p>
         </div>
-
-        <div class="confirmation-image">
-            <img src="/Done.png" alt="تم التأكيد" class="success-icon">
-        </div>
       </div>
-    </div>
-  }
-   
 
+      <!-- الصورة -->
+      <div class="col-12 col-lg-5 d-flex justify-content-center">
+        <img src="/Done.png" alt="تم التأكيد" class="success-icon img-fluid" style="max-width: 150px;">
+      </div>
+
+    </div>
+  </div>
+}

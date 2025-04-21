@@ -171,3 +171,84 @@ button:disabled,
   border-color: #0056b3;
 }
 
+
+/* ⬇⬇⬇ Responsive Design for Mobile ⬇⬇⬇ */
+@media (max-width: 768px) {
+  .doctor-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .doctor-info {
+      max-width: 100%;
+      text-align: center;
+  }
+
+  .doctor-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+  }
+
+  .sec-info {
+      justify-content: center !important;
+  }
+
+  .days-container,
+  .times-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+  }
+
+  .day-btn,
+  .time-btn {
+      min-width: 90px;
+      padding: 10px 12px;
+      font-size: 14px;
+      text-align: center;
+  }
+
+  .doctor-container .btn-primary {
+      width: 100%;
+  }
+}
+
+
+.description.collapsed {
+  overflow: hidden;
+  display: -webkit-box;
+  
+  -webkit-box-orient: vertical;
+}
+
+/* بالنسبة للشاشات الكبيرة (أكبر من 992px) */
+@media (min-width: 992px) {
+  .modal-body {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .right-section {
+    width: 50%;
+  }
+  .left-section {
+    width: 50%;
+  }
+}
+
+/* لضبط الأزرار بشكل مناسب على الموبايل */
+.modal-dialog button {
+  width: 100%;
+  /* padding: 10px; */
+  font-size: 16px;
+}
+
+/* بالنسبة للشاشات الصغيرة */
+@media (max-width: 576px) {
+ .modal-dialog button {
+    font-size: 14px;
+  }
+}
