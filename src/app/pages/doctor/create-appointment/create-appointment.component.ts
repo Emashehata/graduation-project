@@ -75,19 +75,34 @@ export class CreateAppointmentComponent implements OnInit {
   }
   
 
-  onDayChange(event: any, dayId: number) {
-    const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
+  // onDayChange(event: any, dayId: number) {
+  //   const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
 
-    if (event.target.checked) {
-      daysArray.push(this.fb.control(dayId)); // إضافة اليوم عند التحديد
-    } else {
-      const index = daysArray.controls.findIndex(x => x.value === dayId);
-      daysArray.removeAt(index); // إزالة اليوم عند إلغاء التحديد
-    }
-  }
+  //   if (event.target.checked) {
+  //     daysArray.push(this.fb.control(dayId)); // إضافة اليوم عند التحديد
+  //   } else {
+  //     const index = daysArray.controls.findIndex(x => x.value === dayId);
+  //     daysArray.removeAt(index); // إزالة اليوم عند إلغاء التحديد
+  //   }
+  // }
   
 
-  // submitForm() {
+  onDayChange(event: any, dayId: number) {
+    const daysArray: FormArray = this.appointmentForm.get('days') as FormArray;
+  
+    if (event.target.checked) {
+      // إذا تم تحديد اليوم، نقوم بإزالة أي اختيارات سابقة وإضافة اليوم المحدد فقط
+      daysArray.clear(); // مسح أي أيام تم تحديدها من قبل
+      daysArray.push(this.fb.control(dayId)); // إضافة اليوم الجديد
+    } else {
+      // إذا تم إلغاء التحديد، نزيل اليوم من FormArray
+      const index = daysArray.controls.findIndex(x => x.value === dayId);
+      if (index > -1) {
+        daysArray.removeAt(index); // إزالة اليوم عند إلغاء التحديد
+      }
+    }
+  }
+    // submitForm() {
   //   const formData = this.appointmentForm.value;
 
   //   // التأكد من تحويل الوقت إلى الصيغة المطلوبة

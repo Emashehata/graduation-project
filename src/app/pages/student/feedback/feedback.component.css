@@ -1,0 +1,156 @@
+.main-color
+{
+    color: #1976D2;
+}
+.sec-color
+{
+  color: #AFAFAF;
+}
+
+
+.feedback-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: auto;
+  direction: rtl;
+  text-align: right;
+
+  .questions {
+    margin-bottom: 2rem;
+
+    .question {
+      margin-bottom: 1.5rem;
+      padding: 3px;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة شادو للسؤال */
+
+      label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .options {
+        display: flex;
+        justify-content: center; /* توسيط الـ radio buttons */
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          font-size: 0.95rem;
+
+          input {
+            margin: 0;
+          }
+
+          .excellent {
+            color: #2ecc71;
+          }
+
+          .very-good {
+            color: #3498db;
+          }
+
+          .good {
+            color: #f1c40f;
+          }
+
+          .acceptable {
+            color: #e67e22;
+          }
+
+          .unsatisfactory {
+            color: #e74c3c;
+          }
+        }
+      }
+    }
+  }
+
+  .comments-section {
+    margin-bottom: 2rem;
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid #1976D2;
+      border-radius: 0.5rem;
+      padding: 0.8rem;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    
+textarea:focus {
+  border-color: #1976D2; /* اللون الأصلي للحدود */
+  outline: none; /* إزالة التأثير عند التركيز */
+}
+  }
+
+  .submit-button {
+    text-align: center;
+
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #2980b9;
+      }
+
+      &:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  /* Responsive Design for mobile */
+  @media (max-width: 767px) {
+    max-width: 100%;
+    padding: 1.5rem;
+    
+    /* حرك الصورة أسفل المحتوى في الموبايل */
+    .feedback-form img {
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .questions {
+      display: block;
+    }
+
+    .question {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .options {
+      display: block;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .comments-section, .submit-button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="container my-5  ">
+    <div class="row align-items-center  ">
+       
+      <!-- الفورم على الشمال -->
+      <div class="col-md-6 mb-4 mb-md-0 ">
+
+
+        <form [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" class="feedback-form ">
+            
+            <div class="mb-5 ">
+                <h5 class="main-color fw-bold">الاستبيان</h5>
+                <p class="sec-color">نحرص دائمًا على تقديم أفضل خدمة ليك، وعلشان كده رأيك يهمنا!</p>
+            </div>
+
+          <div class="questions text-center">
+            @for (question of questions; track question.id) {
+              <div class="question main-color">
+                
+                <label>  <i class="fa-solid fa-less-than fa-2xs mx-1"></i> {{ question.label }} </label>
+  
+                <div class="options">
+                  @for (option of ratingOptions; track option.value) {
+                    <label>
+                      <input 
+                        type="radio" 
+                        [formControlName]="question.controlName" 
+                        [value]="option.value"
+                      />
+                      <span [ngClass]="option.class">{{ option.label }}</span>
+                    </label>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+  
+          <div class="comments-section">
+            <label class="main-color">الملاحظات</label>
+            <textarea formControlName="comments" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+          </div>
+  
+          <div class="submit-button ">
+            <button type="submit" [disabled]="feedbackForm.invalid">إرسال</button>
+          </div>
+  
+        </form>
+      </div>
+  
+      <!-- الصورة على اليمين -->
+      <div class="col-md-6 ">
+        <div class="image-container ms-5">
+          <img src="/Feedback.png" alt="Feedback Image" class="img-fluid">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
