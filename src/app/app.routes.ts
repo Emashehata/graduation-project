@@ -37,6 +37,7 @@ import { ExaminationComponent } from './pages/doctor/examination/examination.com
 import { AddExamintaionComponent } from './pages/doctor/add-examintaion/add-examintaion.component';
 import { UpdateExaminationComponent } from './pages/doctor/update-examination/update-examination.component';
 import { MedicalRecordComponent } from './pages/student/medical-record/medical-record.component';
+import { FeedbackComponent } from './pages/student/feedback/feedback.component';
 
 export const routes: Routes = [
 
@@ -141,6 +142,12 @@ component:MedicalRecordComponent,
 title:'السجل الطبي',
 canActivate: [userGuard]
 
+},
+{
+  path:'feedback',
+  component:FeedbackComponent,
+  title:'الاستبيان',
+  canActivate:[userGuard]
 },
 
 /***********************if doctor logged in****************** */

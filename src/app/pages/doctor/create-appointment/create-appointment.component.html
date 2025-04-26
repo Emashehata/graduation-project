@@ -23,14 +23,15 @@
                     @for (day of daysList; track $index) 
                     {
                         
-                          
-                      <input class="main-color" 
-      [checked]="appointmentForm.get('days')?.value?.includes(day.id) || false" 
-      type="checkbox" 
-      id="day" 
-      [value]="day.id" 
-      (change)="onDayChange($event, day.id)">
-    {{ day.name }}
+                        
+                        <input class="main-color" 
+                        [checked]="appointmentForm.get('days')?.value?.includes(day.id) || false" 
+                        type="checkbox" 
+                        id="day" 
+                        [value]="day.id" 
+                        name="selectedDay"
+                        (change)="onDayChange($event, day.id)">
+                        {{ day.name }}
 
                         
                         
