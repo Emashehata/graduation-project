@@ -1,0 +1,94 @@
+<div class="text-center my-5 main-color main-body p-2 rounded rounded-5">
+  <h1>تحليل الاستبيانات</h1>
+</div>
+
+<div class="container my-5" dir="rtl">
+  <!-- كروت الإجمالي والمتوسط -->
+  <div class="row g-4">
+    <!-- Total Responses -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow-sm p-3 text-center">
+        <div class="d-flex align-items-center justify-content-center mb-2">
+          <i class="bi bi-clipboard-check text-primary" style="font-size: 1.5rem; margin-left: 0.5rem;"></i>
+          <h5 class="mb-0 main-color">
+            إجمالي الردود 
+            <i class="icofont-users text-primary"></i>
+          </h5>
+        </div>
+        <h2>{{ totalResponses }}</h2>
+      </div>
+    </div>
+
+    <!-- Average Rating -->
+    <div class="col-12 col-md-6 col-lg-3">
+      <div class="card shadow-sm p-3 text-center position-relative">
+        <h5 class="main-color">متوسط التقييم <i class="fa-solid fa-percent text-primary"></i></h5>
+        <canvas id="averageRatingChart" style="max-height: 150px;"></canvas>
+        <div class="position-absolute top-50 start-50 translate-middle">
+          <h3 class="mb-0">{{ averageRatingPercentage | number:'1.0-0' }}%</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Comments -->
+    <div class="col-12 col-lg-6">
+      <div class="card shadow-sm p-3">
+        <h5 class="main-color">أحدث التعليقات <i class="fa-solid fa-comments text-primary"></i></h5>
+        @if (allComments.length > 0) {
+          <div class="comments-container">
+            <ul class="list-group comments-scroll">
+              @for (comment of allComments; track comment; let i = $index) {
+                <li class="list-group-item d-flex align-items-center">
+                  <span class="badge bg-primary rounded-pill me-2">{{ i + 1 }}</span>
+                  <span>{{ comment }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+        } @else {
+          <p class="text-muted">لا توجد تعليقات متاحة.</p>
+        }
+      </div>
+    </div>
+    
+
+  </div>
+
+  <!-- الرسومات -->
+ 
+  <div class="row g-4 mt-5">
+    @if (chartData && positivePercentages) {
+      @for (question of questions; track question) {
+        <div class="col-12 col-md-6">
+          <div class="card shadow-sm p-3 position-relative">
+            <h6 class="mb-3 main-color">{{ question.label }}</h6>
+            <div class="d-flex flex-column flex-md-row-reverse align-items-center justify-content-between gap-4">
+              <!-- الدايرة على اليمين -->
+              <div class="position-relative flex-shrink-0" style="width: 150px; height: 150px;">
+                <canvas id="chart-{{ question.key }}" style="max-width: 100%; max-height: 100%;"></canvas>
+                <div class="position-absolute top-50 start-50 translate-middle">
+                  <h5 class="mb-0">{{ (positivePercentages[question.key] || 0) | number:'1.0-0' }}%</h5>
+                </div>
+              </div>
+              <!-- توزيع التقييمات على الشمال -->
+              <div class="rating-distribution w-100">
+                <h6 class="main-color">توزيع التقييمات</h6>
+                <ul class="list-group list-group-flush">
+                  @for (dist of getRatingDistribution(question.key); track dist.rating) {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <span>{{ dist.rating }}</span>
+                      <span class="badge bg-primary rounded-pill">{{ dist.count }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+  
+  
+
+</div>

@@ -1,0 +1,155 @@
+/* الألوان */
+.main-color {
+  color: #1976D2;
+}
+
+.main-body {
+  background: linear-gradient(45deg, #DBEDF7, #1976D2);
+}
+
+
+
+body {
+  direction: rtl;
+  /* تعريف متغيرات الألوان */
+  --positive-color: #1976D2; /* اللون الأزرق للنسبة الإيجابية */
+  --remaining-color: #d3d3d3; /* اللون الرمادي للباقي */
+}
+
+/* تنسيق الكارد */
+.card {
+  border-radius: 10px;
+  transition: 0.3s all ease-in-out;
+
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* تنسيق النصوص */
+h2, h3, h5 {
+  color: #343a40;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+h2:hover, h3:hover, h5:hover {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  color: #1976D2;
+}
+
+h5, h6 {
+  color: #6c757d;
+}
+
+.text-primary {
+  color: var(--positive-color) !important; /* بيستخدم الأزرق دلوقتي */
+}
+
+.badge {
+  font-size: 0.9rem;
+  background-color: var(--positive-color); /* نغير لون الـ badge للأزرق */
+  color: #fff; /* نضمن إن النص داخل الـ badge أبيض عشان يكون واضح */
+}
+
+/* تنسيق الـ list-group */
+.list-group-item {
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.list-group-flush .list-group-item {
+  padding: 0.5rem 0;
+  border: none;
+}
+
+/* تنسيق التعليقات */
+.comments-container {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.comments-scroll {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.comments-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-scroll::-webkit-scrollbar-thumb {
+  background-color: #1976D2;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.comments-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #1565c0;
+}
+
+.comments-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.highlighted {
+  background-color: #e7f3ff;
+  font-weight: bold;
+}
+
+/* تفاعل مع الـ comment list */
+.comments-container li:hover {
+  background-color: #f0f8ff;
+  cursor: pointer;
+  color: #1976D2;
+}
+
+/* تحديد خاصية الـ canvas */
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* تأثيرات الـ scrollbar */
+.comments-scroll::-webkit-scrollbar-thumb {
+  background-color: #1976D2;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.comments-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #1565c0;
+}
+
+/* تحسين مظهر الصفحة للموبايل */
+@media (max-width: 768px) {
+  
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .rating-distribution {
+    font-size: 0.9rem;
+  }
+
+  .position-relative {
+    width: 100% !important; /* تأكد من أن الرسومات تتناسب */
+  }
+
+
+
+  h2, h3, h5 {
+    font-size: 1.2rem;
+  }
+
+ 
+}
+

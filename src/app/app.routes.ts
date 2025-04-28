@@ -38,6 +38,7 @@ import { AddExamintaionComponent } from './pages/doctor/add-examintaion/add-exam
 import { UpdateExaminationComponent } from './pages/doctor/update-examination/update-examination.component';
 import { MedicalRecordComponent } from './pages/student/medical-record/medical-record.component';
 import { FeedbackComponent } from './pages/student/feedback/feedback.component';
+import { FeddbacksComponent } from './pages/admin/feddbacks/feddbacks.component';
 
 export const routes: Routes = [
 
@@ -268,6 +269,12 @@ canActivate: [doctorGuard]
   canActivate: [adminguardGuard]
 
 },
+{
+  path:'feedbacks',
+  component:FeddbacksComponent,
+  title:'feedbacks',
+  canActivate:[adminguardGuard]
+}
 
 
 
