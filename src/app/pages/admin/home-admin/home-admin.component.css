@@ -1,0 +1,134 @@
+
+.main-color {
+  color: #1976D2;
+}
+
+.bg-primary 
+{
+  opacity: 0.8;
+}
+
+
+/* Ensure RTL styling */
+.container {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Stats cards styling */
+.card {
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* تعديل الـ card-body للإحصائيات */
+.card-body {
+  min-height: 100px;
+  padding: 1rem;
+}
+
+/* استخدام flexbox لجعل الأيقونة والنص في سطر واحد */
+.card-body.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* تعديل الأيقونة */
+.card-body .fa-solid {
+  margin-left: 1rem;
+}
+
+/* تعديل النص بجانب الأيقونة */
+.card-body .text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Chart cards */
+.card-body:not(.d-flex) {
+  min-height: 300px;
+}
+
+/* Custom badge colors for appointments table */
+.badge.bg-success {
+  background-color: #28a745 !important;
+}
+
+/* Adjust table header for better readability */
+.table th {
+  font-weight: 600;
+}
+
+/* Comments list styling */
+.list-group-item {
+  border-left: 3px solid #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* الإحصائيات */
+  .col-md-3.col-6 {
+    width: 50%; /* كل كارت ياخد نص الشاشة */
+  }
+
+  .card-body.d-flex {
+    flex-direction: column; 
+    text-align: center;
+  }
+
+  .card-body .fa-solid {
+    margin-left: 0;
+    margin-bottom: 0.5rem; /* مسافة بين الأيقونة والنص */
+  }
+
+  .card-body .text-content {
+    align-items: center; /* محاذاة النص في المنتصف */
+  }
+
+  /* الرسوم البيانية */
+  .col-lg-6 {
+    width: 100%; /* الـ Charts تاخد عرض الشاشة كامل */
+  }
+
+  .card-body:not(.d-flex) {
+    min-height: 250px; /* تقليل الارتفاع على الموبايل */
+  }
+
+  /* الجدول */
+  .table-responsive {
+    overflow-x: auto; /* التأكد من إن الجدول يسكرول أفقياً */
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.9rem; /* تصغير الخط على الموبايل */
+    padding: 0.5rem; /* تقليل الـ padding */
+  }
+
+  /* التعليقات */
+  .list-group-item {
+    font-size: 0.9rem; /* تصغير الخط */
+    padding: 0.5rem 1rem; /* تقليل الـ padding */
+  }
+}
+
+@media (max-width: 576px) {
+  /* الإحصائيات */
+  .col-md-3.col-6 {
+    width: 100%; /* كل كارت ياخد الشاشة كاملة على شاشات صغيرة جدًا */
+  }
+
+  .card-body {
+    padding: 0.75rem; /* تقليل الـ padding أكتر */
+  }
+
+  /* الجدول */
+  .table th,
+  .table td {
+    font-size: 0.8rem; /* تصغير الخط أكتر */
+  }
+}
