@@ -1,3 +1,100 @@
-ayahaga
-
-
+<div class="container py-4" dir="rtl">
+    <!-- الإحصائيات -->
+    @if (stats) {
+      <div class="row g-4 text-center mb-4">
+        @for ( item of [
+          { label: 'عدد المستخدمين', value: stats.usersCount, icon: 'fa-user', class: '' },
+          { label: 'عدد الأطباء', value: stats.doctorsCount, icon: ' fa-stethoscope', class: '' },
+          { label: 'عدد المرضى', value: stats.bookingsCount , icon: 'fa-user', class: ' '},
+          { label: 'عدد الأخبار', value: stats.newsCount, icon: ' fa-newspaper', class: ''}
+        ]; track $index) {
+          <!-- <div class="col-md-3 col-6">
+            <div class="card shadow-sm border-0 {{ item.class }}">
+              <div class="card-body">
+                <i class="fa-solid {{ item.icon }} fs-3  d-block main-color"></i>
+                <h6>{{ item.label }}</h6>
+                <h4 class="fw-bold">{{ item.value }}</h4>
+              </div>
+            </div>
+          </div> -->
+        
+        
+          <div class="col-md-3 col-6">
+            <div class="card shadow-sm border-0 {{ item.class }}">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <i class="fa-solid {{ item.icon }} fs-3 main-color me-3"></i>
+                <div class="text-content">
+                  <h6 class="mb-0">{{ item.label }}</h6>
+                  <h4 class="fw-bold mb-0">{{ item.value }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  
+    <!-- الرسوم البيانية -->
+    <div class="row g-4 mb-4">
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-primary text-white">عدد المرضى حسب اليوم</div>
+          <div class="card-body">
+            <canvas #patientsByDayChart id="patients-by-day-chart" style="max-width: 100%; max-height: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-primary text-white">المواعيد المتاحة حسب اليوم</div>
+          <div class="card-body">
+            <canvas #appointmentsByDayChart id="appointments-by-day-chart" style="max-width: 100%; max-height: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- الحجوزات القادمة -->
+    @if (upcomingAppointments.length > 0) {
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">الحجوزات القادمة</div>
+        <div class="table-responsive">
+          <table class="table  mb-0 table-hover text-center">
+            <thead class="table-light">
+              <tr>
+                <th>اسم المريض</th>
+                <th>الطبيب</th>
+                <th>التاريخ</th>
+                <!-- <th>الحالة</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              @for ( appt of upcomingAppointments; track appt) {
+                <tr>
+                  <td>{{ appt.patientName }}</td>
+                  <td>{{ appt.doctorName }}</td>
+                  <td>{{ appt.date }}</td>
+                  <!-- <td><span class="badge bg-success">{{ appt.status }}</span></td> -->
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    }
+  
+    <!-- أحدث التعليقات -->
+    @if (latestComments.length > 0) {
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">أحدث الفحوصات</div>
+        <ul class="list-group list-group-flush">
+          @for ( comment of latestComments; track comment) {
+            <li class="list-group-item">
+              <strong >{{ comment.patientName }}:</strong> {{ comment.comment }}
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
