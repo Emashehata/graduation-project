@@ -132,6 +132,7 @@ export class AuthService {
     this.saveUserData(); // Load user data on refresh
   }
   logOut(): void {
+    const isAdmin = this.isAdmin();
     this.doctorService.doctorImg.next('');
     this.doctorService.firstName.next('');
     this.doctorService.lastName.next('');
@@ -141,11 +142,21 @@ export class AuthService {
     this.patientService.patientLastName.next('');
     this.userData.set(null);
     this.userId.set(null);
+    // window.location.reload();
     localStorage.removeItem('user token');
     // this.router.navigate(['/login']);
-    // window.location.reload();
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-    }, 0);
+    // setTimeout(() => {
+    //   this.router.navigate(['/login']);
+
+    // }, 0);
+
+    this.router.navigate(['/login']).then(() => {
+      // Wait briefly, then reload
+      if (isAdmin){
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
+      }
+    });
   }
 }
