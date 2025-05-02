@@ -7,7 +7,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
           <h5 class="card-title main-color fw-semibold">الأخبار</h5>
-          <a class="btn btn-primary ms-auto" routerLink="/add-news">إنشاء خبر</a>
+          <a class="btn bg-sec text-white ms-auto" routerLink="/add-news">إنشاء خبر</a>
         </div>
         <div class="card-body">
 
@@ -16,28 +16,19 @@
             <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="row">
                 <div class="col-sm-12 col-md-6">
-                  <div class="dataTables_length" id="basicExample_length">
-                    <label>عرض<select name="basicExample_length" [(ngModel)]="selectedValue" aria-controls="basicExample" class="form-select form-select-sm">
-                      <option value="12">12</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                    </select> صفوف الصفحة</label>
-                  </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
                   <div id="basicExample_filter" class="dataTables_filter">
-                    <label>بحث:
-                      <input type="text" class="form-control" [(ngModel)]="searchTerm" (input)="filterNews()" placeholder="بحث عن الأخبار...">
-                    </label>
+
+                      <input type="text" class="rounded-2 border myBorder w-75 px-2 py-1 shadow-card" [(ngModel)]="searchTerm" (input)="filterNews()" placeholder="بحث عن الأخبار...">
+
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-              <table id="basicExample" class="table truncate m-0 mt-5 align-middle dataTable no-footer" aria-describedby="basicExample_info">
-              <thead>
+              <table id="basicExample" class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden" aria-describedby="basicExample_info">
+              <thead class="table-primary text-white">
                 <tr>
-                  <th class="text-center w-25">ID</th>
+                  <th class="text-center w-10">#</th>
                   <th class="text-center w-25">عنوان الخبر</th>
                   <th class="text-center w-25">وصف الخبر</th>
                   <th class="text-center w-25">تاريخ الخبر</th>
@@ -51,13 +42,19 @@
                   <tr>
                     <td class="text-center">{{ newsItem.id }}</td>
                     <td class="text-center">{{ newsItem.title }}</td>
-                    <td class="text-center">{{ newsItem.content.split(' ').slice(0, 4).join(' ') }}</td>
+                    <td class="text-center">{{ newsItem.content.split(' ').slice(0, 4).join(' ') }}...</td>
                     <td class="text-center">{{ formatDateArabic(newsItem.createdAt) }}</td>
                     <td>
-                      <img [src]="'http://medicalcaree.runasp.net/' + newsItem.image" class="img-shadow w-100 h-100 rounded-1 me-1" [alt]="newsItem.title">
+                      <img [src]="'https://myclinicapp.runasp.net/' + newsItem.image" class="clinic-img img-shadow rounded-1 " [alt]="newsItem.title">
                     </td>
                     <td>
                       <div class="d-inline-flex gap-1">
+                        <button class="btn btn-outline-success btn-sm"
+                                (click)="patchValue(newsItem)"
+                                data-bs-toggle="modal"
+                                [attr.data-bs-target]="'#updateRow' + newsItem.id">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                         <button class="btn btn-outline-danger btn-sm"
                                 (click)="setNewsIdForDeletion(newsItem.id)"
                                 data-bs-toggle="modal"
@@ -70,6 +67,96 @@
                       </div>
                     </td>
                   </tr>
+                  <div
+                  class="modal fade"
+                  [id]="'updateRow' + newsItem.id"
+                  tabindex="-1"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog rounded-2">
+                    <div class="modal-content border-0 text-center">
+                      <!-- Close Button (Top Right) -->
+                      <button
+                        type="button"
+                        class="btn-close position-absolute top-0 end-0 m-2"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+
+                      <!-- Title -->
+                      <h5 class="fw-bold my-5 text-dark">
+                        تعديل البيانات الخاصة بالخبر !
+                      </h5>
+                      <form
+                        class="mt-4"
+                        [formGroup]="updateNewsForm"
+                        (ngSubmit)="submitUpdateNewsForm(newsItem.id)"
+                      >
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="form-floating mb-3">
+                              <input
+                                type="text"
+                                class="form-control bg-transparent"
+                                formControlName="title"
+                                id="newsTitle"
+                                placeholder="عنوان الخبر"
+                              />
+                              <label for="newsTitle" class="px-0 text-muted">عنوان الخبر</label>
+                            </div>
+
+                          </div>
+                          <!-- news Image Upload -->
+                          <div class="col-12">
+                            <div class="form-floating mb-3">
+                              <input
+                                type="file"
+                                class="form-control bg-transparent"
+                                (change)="onFileSelected($event, newsItem.id)"
+                                [formControlName]="'image'"
+                                id="newsImage"
+                                [attr.id]="'fileInput' + newsItem.id"
+                              />
+                              <label
+                                for="newsImage"
+                                class="px-0 text-muted"
+                                >صورة الخبر</label
+                              >
+                            </div>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-floating mb-3">
+                              <textarea
+                                class="form-control bg-transparent"
+                                formControlName="content"
+                                id="newsContent"
+                                placeholder="محتوى الخبر"
+                              ></textarea>
+                              <label for="newsContent" class="px-0 text-muted">محتوى الخبر</label>
+                            </div>
+                          </div>
+
+                          <!-- Submit Button -->
+                          <div class="col-12">
+                            <button
+                              [disabled]="updateNewsForm.invalid"
+                              type="sumbit"
+                              data-bs-dismiss="modal"
+                              class="my-3 bg-sec text-white border-0 w-100 py-2 rounded-2"
+                            >
+                              تعديل بيانات الخبر @if (isLoading) {
+                              <span
+                                ><i class="fas fa-spin fa-spinner"></i
+                              ></span>
+                              }
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
                 }
               </tbody>
             </table>
@@ -105,4 +192,3 @@
   <!-- Row ends -->
 
 </div>
-<router-outlet></router-outlet>

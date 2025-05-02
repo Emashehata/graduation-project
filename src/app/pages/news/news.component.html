@@ -39,7 +39,7 @@
             @for (item of reversedNews.slice(0,3); track item.id) {
                 <div class="row mb-4">
                   <div class="col-4">
-                    <img [src]="'http://medicalcaree.runasp.net/' + item.image" class="img-shadow w-100 h-100 " [alt]="item.title">
+                    <img [src]="'https://myclinicapp.runasp.net/' + item.image" class="img-shadow w-100 h-100 " [alt]="item.title">
                   </div>
                   <div class="col-8">
                     <p class="mt-3">{{ item.title }}</p>
@@ -59,11 +59,11 @@
           <div class="row gy-4">
             @for (newsItem of reversedNews; track newsItem.id) {
               <div class="col-lg-6 col-md-6 col-12">
-                <div class="card  shadow-sm">
-                  <img [src]="'http://medicalcaree.runasp.net/'+ newsItem.image" class="img-shadow w-100  card-img-top" [alt]="newsItem.title">
+                <div class="card shadow-sm">
+                  <img [src]="'https://myclinicapp.runasp.net/'+ newsItem.image" class="img-shadow w-100  card-img-top" height="300px" [alt]="newsItem.title">
                   <div class="card-body">
                     <h5 class="card-title mt-3">{{ newsItem.title }}</h5>
-                    <p class="text-muted">{{ newsItem.content.split(' ').slice(0, 15).join(' ') }}</p>
+                    <p class="text-muted">{{ newsItem.content.split(' ').slice(0, 15).join(' ') }}...</p>
                     <a  [routerLink]="['/news-details', newsItem.id]" class="text-decoration-none sec-color"> اقرأ المزيد<i class="ms-2 fa fa-long-arrow-left"></i></a>
                   </div>
                   <div class="card-footer">

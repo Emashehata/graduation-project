@@ -190,13 +190,6 @@ span.account{
     color: #2c2d3f;
 }
 
-
-
-
-
-
-
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.myBorder{
+  border-color: var(--sec-color) !important;
+}
