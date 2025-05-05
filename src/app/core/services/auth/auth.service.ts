@@ -142,21 +142,9 @@ export class AuthService {
     this.patientService.patientLastName.next('');
     this.userData.set(null);
     this.userId.set(null);
-    // window.location.reload();
     localStorage.removeItem('user token');
-    // this.router.navigate(['/login']);
-    // setTimeout(() => {
-    //   this.router.navigate(['/login']);
 
-    // }, 0);
 
-    this.router.navigate(['/login']).then(() => {
-      // Wait briefly, then reload
-      if (isAdmin){
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-      }
-    });
+    this.router.navigate(['/login']);
   }
 }

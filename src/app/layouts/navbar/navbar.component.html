@@ -87,43 +87,43 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav m-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link main-color" aria-current="page" routerLink="home" routerLinkActive="active">الرئيسية</a>
+            <a class="nav-link main-color" aria-current="page" routerLink="home" data-bs-dismiss="offcanvas" routerLinkActive="active">الرئيسية</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="news" routerLinkActive="active">الأخبار</a>
+            <a class="nav-link main-color" routerLink="news" data-bs-dismiss="offcanvas" routerLinkActive="active">الأخبار</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="clinics-student" routerLinkActive="active">العيادات</a>
+            <a class="nav-link main-color" routerLink="clinics-student" data-bs-dismiss="offcanvas" routerLinkActive="active">العيادات</a>
           </li>
           @if(authService.isDoctor())
           {
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="appointment" routerLinkActive="active" >مواعيد العمل</a>
+              <a class="nav-link main-color" routerLink="appointment" data-bs-dismiss="offcanvas" routerLinkActive="active" >مواعيد العمل</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="doctorBooking" routerLinkActive="active">قائمة المواعيد </a>
+              <a class="nav-link main-color" routerLink="doctorBooking" data-bs-dismiss="offcanvas" routerLinkActive="active">قائمة المواعيد </a>
             </li>
           }
           @if (authService.isUser()) {
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="appointment-student" routerLinkActive="active">المواعيد</a>
+              <a class="nav-link main-color" routerLink="appointment-student" data-bs-dismiss="offcanvas" routerLinkActive="active">المواعيد</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="medical-record" routerLinkActive="active" >السجل الطبي</a>
+              <a class="nav-link main-color" routerLink="medical-record" data-bs-dismiss="offcanvas" routerLinkActive="active" >السجل الطبي</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link main-color" routerLink="feedback" routerLinkActive="active" > الاستبيان</a>
+              <a class="nav-link main-color" routerLink="feedback" data-bs-dismiss="offcanvas" routerLinkActive="active" > الاستبيان</a>
             </li>
           }
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="about us" routerLinkActive="active">من نحن</a>
+            <a class="nav-link main-color" routerLink="about us" data-bs-dismiss="offcanvas" routerLinkActive="active">من نحن</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link main-color" routerLink="contact us" routerLinkActive="active">تواصل معنا</a>
+            <a class="nav-link main-color" routerLink="contact us" data-bs-dismiss="offcanvas" routerLinkActive="active">تواصل معنا</a>
           </li>
         </ul>
-        <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" routerLink="clinics-student" role="button">
+        <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" data-bs-dismiss="offcanvas" routerLink="clinics-student" role="button">
           <span>احجز ميعاد</span>
         </a>
       </div>
@@ -131,4 +131,4 @@
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
