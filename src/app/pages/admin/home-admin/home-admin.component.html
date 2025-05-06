@@ -5,8 +5,10 @@
         @for ( item of [
           { label: 'عدد المستخدمين', value: stats.usersCount, icon: 'fa-user', class: '' },
           { label: 'عدد الأطباء', value: stats.doctorsCount, icon: ' fa-stethoscope', class: '' },
-          { label: 'عدد المرضى', value: stats.bookingsCount , icon: 'fa-user', class: ' '},
-          { label: 'عدد الأخبار', value: stats.newsCount, icon: ' fa-newspaper', class: ''}
+          { label: 'عدد الحجوزات', value: stats.bookingsCount , icon: 'fa-list-ol', class: ' '},
+          { label: 'عدد الأخبار', value: stats.newsCount, icon: ' fa-newspaper', class: ''},
+          { label: 'عدد العيادات', value: stats.clinicsCount, icon: 'fa-hospital', class: '' } 
+          
         ]; track $index) {
           <!-- <div class="col-md-3 col-6">
             <div class="card shadow-sm border-0 {{ item.class }}">
@@ -19,7 +21,7 @@
           </div> -->
         
         
-          <div class="col-md-3 col-6">
+          <div class=" col-lg-2 col-md-6 col-12 ms-lg-auto">
             <div class="card shadow-sm border-0 {{ item.class }}">
               <div class="card-body d-flex align-items-center justify-content-center">
                 <i class="fa-solid {{ item.icon }} fs-3 main-color me-3"></i>
