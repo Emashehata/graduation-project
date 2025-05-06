@@ -10,8 +10,13 @@ export const userGuard: CanActivateFn = (route, state) => {
 
     if (authService.isUser()) {
       return true; // Allow access if the user is an user
-    } else {
-      toastrService.error('ليس لديك الصلاحية للوصول إلى هذه الصفحة');
+    }
+    if (authService.isAdmin()||authService.isDoctor()) {
+      toastrService.error('ليس لديك صلاحية الدخول إلي هذه الصفحة');
+      return false;
+    }
+    else  {
+      toastrService.error('يجب تسجيل الدخول للحجز');
       router.navigate(['/login']); // Redirect to login if not User
       return false;
     }

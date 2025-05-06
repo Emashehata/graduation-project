@@ -1,36 +1,4 @@
-/* General Table Styling */
-.table {
-  border-collapse: separate;
-  border-spacing: 0;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
+input.search:focus{
+  border: var(--sec-color) !important ;
 }
 
-/* Header Styling */
-.table thead {
-  background: #007bff;
-  color: white;
-  font-weight: bold;
-}
-
-/* Row Hover Effect */
-.table-hover tbody tr:hover {
-  background: rgba(0, 123, 255, 0.1);
-  transition: background 0.3s ease-in-out;
-}
-
-/* Image Styling */
-.clinic-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  transition: transform 0.3s ease-in-out;
-}
-
-.clinic-img:hover {
-  transform: scale(1.1);
-}
- 

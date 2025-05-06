@@ -16,7 +16,7 @@
             <div class="card shadow-card"  >
               <div class="card-img p-3">
                 <div class="inner position-relative">
-                  <img [src]="'https://myclinicapp.runasp.net'+clinic.imageUrl" class="card-img-top" [alt]="clinic.name">
+                  <img [src]="'https://myclinicapp.runasp.net'+clinic.imageUrl" height="160px" class="card-img-top object-fit-cover" [alt]="clinic.name">
                 <div class="layer position-absolute bottom-0 start-0 end-0 top-0 rounded-2 d-flex justify-content-center align-items-center">
                   <button [routerLink]="['/clinics-doctors',clinic.id]" class="my-3 bg-white sec-color border-0 px-3 py-2 rounded-2">أقرأ المزيد</button>
                 </div>

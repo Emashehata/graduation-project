@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, inject } from '@angular/core';
 import { NewsService } from '../../../../core/services/news/news.service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -15,6 +16,7 @@ export class AddNewsComponent {
 
     private readonly newsService=inject(NewsService);
     private readonly formBuilder= inject(FormBuilder);
+    private readonly toastrService=inject(ToastrService)
     private readonly router= inject(Router);
 
 
@@ -50,10 +52,8 @@ onFileSelected(event: Event): void {
         this.newsService.postNews(formData).subscribe({
           next: (res) => {
             console.log(res);
-            setTimeout(() => {
-              this.router.navigate(['./news-admin'])
-            }, 800);
-
+              this.toastrService.success(res.message);
+              this.router.navigate(['./news-admin']);
             this.isLoading = false;
           },
           error: (err: HttpErrorResponse) => {

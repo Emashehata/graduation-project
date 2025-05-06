@@ -21,7 +21,7 @@ export class ClinicAdminComponent {
   private readonly formBuilder= inject(FormBuilder);
   private readonly toastrService = inject(ToastrService);
 
-  selectedFile: File | null = null;
+  selectedFiles: { [id: string]: File | null } = {};
   isLoading: boolean = false;
   sucessMsg:boolean=false;
 
@@ -50,10 +50,12 @@ export class ClinicAdminComponent {
     })
   }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event, id: string): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
+      this.selectedFiles[id] = input.files[0];
+    } else {
+      this.selectedFiles[id] = null;
     }
   }
 
@@ -79,8 +81,9 @@ export class ClinicAdminComponent {
       formData.append('name', this.updateClnicForm.get('name')?.value);
     }
 
-    if (this.selectedFile) {
-      formData.append('imageFile', this.selectedFile);
+
+    if (this.selectedFiles[id]) {
+      formData.append('imageFile', this.selectedFiles[id] as File);
     }
 
     this.clinicsService.updateSpecficClinic(id, formData).pipe(

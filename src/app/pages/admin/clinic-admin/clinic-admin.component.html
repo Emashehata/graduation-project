@@ -20,42 +20,21 @@
               id="basicExample_wrapper"
               class="dataTables_wrapper dt-bootstrap5 no-footer"
             >
-              <div class="row align-items-center">
-                <!-- Rows per page dropdown -->
-                <div class="col-sm-12 col-md-6">
-                  <div class="dataTables_length" id="basicExample_length">
-                    <label class="fw-bold text-muted">
-                      عرض
-                      <select
-                        name="basicExample_length"
-                        aria-controls="basicExample"
-                        class="form-select form-select-sm rounded-2 shadow-sm"
-                      >
-                        <option value="12">12</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                      </select>
-                      صفوف الصفحة
-                    </label>
-                  </div>
-                </div>
-
+              <div class="row">
                 <!-- Search Box -->
                 <div class="col-sm-12 col-md-6">
                   <div
                     id="basicExample_filter"
-                    class="dataTables_filter text-end"
+                    class="dataTables_filter"
                   >
-                    <label class="fw-bold text-muted">
-                      بحث:
+
                       <input
                         (input)="clinicsService.onSearchInput($event)"
                         type="search"
-                        class="form-control form-control-sm rounded-2 shadow-sm"
+                        class="search rounded-2 border myBorder w-75 px-2 py-1 shadow-card"
                         placeholder="بحث عن العيادة"
                         aria-controls="basicExample"
                       />
-                    </label>
                   </div>
                 </div>
               </div>
@@ -239,8 +218,8 @@
                                     <input
                                       type="file"
                                       class="form-control bg-transparent"
-                                      (change)="onFileSelected($event)"
-                                      formControlName="imageFile"
+                                      (change)="onFileSelected($event, clinic.id)"
+                                      [formControlName]="'imageFile'"
                                       id="clinicImage"
                                     />
                                     @if (imageControl?.invalid &&
