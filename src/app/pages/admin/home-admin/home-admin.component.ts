@@ -22,7 +22,7 @@ interface Stats {
   patientsCount: number;
   newsCount: number;
   bookingsCount: number;
-
+  clinicsCount: number;
 }
 
 @Component({
@@ -330,7 +330,7 @@ export class HomeAdminComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error loading stats:', err);
-        this.stats = { usersCount: 0, doctorsCount: 0, patientsCount: 0, newsCount: 0, bookingsCount: 0 };
+        this.stats = { usersCount: 0, doctorsCount: 0, patientsCount: 0, newsCount: 0, bookingsCount: 0,clinicsCount:0};
       }
     });
   }
@@ -385,19 +385,72 @@ export class HomeAdminComponent implements OnInit {
     });
   }
 
+  // loadAvailableAppointments() {
+  //   this.homeService.getAvailableAppointmentsByDay().subscribe({
+  //     next: (res: { day: string, count: number }[]) => {
+  //       // إنشاء قائمة بكل الأيام مع قيم افتراضية (0)
+  //       const fullAppointmentsByDay: { day: string, count: number }[] = this.dayOrder.map(day => {
+  //         const existingDay = res.find(x => x.day === day);
+  //         return {
+  //           day: day,
+  //           count: existingDay ? existingDay.count : 0 // لو اليوم مش موجود، نرجع 0
+  //         };
+  //       });
+
+  //       // ترتيب الأيام بناءً على dayOrder (للتأكيد)
+  //       const sortedAppointmentsByDay = fullAppointmentsByDay.sort((a, b) => {
+  //         return this.dayOrder.indexOf(a.day) - this.dayOrder.indexOf(b.day);
+  //       });
+
+  //       const labels = sortedAppointmentsByDay.map((x) => this.dayMapping[x.day] || x.day);
+  //       const data = sortedAppointmentsByDay.map((x) => x.count);
+
+  //       if (this.appointmentsByDayChart) {
+  //         new Chart(this.appointmentsByDayChart.nativeElement, {
+  //           type: 'line',
+  //           data: {
+  //             labels: labels, // كل الأيام دلوقتي موجودة وبالعربي
+  //             datasets: [
+  //               {
+  //                 data: data,
+  //                 label: 'المواعيد المتاحة',
+  //                 tension: 0.4,
+  //                 fill: true,
+  //                 borderColor: '#36a2eb',
+  //                 backgroundColor: 'rgba(54, 162, 235, 0.2)'
+  //               }
+  //             ]
+  //           },
+  //           options: {
+  //             responsive: true,
+  //             maintainAspectRatio: false,
+  //             scales: {
+  //               x: { title: { display: true, text: 'الأيام' } },
+  //               y: { title: { display: true, text: 'عدد المواعيد' } }
+  //             }
+  //           }
+  //         });
+  //       }
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading available appointments:', err);
+  //     }
+  //   });
+  // }
+
+
+
   loadAvailableAppointments() {
     this.homeService.getAvailableAppointmentsByDay().subscribe({
       next: (res: { day: string, count: number }[]) => {
-        // إنشاء قائمة بكل الأيام مع قيم افتراضية (0)
         const fullAppointmentsByDay: { day: string, count: number }[] = this.dayOrder.map(day => {
           const existingDay = res.find(x => x.day === day);
           return {
             day: day,
-            count: existingDay ? existingDay.count : 0 // لو اليوم مش موجود، نرجع 0
+            count: existingDay ? existingDay.count : 0
           };
         });
 
-        // ترتيب الأيام بناءً على dayOrder (للتأكيد)
         const sortedAppointmentsByDay = fullAppointmentsByDay.sort((a, b) => {
           return this.dayOrder.indexOf(a.day) - this.dayOrder.indexOf(b.day);
         });
@@ -409,7 +462,7 @@ export class HomeAdminComponent implements OnInit {
           new Chart(this.appointmentsByDayChart.nativeElement, {
             type: 'line',
             data: {
-              labels: labels, // كل الأيام دلوقتي موجودة وبالعربي
+              labels: labels,
               datasets: [
                 {
                   data: data,
@@ -426,7 +479,14 @@ export class HomeAdminComponent implements OnInit {
               maintainAspectRatio: false,
               scales: {
                 x: { title: { display: true, text: 'الأيام' } },
-                y: { title: { display: true, text: 'عدد المواعيد' } }
+                y: {
+                  title: { display: true, text: 'عدد المواعيد' },
+                  beginAtZero: true, // البداية من 0
+                  ticks: {
+                    stepSize: 1, // الخطوات بتكون 1 (أرقام صحيحة)
+                    precision: 0 // التأكد من إن القيم تظهر بدون كسور عشرية
+                  }
+                }
               }
             }
           });
@@ -437,5 +497,7 @@ export class HomeAdminComponent implements OnInit {
       }
     });
   }
+
+
 
 }

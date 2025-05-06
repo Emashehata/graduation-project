@@ -154,18 +154,29 @@ isMoreThan24HoursAway(dateString: string): boolean {
   }
   
 
+  // selectSlot() {
+  //   if (this.selectedDay && this.selectedSlot) {
+  //     this.selectedBooking = {
+  //       date: this.selectedDay.date, // تأكد من تمرير التاريخ الصحيح
+  //       time: this.selectedSlot,
+  //       doctorId: this.doctor.id
+  //     };
+  //     this.openConfirmModal();
+  //   }
+  // }
+ 
   selectSlot() {
     if (this.selectedDay && this.selectedSlot) {
       this.selectedBooking = {
-        date: this.selectedDay.date, // تأكد من تمرير التاريخ الصحيح
+        date: this.selectedDay.date,
+        day: new Date(this.selectedDay.date).getDay(),  // ⬅️ الإضافة هنا
         time: this.selectedSlot,
         doctorId: this.doctor.id
       };
       this.openConfirmModal();
     }
   }
- 
-
+  
   openConfirmModal() {
     let modal = new bootstrap.Modal(document.getElementById('confirmBookingModal'));
     modal.show();
