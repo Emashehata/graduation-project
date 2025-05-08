@@ -21,12 +21,12 @@ export class NavbarComponent implements OnInit {
     private readonly cdr = inject(ChangeDetectorRef);
     private readonly notificationService=inject(NotificationService);
     // notificationsData: WritableSignal<INotification[] | null> = signal([]);
-    notificationsData = this.notificationService.notifications;
+ 
 
 
     scroll:boolean=false;
 
-    unreadCount = this.notificationService.unreadCount;
+
 
     medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
 
@@ -44,8 +44,7 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
       if(this.authService.isLogin()){
         this.fetchUserData();
-        this.notificationService.fetchAndSetNotifications();
-        console.log( this.notificationService.unreadCount());
+
       }
       this.subscribeToDoctorData();
       this.subscribeToPatientData();
