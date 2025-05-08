@@ -1,10 +1,8 @@
 <div class="container mt-5">
-
-  @if (nottificationEmpty) {
+  @if(nottificationEmpty){
     <div class="row">
-      <div class="col-md-8 m-auto text-center">
-        <img src="/Push notifications-rafiki.png" class="w-100" alt="No Notifications">
-        <p class="mt-3 text-muted fs-5">لا توجد إشعارات جديدة.</p>
+      <div class="col-md-8 m-auto">
+        <img src="/Push notifications-rafiki.png" class="w-100" alt="">
       </div>
     </div>
   }
@@ -15,20 +13,20 @@
           <h5 class="card-title text-danger">{{ notification.title }}</h5>
           <p class="card-text">{{ notification.body }}</p>
 
-          <div class="form-check mt-3">
-            <input class="form-check-input"
-                   type="checkbox"
+          <!-- Checkbox for mark as read -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox"
                    [checked]="notification.isRead"
                    [disabled]="notification.isRead"
                    id="flexCheck{{ notification.id }}"
                    (change)="markAsRead(notification.id)">
-            <label class="form-check-label ms-2" for="flexCheck{{ notification.id }}">
+            <label class="form-check-label" for="flexCheck{{ notification.id }}">
               {{ notification.isRead ? 'تم تعليم كمقروء' : 'تعليم كمقروء' }}
             </label>
           </div>
         </div>
       </div>
     }
-  }
 
+  }
 </div>
