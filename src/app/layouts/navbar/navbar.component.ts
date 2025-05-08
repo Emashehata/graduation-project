@@ -44,12 +44,13 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
       if(this.authService.isLogin()){
         this.fetchUserData();
+        this.notificationService.fetchAndSetNotifications();
+        console.log( this.notificationService.unreadCount());
       }
       this.subscribeToDoctorData();
       this.subscribeToPatientData();
 
-      this.notificationService.fetchAndSetNotifications();
-      console.log( this.notificationService.unreadCount());
+
 
 
 
@@ -158,7 +159,7 @@ export class NavbarComponent implements OnInit {
     }
 
 
-  
+
 
 
 
