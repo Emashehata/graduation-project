@@ -110,3 +110,10 @@
      margin-inline: 8px;
   }
 }
+
+
+.badge{
+  font-size: 10px;
+  left: -2px;
+  top:7px;
+}
