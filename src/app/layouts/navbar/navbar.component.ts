@@ -1,9 +1,11 @@
-import { ChangeDetectorRef, Component, computed, HostListener, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, effect, HostListener, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { DoctorService } from '../../core/services/doctor/doctor.service';
 import { IDoctor } from '../../core/interfaces/idoctor/idoctor';
 import { PatientService } from '../../core/services/patient/patient.service';
+import { NotificationService } from '../../core/services/notification/notification.service';
+import { INotification } from '../../core/interfaces/INotification/inotification';
 
 @Component({
   selector: 'app-navbar',
@@ -17,20 +19,17 @@ export class NavbarComponent implements OnInit {
     private readonly doctorService=inject(DoctorService);
     private readonly patientService=inject(PatientService);
     private readonly cdr = inject(ChangeDetectorRef);
+    private readonly notificationService=inject(NotificationService);
+    // notificationsData: WritableSignal<INotification[] | null> = signal([]);
+    notificationsData = this.notificationService.notifications;
 
 
     scroll:boolean=false;
 
-    medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
-    // @HostListener('window:scroll') onScroll(){
-    //   if(window.scrollY > window.innerHeight){
-    //     this.scroll=true;
+    unreadCount = this.notificationService.unreadCount;
 
-    //   }
-    //   else{
-    //     this.scroll=false;
-    //   }
-    // }
+    medicalEmail:string="Studenthealthcare@unv.tanta.edu.eg";
+
 
 
     doctorImg:string='';
@@ -40,12 +39,20 @@ export class NavbarComponent implements OnInit {
     patientFirstName :string='';
     patientLastName :string='';
 
+
+
     ngOnInit(): void {
       if(this.authService.isLogin()){
         this.fetchUserData();
       }
       this.subscribeToDoctorData();
       this.subscribeToPatientData();
+
+      this.notificationService.fetchAndSetNotifications();
+      console.log( this.notificationService.unreadCount());
+
+
+
 
     }
 
@@ -149,6 +156,12 @@ export class NavbarComponent implements OnInit {
       this.getPatientAccount();
       this.getDoctorsAccount();
     }
+
+
+  
+
+
+
 
 
 

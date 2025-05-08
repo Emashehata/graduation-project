@@ -22,9 +22,11 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" routerLink="/doctorAccount"><i class="icofont-doctor fs-5 me-2"></i> حسابي</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
+              </li>
+
+              <li>
+                <a (click)="authService.logOut()" type="button">تسجيل الخروج</a>
               </li>
 
             }
@@ -37,15 +39,28 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" routerLink="/patientAccount"><i class="icofont-doctor fs-5 me-2"></i> حسابي</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li>
+                    <a (click)="authService.logOut()" type="button">تسجيل الخروج</a>
+                  </li>
                 </ul>
               </li>
 
+              <li class="fs-4 ms-3 position-relative">
+                <a routerLink="notification">
+                  <i class="fa-solid fa-bell sec-color"></i>
+                  @if (unreadCount() > 0) {
+                    <span class="position-absolute translate-middle badge rounded-pill bg-danger">
+                      {{ unreadCount() }}
+                    </span>
+
+                  }
+
+                </a>
+              </li>
+
+
             }
-            <li>
-              <a (click)="authService.logOut()" type="button">تسجيل الخروج</a>
-            </li>
+
 
           }
 
@@ -123,6 +138,7 @@
             <a class="nav-link main-color" routerLink="contact us" data-bs-dismiss="offcanvas" routerLinkActive="active">تواصل معنا</a>
           </li>
         </ul>
+
         <a class="btn btn-nav rounded-1 px-4 text-white bg-sec position-relative" data-bs-dismiss="offcanvas" routerLink="clinics-student" role="button">
           <span>احجز ميعاد</span>
         </a>
@@ -130,5 +146,3 @@
     </div>
   </div>
 </nav>
-
-<!-- <router-outlet></router-outlet> -->

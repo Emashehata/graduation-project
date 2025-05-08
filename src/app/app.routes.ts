@@ -39,6 +39,7 @@ import { UpdateExaminationComponent } from './pages/doctor/update-examination/up
 import { MedicalRecordComponent } from './pages/student/medical-record/medical-record.component';
 import { FeedbackComponent } from './pages/student/feedback/feedback.component';
 import { FeddbacksComponent } from './pages/admin/feddbacks/feddbacks.component';
+import { NotificationComponent } from './pages/student/notification/notification.component';
 
 export const routes: Routes = [
 
@@ -148,6 +149,12 @@ canActivate: [userGuard]
   path:'feedback',
   component:FeedbackComponent,
   title:'الاستبيان',
+  canActivate:[userGuard]
+},
+{
+  path:'notification',
+  component:NotificationComponent,
+  title:'الإشعارات',
   canActivate:[userGuard]
 },
 
