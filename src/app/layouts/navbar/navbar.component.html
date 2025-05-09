@@ -38,9 +38,11 @@
                   <span class="me-3 ms-2">{{ patientFirstName }} {{ patientLastName }}</span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" routerLink="/patientAccount"><i class="icofont-doctor fs-5 me-2"></i> حسابي</a></li>
+                  <li><a class="dropdown-item" routerLink="/patientAccount"><i class="fa-solid fa-user fs-5 me-2"></i> حسابي</a></li>
                   <li>
-                    <a (click)="authService.logOut()" type="button">تسجيل الخروج</a>
+                    <a class="dropdown-item" (click)="authService.logOut()" type="button">
+                      <i class="fa-solid fa-arrow-right-from-bracket fs-5 me-2"></i>
+                      تسجيل الخروج</a>
                   </li>
                 </ul>
               </li>
