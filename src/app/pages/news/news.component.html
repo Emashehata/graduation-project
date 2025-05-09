@@ -59,8 +59,8 @@
           <div class="row gy-4">
             @for (newsItem of reversedNews; track newsItem.id) {
               <div class="col-lg-6 col-md-6 col-12">
-                <div class="card shadow-sm">
-                  <img [src]="'https://myclinicapp.runasp.net/'+ newsItem.image" class="img-shadow w-100  card-img-top" height="300px" [alt]="newsItem.title">
+                <div class="card h-100 shadow-card">
+                  <img [src]="'https://myclinicapp.runasp.net/'+ newsItem.image" class="img-shadow w-100 object-fit-cover  card-img-top" height="300px"   [alt]="newsItem.title">
                   <div class="card-body">
                     <h5 class="card-title mt-3">{{ newsItem.title }}</h5>
                     <p class="text-muted">{{ newsItem.content.split(' ').slice(0, 15).join(' ') }}...</p>
