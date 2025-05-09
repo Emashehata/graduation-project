@@ -1,1 +1,57 @@
-<p>clinic-appointments works!</p>
+<div class="container mt-4" dir="rtl" style="text-align: right;">
+  <h2 class="text-center mb-4">لوحة بيانات الحجوزات</h2>
+
+  <!-- Cards Section -->
+  <div class="row mb-4 gy-4">
+    <div class="col-md-6">
+      <div class="card text-white bg-primary shadow-card">
+        <div class="card-body">
+          <h5 class="card-title">إجمالي الحجوزات</h5>
+          <p class="card-text display-6">{{ totalBookings }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-white bg-info shadow-card">
+        <div class="card-body">
+          <h5 class="card-title">حجوزات اليوم</h5>
+          <p class="card-text display-6">{{ todayBookings }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clinic Chart -->
+  <div class="card shadow-card mb-4">
+    <div class="card-body">
+      <h5 class="card-title mb-4">العيادات الأكثر استخدامًا</h5>
+      <div style="height: 300px;">
+        <canvas #clinicChart style="max-width: 100%; max-height: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly & College Charts Side by Side -->
+  <div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">الحجوزات الشهرية</h5>
+          <div style="height: 300px;">
+            <canvas #monthlyChart style="max-width: 100%; max-height: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">الكليات الأعلى حجزاً</h5>
+          <div style="height: 300px;">
+            <canvas #collegeChart style="max-width: 100%; max-height: 100%;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

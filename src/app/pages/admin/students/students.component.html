@@ -1,1 +1,21 @@
-<p>students works!</p>
+<div class="container mt-4" dir="rtl" style="text-align: right;">
+  <h2 class="text-center mb-4">لوحة بيانات المرضى</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-4 offset-md-4">
+      <div class="card  shadow-card">
+        <div class="card-body text-center">
+          <h5 class="card-title">إجمالي عدد الطلاب</h5>
+          <p class="card-text display-6">{{ totalPatients }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-card mb-4">
+    <div class="card-body">
+      <h5 class="card-title mb-4">عدد المرضى حسب الكلية</h5>
+      <canvas #barChartCanvas id="bar-chart" style="max-width: 100%; max-height: 400px;"></canvas>
+    </div>
+  </div>
+</div>
