@@ -46,6 +46,7 @@ export class StudentsComponent implements OnInit {
           options: {
             responsive: true,
             indexAxis: 'y',
+            maintainAspectRatio: false,
             plugins: {
               legend: { display: false },
               title: { display: true, text: 'عدد المرضى حسب الكلية' }
