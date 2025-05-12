@@ -47,13 +47,11 @@ button {
 }
 
 .custom-table::-webkit-scrollbar-thumb {
-  background-color: #0d6efd;
+  background-color: #70a6f6;
   border-radius: 10px;
 }
 
-.custom-table::-webkit-scrollbar-thumb:hover {
-  background: #0a58ca;
-}
+
 
 
 /* تحسين التفاعل على الموبايل */
