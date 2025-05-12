@@ -1,0 +1,104 @@
+<div class=" p-4 main-body rounded rounded-5">
+    <div class="container my-5 ">
+    <div class="row d-flex justify-content-center align-items-center">
+
+        <div class="col-lg-6 col-md-8 col-sm-10 col-10 p-3 border border-2 rounded-2 ">
+
+            <div class="mt-2 mb-4 text-center main-color">
+                <h3>
+                     تعديل الميعاد
+                    
+                </h3>
+            </div>
+            
+
+            <div class="mt-2 mb-4 ">
+
+             <form [formGroup]="appointmentForm" (ngSubmit)="updateAppointment()">
+
+                <div class="py-2 ">
+                    
+                <label for="day" class="form-label main-color">اختر أيام العمل</label>
+                <br/>
+                    @for (day of daysList; track $index) 
+                    {
+                        
+                          
+                      <input class="main-color" 
+                      [checked]="appointmentForm.get('days')?.value?.includes(day.id) || false" 
+                      type="checkbox" 
+                      id="day" 
+                      [value]="day.id" 
+                      (change)="onDayChange($event, day.id)">
+                    {{ day.name }}
+                
+                                        
+                                        
+                                    }
+                                    @if (appointmentForm.get('days')?.invalid && appointmentForm.get('days')?.touched) 
+                                    {
+                                      <div  class="text-danger mt-1">
+                                        يجب اختيار يوم واحد على الأقل.
+                                      </div>
+                                    }
+                                   
+                
+                                  
+                
+                        
+                        
+                    
+                </div>
+
+              <div class="py-2 ">
+                <label for="startTime" class="form-label main-color">اختر ساعة البداية</label>
+                <input type="time" id="startTime" class="form-control" formControlName="startTime">
+                @if (appointmentForm.get('startTime')?.touched && appointmentForm.get('startTime')?.errors?.['required']) {
+                  <div class="text-danger mt-1">
+                    ساعة البداية مطلوبة
+                  </div>
+                }
+              </div>
+               
+              <div class="py-2">
+                <label for="endTime" class="form-label main-color">اختر ساعة النهاية</label>
+                <input type="time" id="endTime" class="form-control" formControlName="endTime">
+                @if (appointmentForm.get('endTime')?.touched && appointmentForm.get('endTime')?.errors?.['required']) {
+                  <div class="text-danger mt-1">
+                    ساعة النهاية مطلوبة
+                  </div>
+                }
+                @else if (appointmentForm.errors?.['invalidTime']) {
+                  <div class="text-danger mt-1">
+                    وقت النهاية يجب أن يكون بعد وقت البداية
+                  </div>
+                }
+                </div>
+
+                <div class="py-2">
+                <label for="duration" class="form-label main-color">اختر مدة الكشف</label>
+                <input type="number" id="duration" class="form-control" formControlName="duration" placeholder="بالدقائق">
+                @if (appointmentForm.get('duration')?.touched && appointmentForm.get('duration')?.errors?.['required']) {
+                  <div class="text-danger mt-1">
+                    مدة الكشف مطلوبة
+                  </div>
+                }
+              </div>
+                
+              <div class="text-center mt-3 ">
+                <button type="submit" class="btn btn-primary w-100 mt-3" >حفظ</button>
+
+              </div>
+              </form> 
+
+            </div>  
+              
+
+        </div>
+
+    </div>
+
+    
+
+</div>
+</div>
