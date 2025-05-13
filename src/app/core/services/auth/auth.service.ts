@@ -133,6 +133,7 @@ export class AuthService {
   }
   restoreUserData(): void {
     this.saveUserData(); // Load user data on refresh
+    this.notificationService.getUnReadNotification();
   }
   logOut(): void {
     this.doctorService.doctorImg.next('');

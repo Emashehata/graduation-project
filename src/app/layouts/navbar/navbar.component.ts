@@ -44,11 +44,17 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
       if(this.authService.isLogin()){
         this.fetchUserData();
+         this.count = this.notificationService.countUnRead.getValue(); // set initial value
+         console.log('count after login',this.count);
+
         this.notificationService.countUnRead.subscribe({
-          next:(value)=>{
-              this.count=value;
-          }
-        });
+         next:(value)=>{
+           this.count = value;
+           console.log('count after subscribe',this.count);
+           this.cdr.detectChanges(); // ensure the template updates
+  }
+});
+
         this.notificationService.getUnReadNotification();
 
       }
@@ -161,7 +167,7 @@ export class NavbarComponent implements OnInit {
 
 
 
- 
+
 
 
 
