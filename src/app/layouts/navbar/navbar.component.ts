@@ -21,8 +21,8 @@ export class NavbarComponent implements OnInit {
     private readonly cdr = inject(ChangeDetectorRef);
     private readonly notificationService=inject(NotificationService);
     // notificationsData: WritableSignal<INotification[] | null> = signal([]);
- 
 
+    count!:number;
 
     scroll:boolean=false;
 
@@ -44,14 +44,16 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
       if(this.authService.isLogin()){
         this.fetchUserData();
+        this.notificationService.countUnRead.subscribe({
+          next:(value)=>{
+              this.count=value;
+          }
+        });
+        this.notificationService.getUnReadNotification();
 
       }
       this.subscribeToDoctorData();
       this.subscribeToPatientData();
-
-
-
-
 
 
     }
@@ -159,8 +161,7 @@ export class NavbarComponent implements OnInit {
 
 
 
-
-
+ 
 
 
 
