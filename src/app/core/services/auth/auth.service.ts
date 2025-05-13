@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { IdecodedToken } from '../../interfaces/IdecodedToken/idecoded-token';
 import { DoctorService } from '../doctor/doctor.service';
 import { PatientService } from '../patient/patient.service';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,7 @@ export class AuthService {
   private readonly router = inject(Router);
   private readonly doctorService = inject(DoctorService);
   private readonly patientService = inject(PatientService);
+  private readonly notificationService = inject(NotificationService);
 
   registerPatient(data: object): Observable<any> {
     return this.httpClient.post(
@@ -97,6 +99,7 @@ export class AuthService {
               this.patientService.patientImg.next(res.data.imageUrl);
               this.patientService.patientFirstName.next(res.data.firstName);
               this.patientService.patientLastName.next(res.data.lastName);
+              this.notificationService.getUnReadNotification();
             }
           },
         });
@@ -132,7 +135,6 @@ export class AuthService {
     this.saveUserData(); // Load user data on refresh
   }
   logOut(): void {
-    const isAdmin = this.isAdmin();
     this.doctorService.doctorImg.next('');
     this.doctorService.firstName.next('');
     this.doctorService.lastName.next('');
@@ -140,6 +142,7 @@ export class AuthService {
     this.patientService.patientImg.next('');
     this.patientService.patientFirstName.next('');
     this.patientService.patientLastName.next('');
+    this.notificationService.countUnRead.next(0);
     this.userData.set(null);
     this.userId.set(null);
     localStorage.removeItem('user token');

@@ -1,6 +1,6 @@
 import { Injectable, WritableSignal, computed, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { INotification } from '../../interfaces/INotification/inotification';
 
@@ -11,8 +11,13 @@ export class NotificationService {
 
   constructor(private httpClient: HttpClient) {}
 
+  countUnRead:BehaviorSubject<number>=new BehaviorSubject(0);
+
   getAllNotifications(): Observable<INotification[]> {
     return this.httpClient.get<INotification[]>(`${environment.baseUrl}api/Notification`);
+  }
+  getUnReadNotifications(): Observable<any> {
+    return this.httpClient.get<INotification[]>(`${environment.baseUrl}api/Notification/NumberOfUnread`);
   }
 
 
@@ -21,5 +26,14 @@ export class NotificationService {
     return this.httpClient.post(`${environment.baseUrl}api/Notification/mark-as-read/${notificationId}`, {});
   }
 
+ getUnReadNotification(){
+      this.getUnReadNotifications().subscribe({
+        next:(res)=>{
+          console.log(res);
+          this.countUnRead.next(res);
 
+
+        }
+      })
+    }
 }
