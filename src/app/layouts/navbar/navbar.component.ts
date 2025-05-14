@@ -6,10 +6,11 @@ import { IDoctor } from '../../core/interfaces/idoctor/idoctor';
 import { PatientService } from '../../core/services/patient/patient.service';
 import { NotificationService } from '../../core/services/notification/notification.service';
 import { INotification } from '../../core/interfaces/INotification/inotification';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink,RouterLinkActive,RouterOutlet],
+  imports: [RouterLink,RouterLinkActive,RouterOutlet,AsyncPipe,NgIf],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
     // notificationsData: WritableSignal<INotification[] | null> = signal([]);
 
     count!:number;
+    readonly countUnRead$ = this.notificationService.countUnRead$;
 
     scroll:boolean=false;
 
@@ -43,10 +45,8 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void {
       if(this.authService.isLogin()){
+        this.notificationService.getUnReadNotification();
         this.fetchUserData();
-         this.count = this.notificationService.countUnRead.getValue(); // set initial value
-         console.log('count after login',this.count);
-
         this.notificationService.countUnRead.subscribe({
          next:(value)=>{
            this.count = value;
@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
   }
 });
 
-        this.notificationService.getUnReadNotification();
+
 
       }
       this.subscribeToDoctorData();

@@ -50,12 +50,16 @@
               <li class="fs-4 ms-3 position-relative">
                 <a routerLink="notification">
                   <i class="fa-solid fa-bell sec-color"></i>
-                  @if (count > 0) {
+                  <!-- @if (countUnRead$ | async as count) {
                     <span class="position-absolute translate-middle badge rounded-pill bg-danger">
                       {{ count }}
                     </span>
 
-                  }
+                  } -->
+                    <span *ngIf="countUnRead$ | async as count" class="position-absolute translate-middle badge rounded-pill bg-danger">
+  {{ count }}
+</span>
+
 
                 </a>
               </li>
