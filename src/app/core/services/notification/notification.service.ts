@@ -12,6 +12,7 @@ export class NotificationService {
   constructor(private httpClient: HttpClient) {}
 
   countUnRead:BehaviorSubject<number>=new BehaviorSubject(0);
+  readonly countUnRead$ = this.countUnRead.asObservable();
 
   getAllNotifications(): Observable<INotification[]> {
     return this.httpClient.get<INotification[]>(`${environment.baseUrl}api/Notification`);
@@ -26,14 +27,25 @@ export class NotificationService {
     return this.httpClient.post(`${environment.baseUrl}api/Notification/mark-as-read/${notificationId}`, {});
   }
 
- getUnReadNotification(){
-      this.getUnReadNotifications().subscribe({
-        next:(res)=>{
-          console.log(res);
-          this.countUnRead.next(res);
+//  getUnReadNotification(){
+//       this.getUnReadNotifications().subscribe({
+//         next:(res)=>{
+//           console.log(res);
+//           this.countUnRead.next(res);
 
 
-        }
-      })
+//         }
+//       })
+//     }
+getUnReadNotification() {
+  this.getUnReadNotifications().subscribe({
+    next: (res: number) => {
+      console.log('🔔 Unread count from API:', res);
+      this.countUnRead.next(res);
+    },
+    error: (err) => {
+      console.error('❌ Failed to fetch unread notifications', err);
     }
+  });
+}
 }
