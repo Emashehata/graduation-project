@@ -6,6 +6,7 @@ import { finalize } from 'rxjs';
 import { PatientService } from '../../../core/services/patient/patient.service';
 import { IPatient } from '../../../core/interfaces/IPatient/ipatient';
 import { RouterLink } from '@angular/router';
+import { PasswordService } from '../../../core/services/password/password.service';
 
 @Component({
   selector: 'app-patient-account',
@@ -17,13 +18,18 @@ export class PatientAccountComponent {
       private readonly patientService=inject(PatientService);
       private readonly formBuilder= inject(FormBuilder);
       private readonly toastrService = inject(ToastrService);
+      readonly passwordService=inject(PasswordService);
       patientData: WritableSignal<IPatient | null> = signal(null);
       selectedFile: File | null = null;
       isLoading: boolean = false;
+       showOldPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
 
       updatePatientForm!:FormGroup;
 
       ngOnInit(): void {
+        this.passwordService.initChangePasswordForm();
         this.getPatientAccount();
         this.updatePatientForm =this.formBuilder.group({
           FirstName:[''],

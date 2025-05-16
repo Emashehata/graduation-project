@@ -1,32 +1,44 @@
-<div class="container mt-5">
+ <div class="container mt-5">
   @if(nottificationEmpty){
     <div class="row">
       <div class="col-md-8 m-auto">
-        <img src="/Push notifications-rafiki.png" class="w-100" alt="">
+        <img src="/Push notifications-rafiki.png" class="w-100" alt="صورة إشعار">
       </div>
     </div>
   }
   @else {
     @for (notification of notificationsData(); track notification.id) {
-      <div class="card mb-3" [class.bg-light]="!notification.isRead">
+      <div
+        class="card mb-3 cursor-pointer shadow-sm border-0"
+        [class.bg-light]="!notification.isRead"
+        (click)="onNotificationClick(notification)"
+        data-bs-toggle="modal"
+        data-bs-target="#notificationModal"
+      >
         <div class="card-body">
-          <h5 class="card-title text-danger">{{ notification.title }}</h5>
-          <p class="card-text">{{ notification.body }}</p>
-
-          <!-- Checkbox for mark as read -->
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox"
-                   [checked]="notification.isRead"
-                   [disabled]="notification.isRead"
-                   id="flexCheck{{ notification.id }}"
-                   (change)="markAsRead(notification.id)">
-            <label class="form-check-label" for="flexCheck{{ notification.id }}">
-              {{ notification.isRead ? 'تم تعليم كمقروء' : 'تعليم كمقروء' }}
-            </label>
-          </div>
+          <h5 class="card-title text-primary">{{ notification.title }}</h5>
+          <p class="card-text text-muted">
+            {{ notification.body.length > 60 ? (notification.body | slice: 0: 60) + '...' : notification.body }}
+          </p>
         </div>
       </div>
     }
-
   }
+
+  <!-- Modal for displaying selected notification -->
+  <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 shadow">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="notificationModalLabel">
+            {{ selectedNotification?.title }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ selectedNotification?.body }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

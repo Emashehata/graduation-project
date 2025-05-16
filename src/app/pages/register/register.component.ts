@@ -38,7 +38,7 @@ export class RegisterComponent {
       PhoneNumber: [null, [Validators.required, Validators.pattern(/^(?:\+20|0)1[0-25]\d{8}$/)]],
       College: [null, [Validators.required]],
       NationalID: [null, [Validators.required,Validators.minLength(14)]],
-      ImageFile: [null, [Validators.required]],
+      ImageFile: [null],
     },
     {
       validators: [this.passwordMatchValidator]

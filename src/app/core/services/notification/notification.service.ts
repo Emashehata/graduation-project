@@ -17,6 +17,9 @@ export class NotificationService {
   getAllNotifications(): Observable<INotification[]> {
     return this.httpClient.get<INotification[]>(`${environment.baseUrl}api/Notification`);
   }
+  getSpecficNotifications(id:string): Observable<any> {
+    return this.httpClient.get(`${environment.baseUrl}api/Notification/${id}`);
+  }
   getUnReadNotifications(): Observable<any> {
     return this.httpClient.get<INotification[]>(`${environment.baseUrl}api/Notification/NumberOfUnread`);
   }
