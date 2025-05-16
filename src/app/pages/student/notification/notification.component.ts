@@ -56,6 +56,7 @@ export class NotificationComponent implements OnInit {
   }
 
   markAsRead(notificationId: number) {
+ 
     this.notificationService.markAsRead(notificationId).subscribe({
       next: (response) => {
         this.notificationService.countUnRead.next(response);
@@ -75,4 +76,6 @@ export class NotificationComponent implements OnInit {
       }
     });
   }
+ 
+ 
 }
