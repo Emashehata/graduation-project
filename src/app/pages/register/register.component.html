@@ -193,7 +193,6 @@
                 <div class="form-floating mb-3">
                   @let imageControl = registerForm.get('ImageFile');
                   <input
-                    required
                     type="file"
                     class="form-control"
                     [class.is-invalid]="
@@ -209,7 +208,7 @@
                   <div class="invalid-feedback">يرجى إدخال صورة</div>
                   }
                   <label for="imageFile" class="px-0 text-muted"
-                    >صورة الطالب<span class="text-danger">*</span></label
+                    >صورة الطالب</label
                   >
                 </div>
               </div>

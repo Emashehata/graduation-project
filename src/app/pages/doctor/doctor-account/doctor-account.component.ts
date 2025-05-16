@@ -8,6 +8,7 @@ import { finalize } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ClinicsService } from '../../../core/services/clinics/clinics.service';
+import { PasswordService } from '../../../core/services/password/password.service';
 
 @Component({
   selector: 'app-doctor-account',
@@ -21,13 +22,17 @@ export class DoctorAccountComponent {
     private readonly formBuilder= inject(FormBuilder);
     private readonly toastrService = inject(ToastrService);
     readonly clinicsService = inject(ClinicsService);
+    readonly passwordService=inject(PasswordService);
     doctorData: WritableSignal<IDoctor | null> = signal(null);
     selectedFile: File | null = null;
     isLoading: boolean = false;
-
+      showOldPassword = false;
+  showNewPassword = false;
+  showConfirmPassword = false;
      updateDoctorForm!:FormGroup;
 
     ngOnInit(): void {
+      this.passwordService.initChangePasswordForm();
       this.getDoctorsAccount();
       this.clinicsService.getClinicsData();
       this.updateDoctorForm =this.formBuilder.group({

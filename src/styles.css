@@ -41,11 +41,13 @@ a, a:hover, button {
 
 
 .form-control ,.form-select{
-  border: none !important;
-  border-bottom: 1px solid #ccc !important; /* Add bottom border */
-  border-radius: 0 !important; /* Remove border radius */
-  box-shadow: none !important; /* Remove focus shadow */
+  /* border: none !important; */
+  /* border-bottom: 1px solid #ccc !important; */
+  /* border-radius: 0 !important;   */
+  box-shadow: none !important;
+  /* padding-inline: 10px !important; */
 }
+
 
 
 button:disabled {

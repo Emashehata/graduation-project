@@ -34,7 +34,12 @@
 
               <li class="nav-item dropdown">
                 <a class="nav-link  main-color" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img [src]="'https://myclinicapp.runasp.net' + patientImg" class="profile-img rounded-circle" alt="">
+                  @if(patientImg){
+                    <img [src]="'https://myclinicapp.runasp.net' + patientImg" class="profile-img rounded-circle" alt="">
+                  }
+                  @else {
+                    <img src="/profile_img.png" alt="" class="profile-img rounded-circle">
+                  }
                   <span class="me-3 ms-2">{{ patientFirstName }} {{ patientLastName }}</span>
                 </a>
                 <ul class="dropdown-menu">
