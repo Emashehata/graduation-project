@@ -40,6 +40,9 @@ import { MedicalRecordComponent } from './pages/student/medical-record/medical-r
 import { FeedbackComponent } from './pages/student/feedback/feedback.component';
 import { FeddbacksComponent } from './pages/admin/feddbacks/feddbacks.component';
 import { NotificationComponent } from './pages/student/notification/notification.component';
+import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { DocAppointmentComponent } from './pages/admin/doc-appointment/doc-appointment.component';
+import { UpdateDoctorAppointmentComponent } from './pages/admin/update-doctor-appointment/update-doctor-appointment.component';
 
 export const routes: Routes = [
 
@@ -280,6 +283,18 @@ canActivate: [doctorGuard]
   path:'feedbacks',
   component:FeddbacksComponent,
   title:'feedbacks',
+  canActivate:[adminguardGuard]
+},
+{
+  path:'docAppoitment',
+  component:DocAppointmentComponent,
+  title:'مواعيد الاطباء',
+  canActivate:[adminguardGuard]
+},
+{
+  path:'update-appointment/:id',
+  component:UpdateDoctorAppointmentComponent,
+  title:'تعديل الميعاد',
   canActivate:[adminguardGuard]
 }
 

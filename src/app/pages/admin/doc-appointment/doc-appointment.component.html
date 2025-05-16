@@ -1,0 +1,73 @@
+<h1 class="main-color my-3 text-center">مواعيد  الاطباء </h1>
+
+<div class="container mt-5">
+  <div class="table-responsive custom-table">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>اسم العيادة</th>
+          <th>اسم الطبيب</th>
+          <th>اليوم</th>
+          <th>وقت البداية</th>
+          <th>وقت النهاية</th>
+          <th>المدة</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+      @if(appointments.length > 0) {
+
+        @for (appointment of appointments; track $index) {
+          @if (appointment) {
+            <tr>
+              <td>{{ appointment.id }}</td>
+              <td>{{ appointment.clinicName }}</td>
+              <td>{{ appointment.doctorName }}</td>
+              <td>{{ appointment.day }}</td>
+              <td>{{ formatTime(appointment.startTime) }}</td>
+              <td>{{ formatTime(appointment.endTime) }}</td>
+              <td>{{ appointment.duration }} دقيقة</td>
+              <td>
+              
+                <button class="btn btn-outline-success btn-sm shadow-sm"
+                [routerLink]="['/update-appointment', appointment.id]">
+                <i class="fa-regular fa-pen-to-square"></i>
+
+                </button>
+                <button class="btn btn-outline-danger btn-sm shadow-sm"
+                    (click)="openDeleteModal(appointment.id)">
+
+                <i class="fa-solid fa-trash-can fa-lg"></i>
+
+                </button>
+              </td>
+            </tr>
+          }
+        }}
+        @else {
+                          <tr>
+                              <td colspan="5" class="text-center text-muted py-3">
+                                  لا توجد مواعيد مسجلة
+                              </td>
+                          </tr>
+                      }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+@if (showDeleteModal) {
+  <div class="modal-overlay">
+    <div class="modal-box">
+      <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+      <p class="modal-text">هل أنت متأكد أنك تريد إلغاء الموعد؟</p>
+      <div class="modal-actions">
+        <button class="btn btn-danger modal-btn" (click)="confirmDelete()">إلغاء الموعد</button>
+        <button class="btn btn-outline-secondary modal-btn" (click)="cancelDelete()">لا أريد ذلك</button>
+      </div>
+    </div>
+  </div>
+}
