@@ -83,6 +83,12 @@
                   </div>
                 }
                 
+  @if (appointmentForm.get('duration')?.touched && appointmentForm.get('duration')?.errors?.['min']) {
+    <div class="text-danger mt-1">
+      يجب أن تكون مدة الكشف أكبر من 0
+    </div>
+  }
+                
               </div>
                 
               <div class="text-center mt-3 ">

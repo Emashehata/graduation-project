@@ -2,7 +2,7 @@
     <div class="container my-5  ">
     <div class="row d-flex justify-content-center align-items-center">
 
-        <div class="col-lg-6 col-md-8 col-sm-10 col-12 p-3 border border-2 rounded-2 main-body shadow shadow-lg ">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12 p-3 border border-2 rounded-2 main-body shadow-card ">
 
             <div class="mt-2 mb-4 text-center main-color">
                 <h3>
@@ -83,6 +83,12 @@
                     مدة الكشف مطلوبة
                   </div>
                 }
+                
+  @if (appointmentForm.get('duration')?.touched && appointmentForm.get('duration')?.errors?.['min']) {
+    <div class="text-danger mt-1">
+      يجب أن تكون مدة الكشف أكبر من 0
+    </div>
+  }
               </div>
                 
               <div class="text-center mt-3 ">
