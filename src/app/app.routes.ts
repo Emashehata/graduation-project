@@ -1,303 +1,60 @@
- import { Routes } from '@angular/router';
-import { HomeAdminComponent } from './pages/admin/home-admin/home-admin.component';
-import { ClinicAdminComponent } from './pages/admin/clinic-admin/clinic-admin.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { NewsAdminComponent } from './pages/admin/news/news-admin/news-admin.component';
-import { StudentsComponent } from './pages/admin/students/students.component';
-import { AddNewsComponent } from './pages/admin/news/add-news/add-news.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ClinicsComponent } from './pages/student/clinics-student/clinics.component';
-import { NewsComponent } from './pages/news/news.component';
-import { AppointmentsStudentComponent } from './pages/student/appointments-student/appointments-student.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { ContactUsComponent } from './pages/contact-us/contact-us.component';
-import { BookAppointmentComponent } from './pages/student/book-appointment/book-appointment.component';
-import { NewsDetailsComponent } from './pages/news-details/news-details.component';
-import { DoctorsComponent } from './pages/admin/doctors/doctors.component';
-import { ClinicAppointmentsComponent } from './pages/admin/clinic-appointments/clinic-appointments.component';
-import { AddDoctorComponent } from './pages/admin/add-doctor/add-doctor.component';
-import { AddClinicComponent } from './pages/admin/add-clinic/add-clinic.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { LoginComponent } from './pages/login/login.component';
+import { Routes } from '@angular/router';
 import { adminguardGuard } from './core/guards/admin/adminguard.guard';
 import { authGuard } from './core/guards/auth/auth.guard';
-import { DoctorAccountComponent } from './pages/doctor/doctor-account/doctor-account.component';
 import { userGuard } from './core/guards/user/user.guard';
 import { doctorGuard } from './core/guards/doctor/doctor.guard';
-import { PatientAccountComponent } from './pages/student/patient-account/patient-account.component';
-import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
-import { ClnicsDotorsComponent } from './pages/student/clnics-dotors/clnics-dotors.component';
-import { DoctorDetailsComponent } from './pages/student/doctor-details/doctor-details.component';
-import { AppointmentComponent } from './pages/doctor/appointment/appointment.component';
-import { CreateAppointmentComponent } from './pages/doctor/create-appointment/create-appointment.component';
-import { UpdateappointmentComponent } from './pages/doctor/updateappointment/updateappointment.component';
-import { BookingComponent } from './pages/student/booking/booking.component';
-import { DoctorBookingComponent } from './pages/doctor/doctor-booking/doctor-booking.component';
-import { ExaminationComponent } from './pages/doctor/examination/examination.component';
-import { AddExamintaionComponent } from './pages/doctor/add-examintaion/add-examintaion.component';
-import { UpdateExaminationComponent } from './pages/doctor/update-examination/update-examination.component';
-import { MedicalRecordComponent } from './pages/student/medical-record/medical-record.component';
-import { FeedbackComponent } from './pages/student/feedback/feedback.component';
-import { FeddbacksComponent } from './pages/admin/feddbacks/feddbacks.component';
-import { NotificationComponent } from './pages/student/notification/notification.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { DocAppointmentComponent } from './pages/admin/doc-appointment/doc-appointment.component';
-import { UpdateDoctorAppointmentComponent } from './pages/admin/update-doctor-appointment/update-doctor-appointment.component';
 
 export const routes: Routes = [
 
+  /********* Public *********/
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'الرئيسية' },
+  { path: 'clinics-student', loadComponent: () => import('./pages/student/clinics-student/clinics.component').then(m => m.ClinicsComponent), title: 'العيادات' },
+  { path: 'clinics-doctors/:id', loadComponent: () => import('./pages/student/clnics-dotors/clnics-dotors.component').then(m => m.ClnicsDotorsComponent), title: 'أطباء العيادة' },
+  { path: 'doctor-details/:id', loadComponent: () => import('./pages/student/doctor-details/doctor-details.component').then(m => m.DoctorDetailsComponent), title: 'تفاصيل الطبيب' },
+  { path: 'news', loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent), title: 'الاخبار' },
+  { path: 'news-details/:id', loadComponent: () => import('./pages/news-details/news-details.component').then(m => m.NewsDetailsComponent), title: 'تفاصيل الخبر' },
+  { path: 'about us', loadComponent: () => import('./pages/about-us/about-us.component').then(m => m.AboutUsComponent), title: 'من نحن' },
+  { path: 'contact us', loadComponent: () => import('./pages/contact-us/contact-us.component').then(m => m.ContactUsComponent), title: 'تواصل معنا' },
+  { path: 'chat bot', loadComponent: () => import('./pages/chatbot/chatbot.component').then(m => m.ChatbotComponent), title: 'شات بوت' },
+  { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent), title: 'إنشاء حساب', canActivate: [authGuard] },
+  { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent), title: 'تسجيل الدخول', canActivate: [authGuard] },
+  { path: 'forgetPassword', loadComponent: () => import('./pages/forget-password/forget-password.component').then(m => m.ForgetPasswordComponent), title: 'تعديل كلمة السر', canActivate: [authGuard] },
 
+  /********* Student *********/
+  { path: 'patientAccount', loadComponent: () => import('./pages/student/patient-account/patient-account.component').then(m => m.PatientAccountComponent), title: 'حسابي', canActivate: [userGuard] },
+  { path: 'appointment-student', loadComponent: () => import('./pages/student/appointments-student/appointments-student.component').then(m => m.AppointmentsStudentComponent), title: 'المواعيد', canActivate: [userGuard] },
+  { path: 'book appointment', loadComponent: () => import('./pages/student/book-appointment/book-appointment.component').then(m => m.BookAppointmentComponent), title: 'إنشاء ميعاد', canActivate: [userGuard] },
+  { path: 'booking/:id', loadComponent: () => import('./pages/student/booking/booking.component').then(m => m.BookingComponent), title: 'حجز ميعاد', canActivate: [userGuard] },
+  { path: 'medical-record', loadComponent: () => import('./pages/student/medical-record/medical-record.component').then(m => m.MedicalRecordComponent), title: 'السجل الطبي', canActivate: [userGuard] },
+  { path: 'feedback', loadComponent: () => import('./pages/student/feedback/feedback.component').then(m => m.FeedbackComponent), title: 'الاستبيان', canActivate: [userGuard] },
+  { path: 'notification', loadComponent: () => import('./pages/student/notification/notification.component').then(m => m.NotificationComponent), title: 'الإشعارات', canActivate: [userGuard] },
 
+  /********* Doctor *********/
+  { path: 'doctorAccount', loadComponent: () => import('./pages/doctor/doctor-account/doctor-account.component').then(m => m.DoctorAccountComponent), title: 'حسابي', canActivate: [doctorGuard] },
+  { path: 'appointment', loadComponent: () => import('./pages/doctor/appointment/appointment.component').then(m => m.AppointmentComponent), title: 'المواعيد المسجلة', canActivate: [doctorGuard] },
+  { path: 'createAppointment', loadComponent: () => import('./pages/doctor/create-appointment/create-appointment.component').then(m => m.CreateAppointmentComponent), title: 'إنشاء ميعاد جديد', canActivate: [doctorGuard] },
+  { path: 'updateAppointment/:id', loadComponent: () => import('./pages/doctor/updateappointment/updateappointment.component').then(m => m.UpdateappointmentComponent), title: 'تعديل الميعاد', canActivate: [doctorGuard] },
+  { path: 'doctorBooking', loadComponent: () => import('./pages/doctor/doctor-booking/doctor-booking.component').then(m => m.DoctorBookingComponent), title: 'قائمة المواعيد', canActivate: [doctorGuard] },
+  { path: 'examination/:patientId/:bookingId', loadComponent: () => import('./pages/doctor/examination/examination.component').then(m => m.ExaminationComponent), title: 'السجل الطبي', canActivate: [doctorGuard] },
+  { path: 'add-examination/:patientId/:bookingId', loadComponent: () => import('./pages/doctor/add-examintaion/add-examintaion.component').then(m => m.AddExamintaionComponent), title: 'اضافة السجل الطبي', canActivate: [doctorGuard] },
+  { path: 'edit-examination/:patientId/:bookingId/:examinationId', loadComponent: () => import('./pages/doctor/update-examination/update-examination.component').then(m => m.UpdateExaminationComponent), title: 'تعديل السجل الطبي', canActivate: [doctorGuard] },
 
-/****************all if any one not logged in***************** */
+  /********* Admin *********/
+  { path: 'homeAdmin', loadComponent: () => import('./pages/admin/home-admin/home-admin.component').then(m => m.HomeAdminComponent), title: 'home', canActivate: [adminguardGuard] },
+  { path: 'clinic-admin', loadComponent: () => import('./pages/admin/clinic-admin/clinic-admin.component').then(m => m.ClinicAdminComponent), title: 'clinics', canActivate: [adminguardGuard] },
+  { path: 'add-clinic', loadComponent: () => import('./pages/admin/add-clinic/add-clinic.component').then(m => m.AddClinicComponent), title: 'add-clinic', canActivate: [adminguardGuard] },
+  { path: 'dashboard', loadComponent: () => import('./pages/admin/dashboard/dashboard.component').then(m => m.DashboardComponent), title: 'dashboard', canActivate: [adminguardGuard] },
+  { path: 'news-admin', loadComponent: () => import('./pages/admin/news/news-admin/news-admin.component').then(m => m.NewsAdminComponent), title: 'news', canActivate: [adminguardGuard] },
+  { path: 'add-news', loadComponent: () => import('./pages/admin/news/add-news/add-news.component').then(m => m.AddNewsComponent), title: 'add news', canActivate: [adminguardGuard] },
+  { path: 'students', loadComponent: () => import('./pages/admin/students/students.component').then(m => m.StudentsComponent), title: 'students', canActivate: [adminguardGuard] },
+  { path: 'doctors', loadComponent: () => import('./pages/admin/doctors/doctors.component').then(m => m.DoctorsComponent), title: 'doctors', canActivate: [adminguardGuard] },
+  { path: 'add-doctor', loadComponent: () => import('./pages/admin/add-doctor/add-doctor.component').then(m => m.AddDoctorComponent), title: 'add-doctor', canActivate: [adminguardGuard] },
+  { path: 'clinic-appointments', loadComponent: () => import('./pages/admin/clinic-appointments/clinic-appointments.component').then(m => m.ClinicAppointmentsComponent), title: 'clinic-appointments', canActivate: [adminguardGuard] },
+  { path: 'feedbacks', loadComponent: () => import('./pages/admin/feddbacks/feddbacks.component').then(m => m.FeddbacksComponent), title: 'feedbacks', canActivate: [adminguardGuard] },
+  { path: 'docAppoitment', loadComponent: () => import('./pages/admin/doc-appointment/doc-appointment.component').then(m => m.DocAppointmentComponent), title: 'مواعيد الاطباء', canActivate: [adminguardGuard] },
+  { path: 'update-appointment/:id', loadComponent: () => import('./pages/admin/update-doctor-appointment/update-doctor-appointment.component').then(m => m.UpdateDoctorAppointmentComponent), title: 'تعديل الميعاد', canActivate: [adminguardGuard] },
 
-// {
-//   path:'',
-//   redirectTo:'home',
-//   pathMatch:'full'
-// },
-{
-    path:'home',
-    component:HomeComponent,
-    title:'الرئيسية'
-},
-{
-    path:'clinics-student',
-    component:ClinicsComponent,
-    title:'العيادات'
-},
-{
-    path:'clinics-doctors/:id',
-    component:ClnicsDotorsComponent,
-    title:'أطباء العيادة'
-},
-{
-    path:'doctor-details/:id',
-    component:DoctorDetailsComponent,
-    title:'تفاصيل الطبيب'
-},
-{
-    path:'news',
-    component:NewsComponent,
-    title:'الاخبار'
-},
-{
-  path:'news-details/:id',
-  component:NewsDetailsComponent,
-  title:'تفاصيل الخبر'
-},
-{
-    path:'about us',
-    component:AboutUsComponent,
-    title:'من نحن'
-},
-{
-    path:'contact us',
-    component:ContactUsComponent,
-    title:'تواصل معنا'
-},
-{
-  path:'register',
-  component:RegisterComponent,
-  title:'إنشاء حساب',
-  canActivate: [authGuard]
-},
-{
-  path:'login',
-  component:LoginComponent,
-  title:'تسجيل الدخول',
-  canActivate: [authGuard]
-},
-{
-  path:'forgetPassword',
-  component:ForgetPasswordComponent,
-  title:'تعديل كلمة السر',
-  canActivate: [authGuard]
-},
-
-// ******************if user logged in**********************
-
-{
-    path:'patientAccount',
-    component:PatientAccountComponent,
-    title:'حسابي',
-    canActivate: [userGuard]
-},
-{
-    path:'appointment-student',
-    component:AppointmentsStudentComponent,
-    title:'المواعيد',
-    canActivate: [userGuard]
-},
-{
-    path:'book appointment',
-    component:BookAppointmentComponent,
-    title:'إنشاء ميعاد',
-    canActivate: [userGuard]
-},
-{
-  path:'booking/:id',
-  component:BookingComponent,
-  title:'حجز ميعاد',
-  canActivate: [userGuard]
-},
-{
-path:'medical-record',
-component:MedicalRecordComponent,
-title:'السجل الطبي',
-canActivate: [userGuard]
-
-},
-{
-  path:'feedback',
-  component:FeedbackComponent,
-  title:'الاستبيان',
-  canActivate:[userGuard]
-},
-{
-  path:'notification',
-  component:NotificationComponent,
-  title:'الإشعارات',
-  canActivate:[userGuard]
-},
-
-/***********************if doctor logged in****************** */
-{
-  path:'doctorAccount',
-  component:DoctorAccountComponent,
-  title:'حسابي',
-  canActivate: [doctorGuard]
-},
-{
-path:'appointment',
-component:AppointmentComponent,
-title:'المواعيد المسجلة',
-canActivate: [doctorGuard]
-
-},
-{
-  path:'createAppointment',
-  component:CreateAppointmentComponent,
-  title:'إنشاء ميعاد جديد',
-  canActivate: [doctorGuard]
-
-},
-{
- path:'doctorBooking',
- component:DoctorBookingComponent,
- title:'قائمة المواعيد',
- canActivate: [doctorGuard]
-},
-{
-  path:'updateAppointment/:id',
-  component:UpdateappointmentComponent,
-  title:'تعديل الميعاد',
-  canActivate: [doctorGuard]
-
-},
-{
-  path:'examination/:patientId/:bookingId',
-  component:ExaminationComponent,
-  title:'السجل الطبي',
-  canActivate: [doctorGuard]
-},
-{
-  path:'add-examination/:patientId/:bookingId',
-  component:AddExamintaionComponent,
-  title:'اضافة السجل الطبي',
-  canActivate: [doctorGuard]
-},
-{
-  path:'edit-examination/:patientId/:bookingId/:examinationId',
-  component:UpdateExaminationComponent,
-  title:'تعديل السجل الطبي',
-  canActivate: [doctorGuard]
-},
-// ******************************admin pages***************************/
-
-
-{
-  path:'homeAdmin',
-  component:HomeAdminComponent,
-  title:'home',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'clinic-admin',
-  component: ClinicAdminComponent,
-  title:'clinics',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'add-clinic',
-  component: AddClinicComponent,
-  title:'add-clinic',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'dashboard',
-  component:DashboardComponent,
-  title:'dashboard',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'news-admin',
-  component:NewsAdminComponent,
-  title:'news',
-  canActivate: [adminguardGuard]
-},
-
-{
-      path:'add-news',
-      component:AddNewsComponent,
-      title:'add news',
-      canActivate: [adminguardGuard]
-},
-
-{
-  path:'students',
-  component:StudentsComponent,
-  title:'students',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'doctors',
-  component:DoctorsComponent,
-  title:'doctors',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'add-doctor',
-  component:AddDoctorComponent,
-  title:'add-doctor',
-  canActivate: [adminguardGuard]
-},
-{
-  path:'clinic-appointments',
-  component:ClinicAppointmentsComponent,
-  title:'clinic-appointments',
-  canActivate: [adminguardGuard]
-
-},
-{
-  path:'feedbacks',
-  component:FeddbacksComponent,
-  title:'feedbacks',
-  canActivate:[adminguardGuard]
-},
-{
-  path:'docAppoitment',
-  component:DocAppointmentComponent,
-  title:'مواعيد الاطباء',
-  canActivate:[adminguardGuard]
-},
-{
-  path:'update-appointment/:id',
-  component:UpdateDoctorAppointmentComponent,
-  title:'تعديل الميعاد',
-  canActivate:[adminguardGuard]
-}
-
-
-
+  /********* Not Found *********/
+  { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
 ];

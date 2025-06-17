@@ -5,13 +5,21 @@ import { finalize } from 'rxjs';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   const ngxSpinnerService = inject(NgxSpinnerService);
-  ngxSpinnerService.show();
+
+  // ❌ استثناء روابط الشات وتحليل الصور من ظهور الـ Spinner
+  const isExcluded = req.url.includes('51.21.124.246/chat') || req.url.includes('51.21.124.246/analyze');
+
+  if (!isExcluded) {
+    ngxSpinnerService.show();
+  }
 
   return next(req).pipe(
     finalize(() => {
-      setTimeout(() => {
-        ngxSpinnerService.hide();
-      }, 700); // Spinner remains visible for at least 500ms before hiding
+      if (!isExcluded) {
+        setTimeout(() => {
+          ngxSpinnerService.hide();
+        }, 700);
+      }
     })
   );
 };
