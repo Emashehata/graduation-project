@@ -1,0 +1,33 @@
+<div class="chat-container mt-5 d-flex flex-column p-3 border rounded shadow bg-white" style="height: 90vh; max-width: 800px; margin: auto;">
+  <!-- سجل المحادثات -->
+  <div class="chat-box flex-grow-1 overflow-auto mb-3" style="max-height: 70vh;">
+    <div *ngFor="let msg of chatHistory">
+      <div [ngClass]="{'text-end': msg.sender === 'user', 'text-start': msg.sender === 'bot'}" class="mb-3">
+        <div
+          class="d-inline-block p-2 rounded"
+          [ngStyle]="{
+            'background-color': msg.sender === 'user' ? '#DCF8C6' : '#F1F0F0',
+            'max-width': '70%',
+            'word-wrap': 'break-word',
+            'white-space': 'pre-wrap'
+          }"
+        >
+          <img *ngIf="msg.imageUrl" [src]="msg.imageUrl" class="img-fluid rounded mb-2" style="max-height: 200px;" />
+          <div *ngIf="msg.text" [innerHTML]="msg.text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- إدخال الرسائل -->
+  <div class="chat-input d-flex align-items-center gap-2">
+    <input [(ngModel)]="message" (keydown.enter)="sendChat()" class="form-control" placeholder="اكتب رسالتك..." />
+    <input type="file" (change)="onImageSelected($event)" class="form-control-file d-none" #fileInput />
+    <button class="btn btn-outline-secondary" (click)="fileInput.click()">
+      <i class="fa-solid fa-image"></i>
+    </button>
+    <button class="btn btn-primary" (click)="sendChat()">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </div>
+</div>
