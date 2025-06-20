@@ -9,9 +9,20 @@
           <a  class="bg-sec text-white border-0 px-3 py-2 rounded-2 ms-auto" routerLink="/add-doctor">إضافة  طبيب</a>
         </div>
         <div class="card-body">
+            @if (doctorsData().length === 0) {
+               <!-- لا يوجد أطباء -->
+                <div class="row">
+                  <div class="col-md-4 m-auto">
+                    <div class="text-center my-5 w-100">
+                    <img src="/Empty.gif" alt="لا يوجد بيانات" class="img-fluid w-100 mb-3" />
+                    <p class="fw-semibold text-muted fs-5">لا يوجد أطباء لعرضهم حاليًا</p>
+                    </div>
+                  </div>
+                </div>
 
-          <!-- Table starts -->
-          <div class="table-responsive">
+    }
+            @else {
+                  <div class="table-responsive">
             <div id="basicExample_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="row align-items-center">
 
@@ -106,6 +117,8 @@
               </div>
             </div>
           </div>
+            }
+
 
           <!-- Table ends -->
 

@@ -27,11 +27,21 @@ export class NewsAdminComponent implements OnInit {
   selectedFiles: { [id: string]: File | null } = {};
   isLoading: boolean = false;
   updateNewsForm!:FormGroup;
+    ngOnInit(): void {
+    this.getNewsData();
+    this.updateNewsForm = this.formBuilder.group({
+                        title:[null],
+                        content:[null],
+                        image:[null],
+              })
+  }
 
   getNewsData(): void {
     this.newsService.getAllNews().subscribe({
       next: (res) => {
         this.news = res;
+        console.log(res);
+
         this.updateDisplayedNews(); // Update displayed news after fetching
       },
       error: (err) => {
@@ -53,36 +63,19 @@ export class NewsAdminComponent implements OnInit {
     this.updateDisplayedNews();
   }
 
-  setNewsIdForDeletion(id: string) {
-    this.selectedNewsId = id;
+   deleteSpecficNews(id:string):void{
+    this.newsService.deleteSpecficNews(id).subscribe({
+      next:(res)=>{
+        console.log(res);
+
+          this.toastrService.success('تم حذف الخبر بنجاح.');
+          this.getNewsData();
+
+
+      }
+    })
   }
 
-  deleteNews(): void {
-    if (this.selectedNewsId !== null) {
-      this.newsService.deleteSpecficNews(this.selectedNewsId).subscribe({
-        next: () => {
-          // Remove deleted item from the list
-          this.news = this.news.filter(newsItem => newsItem.id !== this.selectedNewsId);
-          this.selectedNewsId = null;
-          this.updateDisplayedNews();
-        },
-        error: (err) => {
-          console.error('Error deleting news:', err);
-        },
-      });
-    }
-  }
-
-
-
-  ngOnInit(): void {
-    this.getNewsData();
-    this.updateNewsForm = this.formBuilder.group({
-                        title:[null],
-                        content:[null],
-                        image:[null],
-              })
-  }
 
   formatDateArabic(dateString: string): string {
     const date = new Date(dateString);

@@ -28,6 +28,8 @@ export class ClinicAdminComponent {
   updateClnicForm!:FormGroup;
 
   ngOnInit(): void {
+    console.log(this.clinicsService.clinicData());
+
     this.clinicsService.getClinicsData();
       this.updateClnicForm = this.formBuilder.group({
                           name:[null],
@@ -44,6 +46,9 @@ export class ClinicAdminComponent {
           this.clinicsService.getClinicsData();
           this.toastrService.success('تم حذف العيادة بنجاح')
 
+        }
+        else{
+          this.toastrService.error(res.message)
         }
 
       }

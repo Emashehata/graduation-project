@@ -41,6 +41,17 @@
 
               <div class="row">
                 <div class="col-sm-12">
+                  @if (clinicsService.clinicData().length === 0) {
+                        <div class="row">
+                          <div class="col-md-4 m-auto">
+                             <div class="text-center my-5">
+                                <img src="/Empty.gif" alt="لا توجد عيادات" class="w-100 img-fluid mb-3" />
+                                <p class="fw-semibold text-muted fs-5">لا توجد عيادات لعرضها حاليًا</p>
+                              </div>
+                          </div>
+                        </div>
+                      }
+                   @else{
                   <table
                     id="basicExample"
                     class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden"
@@ -262,6 +273,7 @@
                       }
                     </tbody>
                   </table>
+                }
                 </div>
               </div>
             </div>
