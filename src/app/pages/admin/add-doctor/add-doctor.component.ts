@@ -32,16 +32,16 @@ export class AddDoctorComponent {
 
       ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
-          FirstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(8)]],
-          LastName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(8)]],
+          FirstName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
+          LastName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
           Email: [null, [Validators.required, Validators.email]],
           Password: [null, [Validators.required,Validators.minLength(10),
             Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).*$/)]],
           ConfirmPassword: [null, [Validators.required]],
           PhoneNumber: [null, [Validators.required, Validators.pattern(/^(?:\+20|0)1[0-25]\d{8}$/)]],
           College: [null, [Validators.required]],
-          NationalID: [null, [Validators.required,Validators.minLength(14)]],
-          ImageFile: [null, [Validators.required]],
+          NationalID: [null, [Validators.required,Validators.pattern(/^\d{14}$/)]],
+          ImageFile: [null],
           Specialty:[null,[Validators.required,Validators.minLength(10)]],
           Description:[null,[Validators.required,Validators.minLength(10)]],
           ClinicId:[null,[Validators.required]]

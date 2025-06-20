@@ -19,7 +19,23 @@
 
 </div>
 
-<section class="my-5">
+@if(doctorData().length===0){
+        <section class="my-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 m-auto">
+        <div class="text-center my-3 w-100">
+          <img src="/Empty.gif" alt="لا يوجد بيانات"
+            class="img-fluid w-100 mb-3"   />
+          <p class="fw-semibold text-muted fs-5">لا يوجد أطباء لعرضهم حاليًا</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}
+@else {
+  <section class="my-5">
   <div class="container">
     <div class="doctor-field">
       <div class="row gy-4">
@@ -43,10 +59,10 @@
                 <p class="sec-color mb-0 "> د/ <span class="fs-5"> {{doctor.firstName}} {{doctor.lastName}} </span></p>
                 <p class="para-color"> {{doctor.specialty}} </p>
                 <p><i class="fa-solid fa-envelope sec-color me-2"></i> {{ doctor.email }}</p>
-                <p><i class="fa-solid fa-phone sec-color me-2"></i> {{ doctor.phoneNumber }}</p>
+                <!-- <p><i class="fa-solid fa-phone sec-color me-2"></i> {{ doctor.phoneNumber }}</p> -->
               </div>
 
-             
+
 
             </div>
           </div>
@@ -56,3 +72,5 @@
     </div>
   </div>
 </section>
+}
+

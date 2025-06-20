@@ -25,49 +25,76 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-              <table id="basicExample" class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden" aria-describedby="basicExample_info">
-              <thead class="table-primary text-white">
-                <tr>
-                  <th class="text-center w-10">#</th>
-                  <th class="text-center w-25">عنوان الخبر</th>
-                  <th class="text-center w-25">وصف الخبر</th>
-                  <th class="text-center w-25">تاريخ الخبر</th>
-                  <th class="text-center w-25">صورة الخبر</th>
-                  <th class="text-center w-25">الإجراءات</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                @for (newsItem of displayedNews; track newsItem.id) {
-                  <tr>
-                    <td class="text-center">{{ newsItem.id }}</td>
-                    <td class="text-center">{{ newsItem.title }}</td>
-                    <td class="text-center">{{ newsItem.content.split(' ').slice(0, 4).join(' ') }}...</td>
-                    <td class="text-center">{{ formatDateArabic(newsItem.createdAt) }}</td>
-                    <td>
-                      <img [src]="'https://myclinicapp.runasp.net/' + newsItem.image" class="clinic-img img-shadow rounded-1 " [alt]="newsItem.title">
-                    </td>
-                    <td>
-                      <div class="d-inline-flex gap-1">
-                        <button class="btn btn-outline-success btn-sm"
-                                (click)="patchValue(newsItem)"
-                                data-bs-toggle="modal"
-                                [attr.data-bs-target]="'#updateRow' + newsItem.id">
-                          <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button class="btn btn-outline-danger btn-sm"
-                                (click)="setNewsIdForDeletion(newsItem.id)"
-                                data-bs-toggle="modal"
-                                data-bs-target="#delRow">
-                          <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        <a [routerLink]="['/news-details', newsItem.id]" class="btn btn-outline-info btn-sm">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <div
+                <!-- شرط إذا لا يوجد بيانات -->
+@if (displayedNews.length === 0) {
+  <div class="text-center my-5">
+    <img src="/Empty.gif" alt="لا توجد أخبار" class="mb-3 img-fluid" style="max-width: 400px;">
+    <p class="fw-semibold text-muted fs-5">لا توجد أخبار لعرضها حاليًا</p>
+  </div>
+}
+@else {
+  <table id="basicExample" class="table mt-5 table-hover table-striped align-middle text-center shadow-sm rounded-3 overflow-hidden" aria-describedby="basicExample_info">
+    <thead class="table-primary text-white">
+      <tr>
+        <th class="text-center w-10">#</th>
+        <th class="text-center w-25">عنوان الخبر</th>
+        <th class="text-center w-25">وصف الخبر</th>
+        <th class="text-center w-25">تاريخ الخبر</th>
+        <th class="text-center w-25">صورة الخبر</th>
+        <th class="text-center w-25">الإجراءات</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (newsItem of displayedNews; track newsItem.id) {
+        <tr>
+          <td class="text-center">{{ newsItem.id }}</td>
+          <td class="text-center">{{ newsItem.title }}</td>
+          <td class="text-center">{{ newsItem.content.split(' ').slice(0, 4).join(' ') }}...</td>
+          <td class="text-center">{{ formatDateArabic(newsItem.createdAt) }}</td>
+          <td>
+            <img [src]="'https://myclinicapp.runasp.net/' + newsItem.image" class="clinic-img img-shadow rounded-1" [alt]="newsItem.title">
+          </td>
+          <td>
+            <div class="d-inline-flex gap-1">
+              <button class="btn btn-outline-success btn-sm"
+                      (click)="patchValue(newsItem)"
+                      data-bs-toggle="modal"
+                      [attr.data-bs-target]="'#updateRow' + newsItem.id">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </button>
+              <button class="btn btn-outline-danger btn-sm"
+                      data-bs-toggle="modal"
+                      [attr.data-bs-target]="'#delRow' + newsItem.id">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+              <a [routerLink]="['/news-details', newsItem.id]" class="btn btn-outline-info btn-sm">
+                <i class="fa-regular fa-eye"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        <!-- Modal Delete Row -->
+<div class="modal fade "
+     [id]="'delRow' + newsItem.id"
+     tabindex="-1"
+     [attr.aria-labelledby]="'delRowLabel' + newsItem.id"
+     aria-hidden="true">
+  <div class="modal-dialog modal-sm bg-transparent">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" [id]="'delRowLabel' + newsItem.id">تأكيد الحذف</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">هل أنت متأكد أنك تريد حذف هذا الخبر؟</div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteSpecficNews(newsItem.id)">حذف</button>
+      </div>
+    </div>
+  </div>
+</div>
+         <!-- update news -->
+              <div
                   class="modal fade"
                   [id]="'updateRow' + newsItem.id"
                   tabindex="-1"
@@ -157,9 +184,12 @@
                     </div>
                   </div>
                 </div>
-                }
-              </tbody>
-            </table>
+          <!-- end update news -->
+      }
+    </tbody>
+  </table>
+}
+
           </div>
         </div>
 
@@ -167,22 +197,7 @@
     </div>
           <!-- Table ends -->
 
-          <!-- Modal Delete Row -->
-          <div class="modal fade" id="delRow" tabindex="-1" aria-labelledby="delRowLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="delRowLabel">تأكيد الحذف</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">هل أنت متأكد أنك تريد حذف هذا الخبر؟</div>
-                <div class="modal-footer">
-                  <button class="btn btn-outline-secondary" data-bs-dismiss="modal">إلغاء</button>
-                  <button class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteNews()">حذف</button>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
         </div>
 

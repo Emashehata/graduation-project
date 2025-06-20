@@ -30,7 +30,7 @@
                   />
                   @if (firstNameControl?.invalid && firstNameControl?.touched) {
                   <div class="invalid-feedback">
-                    يجب أن يكون اسم الطالب بين 2 إلى 8 أحرف.
+                    يجب أن يكون اسم الطالب بين 2 إلى 20 أحرف.
                   </div>
                   }
                   <label for="firstName" class="px-0 text-muted"
@@ -59,7 +59,7 @@
                   />
                   @if (lastNameControl?.invalid && lastNameControl?.touched) {
                   <div class="invalid-feedback">
-                    يجب أن يكون لقب العائلة بين 2 إلى 8 أحرف.
+                    يجب أن يكون لقب العائلة بين 2 إلى 20 أحرف.
                   </div>
                   }
                   <label for="lastName" class="px-0 text-muted"
@@ -131,7 +131,6 @@
                   @let nationalIDControl = registerForm.get('NationalID');
                   <input
                     required
-                    type="text"
                     class="form-control"
                     [class.is-invalid]="
                       nationalIDControl?.invalid && nationalIDControl?.touched
