@@ -56,7 +56,7 @@ Built with **Angular 19**, it supports **role-based access control** for:
 
 ### 👨‍🎓 **Login as Student**
 You can login using the following link:
-[Login as Student](https://graduation-project-sigma-nine.vercel.app/#/login)
+[Login as Student](https://graduation-project-lime-seven.vercel.app/#/login)
 
 > You can register a new student or use a test account.
 
