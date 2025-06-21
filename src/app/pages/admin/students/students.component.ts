@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart ,registerables } from 'chart.js';
 import { IAdminPatients } from '../../../core/interfaces/IAdminPatients/iadmin-patients';
 import { AdminPatientsService } from '../../../core/services/admin-pateints/admin-patients.service';
-
+Chart.register(...registerables);
 @Component({
   selector: 'app-students',
   standalone: true,

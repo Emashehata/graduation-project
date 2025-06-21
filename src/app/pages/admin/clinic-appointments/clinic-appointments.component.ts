@@ -1,7 +1,30 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { AdminClinicsService } from '../../../core/services/admin-clinics/admin-clinics.service';
 import { IAdminBooking } from '../../../core/interfaces/IAdminBooking/iadmin-booking';
-import { Chart } from 'chart.js';
+// import { Chart } from 'chart.js';
+import {
+  Chart,
+  DoughnutController,
+  ArcElement,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
+Chart.register(
+  DoughnutController,
+  ArcElement,
+  BarController,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 @Component({
   selector: 'app-clinic-appointments',
