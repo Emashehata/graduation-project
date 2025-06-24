@@ -1,32 +1,27 @@
 <div class="Top overlay">
   <div class="container">
-
-      <div class="inner text-center">
-
-          <div class="row">
-              <div class="col-12">
-                  <h2>أطباؤنا</h2>
-                  <ul class="list ">
-                      <li><a routerLink="/home">الرئيسية</a></li>
-                      <li class="ms-2 me-2"> <i class="fa-solid fa-angle-left"></i> </li>
-                      <li class="active">أطباؤنا</li>
-                  </ul>
-              </div>
-          </div>
-
+    <div class="inner text-center">
+      <div class="row">
+        <div class="col-12">
+          <h2>أطباؤنا</h2>
+          <ul class="list">
+            <li><a routerLink="/home">الرئيسية</a></li>
+            <li class="ms-2 me-2"><i class="fa-solid fa-angle-left"></i></li>
+            <li class="active">أطباؤنا</li>
+          </ul>
+        </div>
       </div>
+    </div>
   </div>
-
 </div>
 
 @if(doctorData().length===0){
-        <section class="my-5">
+<section class="my-5">
   <div class="container">
     <div class="row">
       <div class="col-md-4 m-auto">
         <div class="text-center my-3 w-100">
-          <img src="/Empty.gif" alt="لا يوجد بيانات"
-            class="img-fluid w-100 mb-3"   />
+          <img src="/Empty.gif" alt="لا يوجد بيانات" class="img-fluid w-100 mb-3" />
           <p class="fw-semibold text-muted fs-5">لا يوجد أطباء لعرضهم حاليًا</p>
         </div>
       </div>
@@ -35,42 +30,43 @@
 </section>
 }
 @else {
-  <section class="my-5">
+<section class="my-5">
   <div class="container">
     <div class="doctor-field">
       <div class="row gy-4">
         @for (doctor of doctorData(); track doctor.id) {
-          <div class="col-md-6">
-            <div class="card d-flex flex-row align-items-center p-3 shadow-card">
-              <!-- Image Section -->
-              <div class="position-relative">
-                <img [src]="'https://myclinicapp.runasp.net'+doctor.imageUrl"
-                     class="card-img-left object-fit-cover rounded-2"
-                     [alt]="doctor.firstName"
-                     style="width: 150px; height: 150px;">
-                <div class="layer position-absolute bottom-0 start-0 end-0 top-0 rounded-2 d-flex justify-content-center align-items-center">
-                  <button  [routerLink]="['/booking',doctor.id] "
-                          class="my-3 bg-white sec-color border-0 px-3 py-2 rounded-2"> احجز ميعاد</button>
-                </div>
+        <div class="col-md-6">
+          <div class="card d-flex flex-column flex-md-row align-items-center p-3 shadow-card">
+            <!-- Image Section -->
+            <div class="position-relative mb-3 mb-md-0">
+              <img [src]="'https://myclinicapp.runasp.net' + doctor.imageUrl"
+                   class="card-img-left object-fit-cover rounded-2"
+                   [alt]="doctor.firstName"
+                   style="width: 150px; height: 150px;">
+              <div class="layer position-absolute bottom-0 start-0 end-0 top-0 rounded-2 d-flex justify-content-center align-items-center">
+                <button [routerLink]="['/booking', doctor.id]"
+                        class="my-3 bg-white sec-color border-0 px-3 py-2 rounded-2">
+                  احجز ميعاد
+                </button>
               </div>
+            </div>
 
-              <!-- Text Section -->
-              <div class="ms-3">
-                <p class="sec-color mb-0 "> د/ <span class="fs-5"> {{doctor.firstName}} {{doctor.lastName}} </span></p>
-                <p class="para-color"> {{doctor.specialty}} </p>
-                <p><i class="fa-solid fa-envelope sec-color me-2"></i> {{ doctor.email }}</p>
-                <!-- <p><i class="fa-solid fa-phone sec-color me-2"></i> {{ doctor.phoneNumber }}</p> -->
-              </div>
-
-
-
+            <!-- Text Section -->
+            <div class="ms-md-3 text-center text-md-start w-100">
+              <p class="sec-color mb-0">
+                د/ <span class="fs-5">{{ doctor.firstName }} {{ doctor.lastName }}</span>
+              </p>
+              <p class="para-color">{{ doctor.specialty }}</p>
+              <p class="text-break" style="word-break: break-word;">
+                <i class="fa-solid fa-envelope sec-color me-2"></i> {{ doctor.email }}
+              </p>
+              <!-- <p><i class="fa-solid fa-phone sec-color me-2"></i> {{ doctor.phoneNumber }}</p> -->
             </div>
           </div>
-
+        </div>
         }
       </div>
     </div>
   </div>
 </section>
 }
-
