@@ -1,59 +1,88 @@
-# FirstApp
+# 🎓 Graduation Project - Medical Appointment Booking System with Chatbot
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+## 📌 Project Overview
 
-## Development server
+This is a **medical appointment booking system** developed as a **graduation project** for university students. The project allows **students** to easily book appointments with doctors, while **doctors** can manage appointments and medical records. A built-in **chatbot** is also included to answer common student questions.
 
-To start a local development server, run:
+Built with **Angular 19**, it supports **role-based access control** for:
+- 👨‍⚕️ Doctors
+- 👩‍🎓 Students
+- 🔒 Admins (not publicly accessible)
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🔍 Project Features
 
-## Code scaffolding
+### ✅ For Students:
+- Browse and search clinics and doctors
+- Book appointments and view past bookings
+- View medical records
+- Fill out feedback forms
+- Receive notifications
+- Use an AI chatbot for guidance
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### ✅ For Doctors:
+- View and manage appointments
+- Add/edit medical examination records
+- Review patient history
+- View bookings with filters
+- Secure role-based login
 
-```bash
-ng generate component component-name
-```
+### 🔐 For Admin (not accessible publicly):
+- Manage clinics, doctors, students, feedback, and news
+- View dashboard statistics
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🧠 System Analysis
 
-## Building
+### 🔧 Tools & Technologies:
+- **Frontend**: Angular 19
+- **Styling**: Bootstrap 5 + custom CSS
+- **Routing**: Angular Router with Lazy Loading
+- **Authentication**: JWT-based authentication
+- **Guards**: Role-based route protection (`authGuard`, `userGuard`, `doctorGuard`, `adminGuard`)
+- **Deployment**: [Vercel](https://vercel.com)
 
-To build the project run:
+### 📁 Architecture:
+- Fully componentized architecture for scalability
+- Modular routing with lazy loading for performance
+- Follows Angular best practices with standalone components
+- Chatbot integrated in a separate reusable component
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🧪 Test Users
 
-## Running unit tests
+### 👨‍🎓 **Login as Student**
+You can login using the following link:
+[Login as Student](https://graduation-project-withchatbot.vercel.app/#/login)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+> You can register a new student or use a test account.
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+### 👨‍⚕️ **Login as Doctor**
+Use the following credentials:
 
-For end-to-end (e2e) testing, run:
+- **Email**: `emanshehata258@gmail.com`  
+- **Password**: `Eman@123456`
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 🛑 **Admin Access**
+Admin features are not available for external users for security reasons.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 💡 Credits
+
+- Developed by: **Iman Shehata and Mohamed Salah**
+- Supervised by: Faculty Of Computers And Informatics Tanta University
+- Year: 2025
+
+---
+
+## 📬 Contact
+
+For inquiries or questions, feel free to reach out via [email](mailto:emanshehata258@gmail.com).

@@ -39,7 +39,7 @@ ngOnInit(): void {
         days: this.fb.array([], Validators.required), 
         startTime: ['', Validators.required],
         endTime: ['', Validators.required],
-        duration: ['', Validators.required]
+        duration: ['', [Validators.required , Validators.min(1)]]
 
       },
       {

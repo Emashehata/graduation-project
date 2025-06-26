@@ -40,7 +40,9 @@
               @for (comment of allComments; track comment; let i = $index) {
                 <li class="list-group-item d-flex align-items-center">
                   <span class="badge bg-primary rounded-pill me-2">{{ i + 1 }}</span>
-                  <span>{{ comment }}</span>
+                  <!-- <span>{{ comment }}</span> -->
+                   <span>{{ comment && comment.trim() !== '' && comment !== 'string' ? comment : ' لم يُدرج تعليق من قِبل المستخدم' }}</span>
+
                 </li>
               }
             </ul>
