@@ -7,7 +7,7 @@ import { doctorGuard } from './core/guards/doctor/doctor.guard';
 export const routes: Routes = [
 
   /********* Public *********/
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'الرئيسية' },
   { path: 'clinics-student', loadComponent: () => import('./pages/student/clinics-student/clinics.component').then(m => m.ClinicsComponent), title: 'العيادات' },
   { path: 'clinics-doctors/:id', loadComponent: () => import('./pages/student/clnics-dotors/clnics-dotors.component').then(m => m.ClnicsDotorsComponent), title: 'أطباء العيادة' },
@@ -56,5 +56,5 @@ export const routes: Routes = [
   { path: 'update-appointment/:id', loadComponent: () => import('./pages/admin/update-doctor-appointment/update-doctor-appointment.component').then(m => m.UpdateDoctorAppointmentComponent), title: 'تعديل الميعاد', canActivate: [adminguardGuard] },
 
   /********* Not Found *********/
-  { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
+  // { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
 ];
