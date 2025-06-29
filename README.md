@@ -56,7 +56,7 @@ Built with **Angular 19**, it supports **role-based access control** for:
 
 ### 👨‍🎓 **Login as Student**
 You can login using the following link:
-[Login as Student](https://graduation-project-withchatbot.vercel.app/#/login)
+[Login as Student](https://graduation-project-emlg.vercel.app/#/login)
 
 > You can register a new student or use a test account.
 
@@ -65,8 +65,8 @@ You can login using the following link:
 ### 👨‍⚕️ **Login as Doctor**
 Use the following credentials:
 
-- **Email**: `emanshehata258@gmail.com`  
-- **Password**: `Eman@123456`
+- **Email**: `Amr.abdelwahab@med.tanta.edu.eg`  
+- **Password**: `Amr@1234567`
 
 ---
 
