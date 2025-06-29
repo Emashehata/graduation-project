@@ -7,7 +7,7 @@ import { doctorGuard } from './core/guards/doctor/doctor.guard';
 export const routes: Routes = [
 
   /********* Public *********/
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'الرئيسية' },
   { path: 'clinics-student', loadComponent: () => import('./pages/student/clinics-student/clinics.component').then(m => m.ClinicsComponent), title: 'العيادات' },
   { path: 'clinics-doctors/:id', loadComponent: () => import('./pages/student/clnics-dotors/clnics-dotors.component').then(m => m.ClnicsDotorsComponent), title: 'أطباء العيادة' },
@@ -38,7 +38,7 @@ export const routes: Routes = [
   { path: 'doctorBooking', loadComponent: () => import('./pages/doctor/doctor-booking/doctor-booking.component').then(m => m.DoctorBookingComponent), title: 'قائمة المواعيد', canActivate: [doctorGuard] },
   { path: 'examination/:patientId/:bookingId', loadComponent: () => import('./pages/doctor/examination/examination.component').then(m => m.ExaminationComponent), title: 'السجل الطبي', canActivate: [doctorGuard] },
   { path: 'add-examination/:patientId/:bookingId', loadComponent: () => import('./pages/doctor/add-examintaion/add-examintaion.component').then(m => m.AddExamintaionComponent), title: 'اضافة السجل الطبي', canActivate: [doctorGuard] },
-  { path: 'edit-examination/:patientId/:bookingId/:examinationId', loadComponent: () => import('./pages/doctor/update-examination/update-examination.component').then(m => m.UpdateExaminationComponent), title: 'تعديل السجل الطبي', canActivate: [doctorGuard] },
+  // { path: 'edit-examination/:patientId/:bookingId/:examinationId', loadComponent: () => import('./pages/doctor/update-examination/update-examination.component').then(m => m.UpdateExaminationComponent), title: 'تعديل السجل الطبي', canActivate: [doctorGuard] },
 
   /********* Admin *********/
   { path: 'homeAdmin', loadComponent: () => import('./pages/admin/home-admin/home-admin.component').then(m => m.HomeAdminComponent), title: 'home', canActivate: [adminguardGuard] },
@@ -56,5 +56,5 @@ export const routes: Routes = [
   { path: 'update-appointment/:id', loadComponent: () => import('./pages/admin/update-doctor-appointment/update-doctor-appointment.component').then(m => m.UpdateDoctorAppointmentComponent), title: 'تعديل الميعاد', canActivate: [adminguardGuard] },
 
   /********* Not Found *********/
-  { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
+  // { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
 ];
