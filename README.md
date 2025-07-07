@@ -65,8 +65,8 @@ You can login using the following link:
 ### 👨‍⚕️ **Login as Doctor**
 Use the following credentials:
 
-- **Email**: `Amr.abdelwahab@med.tanta.edu.eg`  
-- **Password**: `Amr@1234567`
+- **Email**: `emashehata@gmail.com`  
+- **Password**: `Eman@12345`
 
 ---
 
