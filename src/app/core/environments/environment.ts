@@ -1,3 +1,3 @@
 export const environment ={
-  baseUrl:'https://myclinicapp.runasp.net/',
+  baseUrl:'https://medical.tanta.edu.eg/',
 }
