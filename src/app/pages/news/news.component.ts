@@ -3,21 +3,23 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Inews } from '../../core/interfaces/Inews/inews';
 import { NewsService } from '../../core/services/news/news.service';
-import { FormsModule } from '@angular/forms'; // ✅ استيراد FormsModule لدعم ngModel
+import { FormsModule } from '@angular/forms';
+import { environment } from '../../core/environments/environment';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule], // ✅ إضافة FormsModule هنا
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })
 export class NewsComponent {
   private readonly newsService = inject(NewsService);
   news: Inews[] = [];
-  filteredNews: Inews[] = []; // ✅ قائمة الأخبار المفلترة
+  filteredNews: Inews[] = [];
   reversedNews:Inews[]=[];
-  searchTerm: string = ''; // ✅ متغير البحث
+  searchTerm: string = '';
+  baseURL=environment.baseUrl;
 
   ngOnInit(): void {
     this.getNewsData();

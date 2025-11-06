@@ -4,7 +4,7 @@
       <div class="col-lg-2 col-md-3 bg-white shadow-card rounded-3">
           <div class="account-img text-center mt-5 position-relative">
             @if(patientData()?.imageUrl){
-              <img [src]="'https://myclinicapp.runasp.net'+patientData()?.imageUrl" class="rounded-circle" alt="">
+              <img [src]="baseURL+patientData()?.imageUrl" class="rounded-circle" alt="">
             }
             @else {
                <img  src="/profile_img.png" class="rounded-circle" alt="">

@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-around">
       <div class="col-lg-2 col-md-8 bg-white shadow-card rounded-3">
           <div class="account-img text-center mt-5 position-relative">
-            <img [src]="'https://myclinicapp.runasp.net'+doctorData()?.imageUrl" class="rounded-circle" alt="">
+            <img [src]="baseURL+doctorData()?.imageUrl" class="rounded-circle" alt="">
             <span data-bs-toggle="modal" data-bs-target="#myModal" type="button"
              class="position-absolute bottom-0 bg-sec rounded-circle d-flex align-items-center justify-content-center">
               <i class="fa-solid fa-pen text-white"></i>

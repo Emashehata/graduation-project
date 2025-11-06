@@ -52,7 +52,7 @@
           <td class="text-center">{{ newsItem.content.split(' ').slice(0, 4).join(' ') }}...</td>
           <td class="text-center">{{ formatDateArabic(newsItem.createdAt) }}</td>
           <td>
-            <img [src]="'https://myclinicapp.runasp.net/' + newsItem.image" class="clinic-img img-shadow rounded-1" [alt]="newsItem.title">
+            <img [src]=" baseURL + newsItem.image" class="clinic-img img-shadow rounded-1" [alt]="newsItem.title">
           </td>
           <td>
             <div class="d-inline-flex gap-1">

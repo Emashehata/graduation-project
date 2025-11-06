@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../core/environments/environment';
 
 
 
@@ -24,6 +25,7 @@ export class ClinicAdminComponent {
   selectedFiles: { [id: string]: File | null } = {};
   isLoading: boolean = false;
   sucessMsg:boolean=false;
+  baseURL=environment.baseUrl;
 
   updateClnicForm!:FormGroup;
 

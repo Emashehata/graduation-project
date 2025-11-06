@@ -7,7 +7,7 @@ import { doctorGuard } from './core/guards/doctor/doctor.guard';
 export const routes: Routes = [
 
   /********* Public *********/
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), title: 'الرئيسية' },
   { path: 'clinics-student', loadComponent: () => import('./pages/student/clinics-student/clinics.component').then(m => m.ClinicsComponent), title: 'العيادات' },
   { path: 'clinics-doctors/:id', loadComponent: () => import('./pages/student/clnics-dotors/clnics-dotors.component').then(m => m.ClnicsDotorsComponent), title: 'أطباء العيادة' },
@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'news-details/:id', loadComponent: () => import('./pages/news-details/news-details.component').then(m => m.NewsDetailsComponent), title: 'تفاصيل الخبر' },
   { path: 'about us', loadComponent: () => import('./pages/about-us/about-us.component').then(m => m.AboutUsComponent), title: 'من نحن' },
   { path: 'contact us', loadComponent: () => import('./pages/contact-us/contact-us.component').then(m => m.ContactUsComponent), title: 'تواصل معنا' },
-  { path: 'chat bot', loadComponent: () => import('./pages/chatbot/chatbot.component').then(m => m.ChatbotComponent), title: 'شات بوت' },
+  // { path: 'chat bot', loadComponent: () => import('./pages/chatbot/chatbot.component').then(m => m.ChatbotComponent), title: 'شات بوت' },
   { path: 'register', loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent), title: 'إنشاء حساب', canActivate: [authGuard] },
   { path: 'login', loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent), title: 'تسجيل الدخول', canActivate: [authGuard] },
   { path: 'forgetPassword', loadComponent: () => import('./pages/forget-password/forget-password.component').then(m => m.ForgetPasswordComponent), title: 'تعديل كلمة السر', canActivate: [authGuard] },

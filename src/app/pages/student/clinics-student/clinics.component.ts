@@ -3,6 +3,7 @@ import { ClinicsService } from '../../../core/services/clinics/clinics.service';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IClinic } from '../../../core/interfaces/Iclinic/iclinic';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-clinics',
@@ -12,7 +13,7 @@ import { IClinic } from '../../../core/interfaces/Iclinic/iclinic';
 })
 export class ClinicsComponent implements OnInit {
   readonly clinicsService = inject(ClinicsService);
-
+  baseURL=environment.baseUrl;
 
   ngOnInit(): void {
     this.clinicsService.getClinicsData();

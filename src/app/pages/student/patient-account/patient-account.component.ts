@@ -7,6 +7,7 @@ import { PatientService } from '../../../core/services/patient/patient.service';
 import { IPatient } from '../../../core/interfaces/IPatient/ipatient';
 import { RouterLink } from '@angular/router';
 import { PasswordService } from '../../../core/services/password/password.service';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-patient-account',
@@ -22,7 +23,8 @@ export class PatientAccountComponent {
       patientData: WritableSignal<IPatient | null> = signal(null);
       selectedFile: File | null = null;
       isLoading: boolean = false;
-       showOldPassword = false;
+      showOldPassword = false;
+      baseURL=environment.baseUrl;
   showNewPassword = false;
   showConfirmPassword = false;
 

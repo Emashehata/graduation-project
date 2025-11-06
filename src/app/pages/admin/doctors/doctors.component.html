@@ -71,7 +71,7 @@
 
                           </td>
                           <td>
-                            <img [src]="'https://myclinicapp.runasp.net'+doctor.imageUrl" class="clinic-img rounded shadow-sm" [alt]="doctor.firstName">
+                            <img [src]="baseURL+doctor.imageUrl" class="clinic-img rounded shadow-sm" [alt]="doctor.firstName">
                           </td>
                           <td>{{ doctor.specialty }}</td>
                           <td>{{ doctor.description.split(' ').slice(0, 4).join(' ')  }}...</td>

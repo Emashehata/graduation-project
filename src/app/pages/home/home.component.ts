@@ -17,7 +17,7 @@ export class HomeComponent implements AfterViewInit{
   facts = [
     { value: 22, label: 'عيادات الإدارة', icon: 'icofont icofont-home' },
     { value: 50, label: 'الأطباء المتخصصين', icon: 'icofont icofont-user-alt-3' },
-    { value: 20000, label: 'الطلاب الراضون', icon: 'icofont-simple-smile' },
+    { value: 20000, label: 'الطلاب الواردون', icon: 'icofont-simple-smile' },
     { value: 15, label: 'سنوات الخبرة', icon: 'icofont icofont-table' }
   ];
 
@@ -69,4 +69,25 @@ export class HomeComponent implements AfterViewInit{
   toArabicNumbers(num: number): string {
     return num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d]);
   }
+
+  team = [
+    {
+      name: 'Ahmed Ali',
+      role: 'Backend Developer',
+      email: 'ahmed.ali@example.com',
+      img: 'home3.jpg'
+    },
+    {
+      name: 'Iman Shehata',
+      role: 'UI Developer',
+      email: 'iman.shehata@example.com',
+      img: 'photo_2025-06-26_18-25-22.jpg'
+    },
+    {
+      name: 'Sara Hassan',
+      role: 'Frontend Developer',
+      email: 'sara.hassan@example.com',
+      img: 'photo_2025-06-26_18-25-22.jpg'
+    }
+  ];
 }

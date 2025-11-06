@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../core/services/news/news.service';
 import { Inews } from '../../core/interfaces/Inews/inews';
+import { environment } from '../../core/environments/environment';
 
 @Component({
   selector: 'app-news-details',
@@ -17,6 +18,7 @@ export class NewsDetailsComponent implements OnInit {
 
   detailsNews:Inews={} as Inews;
   img:string='';
+  baseURL=environment.baseUrl;
 
   ngOnInit(): void {
       this.activatedRoute.paramMap.subscribe({

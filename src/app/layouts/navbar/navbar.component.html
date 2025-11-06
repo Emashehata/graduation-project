@@ -17,7 +17,7 @@
 
               <li class="nav-item dropdown">
                 <a class="nav-link  main-color" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <img [src]="'https://myclinicapp.runasp.net'+ doctorImg " class="profile-img rounded-circle" alt="">
+                  <img [src]=" baseURL+ doctorImg " class="profile-img rounded-circle" alt="">
                   <span class="me-3 ms-2">{{ firstName }} {{ lastName }}</span>
                 </a>
                 <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link  main-color" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   @if(patientImg){
-                    <img [src]="'https://myclinicapp.runasp.net' + patientImg" class="profile-img rounded-circle" alt="">
+                    <img [src]="baseURL + patientImg" class="profile-img rounded-circle" alt="">
                   }
                   @else {
                     <img src="/profile_img.png" alt="" class="profile-img rounded-circle">
@@ -83,7 +83,7 @@
                 <i class="fa fa-phone sec-color me-2"></i>+ 0403455670</li>
               <li>
                 <i class="fa fa-envelope sec-color me-2"></i>
-                 <a href="Studenthealthcare@unv.tanta.edu.eg" class="main-color">{{medicalEmail}}</a>
+                 <a href="mailto:Studenthealthcare@unv.tanta.edu.eg" target="_blank" class="main-color">{{medicalEmail}}</a>
               </li>
             </ul>
           </div>

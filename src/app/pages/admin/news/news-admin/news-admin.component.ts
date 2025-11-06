@@ -5,6 +5,7 @@ import { Inews } from '../../../../core/interfaces/Inews/inews';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../core/environments/environment';
 
 @Component({
   selector: 'app-news-admin',
@@ -27,6 +28,7 @@ export class NewsAdminComponent implements OnInit {
   selectedFiles: { [id: string]: File | null } = {};
   isLoading: boolean = false;
   updateNewsForm!:FormGroup;
+  baseURL=environment.baseUrl;
     ngOnInit(): void {
     this.getNewsData();
     this.updateNewsForm = this.formBuilder.group({

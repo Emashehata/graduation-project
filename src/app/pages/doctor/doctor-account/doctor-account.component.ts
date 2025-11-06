@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ClinicsService } from '../../../core/services/clinics/clinics.service';
 import { PasswordService } from '../../../core/services/password/password.service';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-doctor-account',
@@ -26,7 +27,8 @@ export class DoctorAccountComponent {
     doctorData: WritableSignal<IDoctor | null> = signal(null);
     selectedFile: File | null = null;
     isLoading: boolean = false;
-      showOldPassword = false;
+    showOldPassword = false;
+    baseURL=environment.baseUrl;
   showNewPassword = false;
   showConfirmPassword = false;
      updateDoctorForm!:FormGroup;

@@ -7,6 +7,7 @@ import { PatientService } from '../../core/services/patient/patient.service';
 import { NotificationService } from '../../core/services/notification/notification.service';
 import { INotification } from '../../core/interfaces/INotification/inotification';
 import { AsyncPipe, NgIf } from '@angular/common';
+import { environment } from '../../core/environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +28,7 @@ export class NavbarComponent implements OnInit {
     readonly countUnRead$ = this.notificationService.countUnRead$;
 
     scroll:boolean=false;
+    baseURL=environment.baseUrl;
 
 
 

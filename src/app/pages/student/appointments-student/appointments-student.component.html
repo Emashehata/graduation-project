@@ -3,7 +3,7 @@
 <div class="main-color d-flex align-content-center py-3">
   <i class="fa-regular fa-calendar-check fa-xl "></i>
   <h3 class="mx-2">المواعيد</h3>
-  
+
 </div>
 
 @if (bookings.length > 0) {
@@ -14,7 +14,7 @@
             <div class="d-flex align-items-center">
               @if (item.doctor?.imageUrl) {
                 <img
-                  [src]="'https://myclinicapp.runasp.net' + item.doctor.imageUrl"
+                  [src]="baseURL + item.doctor.imageUrl"
                   alt="doctor"
                   class="rounded-circle me-3"
                   style="width: 100px; height: 100px; object-fit: cover"
@@ -27,15 +27,15 @@
                 <p class="text-muted small m-0">{{ item.doctor?.specialty }}</p>
               </div>
             </div>
-  
+
             <div class="d-flex justify-content-between align-items-center mt-3 ps-2 ">
               <div class="">
                 <p class="mb-1 main-color ">
-                  
+
                   {{ formatDateWithYear(item.date) }}
                 </p>
                 <p class="mb-0 main-color ">
-                  
+
                   {{ formatTime(item.time) }}
                 </p>
               </div >
@@ -43,7 +43,7 @@
                 تم الحجز
               </button>
             </div>
-  
+
             <div class="text-center mt-3">
               <!-- <button class="btn btn-outline-primary rounded rounded-5 btn-sm w-100">إلغاء الميعاد</button> -->
               <button
@@ -67,7 +67,7 @@
     </div>
   }
 </div>
-  
+
 
   <!-- Delete Confirmation Modal -->
 <div

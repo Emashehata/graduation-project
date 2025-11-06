@@ -3,6 +3,7 @@ import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { DoctorService } from '../../../core/services/doctor/doctor.service';
 import { IDoctor } from '../../../core/interfaces/idoctor/idoctor';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-clnics-dotors',
@@ -16,6 +17,7 @@ export class ClnicsDotorsComponent implements OnInit{
   private readonly doctorService=inject(DoctorService);
   private readonly toastrService=inject(ToastrService);
   doctorData: WritableSignal<IDoctor[]> = signal([]);
+  baseURL=environment.baseUrl;
 
   ngOnInit(): void {
 

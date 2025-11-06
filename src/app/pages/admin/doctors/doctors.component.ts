@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IDoctor } from '../../../core/interfaces/idoctor/idoctor';
 import { IClinic } from '../../../core/interfaces/Iclinic/iclinic';
 import { ClinicsService } from '../../../core/services/clinics/clinics.service';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-doctors',
@@ -20,6 +21,7 @@ export class DoctorsComponent implements OnInit {
 
     doctorsData: WritableSignal<IDoctor[]> = signal([]);
     clinicData: WritableSignal<IClinic[]> = signal([]);
+    baseURL=environment.baseUrl;
 
   ngOnInit(): void {
     this.getDoctorsData();

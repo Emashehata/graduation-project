@@ -5,6 +5,7 @@ import { BookingService } from '../../../core/services/Booking/booking.service';
 import { DoctorService } from '../../../core/services/doctor/doctor.service';
 import { ExaminationService } from '../../../core/services/Examination/examination.service';
 import { PatientService } from '../../../core/services/patient/patient.service';
+import { environment } from '../../../core/environments/environment';
 
 @Component({
   selector: 'app-appointments-student',
@@ -20,6 +21,7 @@ constructor(private bookingService:BookingService ,private patientService:Patien
 
 bookings: any[] = [];
 selectedBookingId: string | null = null;
+baseURL=environment.baseUrl;
 
 
 // ngOnInit(): void {
