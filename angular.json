@@ -27,8 +27,8 @@
               }
             ],
             "styles": [
-              
-              "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+
+
               "./node_modules/animate.css/animate.min.css",
               "./node_modules/bootstrap/dist/css/bootstrap.rtl.min.css",
               "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
@@ -39,8 +39,8 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "./node_modules/@fortawesome/fontawesome-free/js/all.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
             ],
             "server": "src/main.server.ts",
             "prerender": true,

@@ -56,5 +56,5 @@ export const routes: Routes = [
   { path: 'update-appointment/:id', loadComponent: () => import('./pages/admin/update-doctor-appointment/update-doctor-appointment.component').then(m => m.UpdateDoctorAppointmentComponent), title: 'تعديل الميعاد', canActivate: [adminguardGuard] },
 
   /********* Not Found *********/
-  // { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
+  { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(m => m.NotfoundComponent), title: 'Not Found' }
 ];
